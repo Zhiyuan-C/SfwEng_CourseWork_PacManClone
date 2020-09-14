@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean isRunning = false;
 
     private BufferedImage image;
-    private Graphics2D g2d;
+    private Graphics2D graphics2D;
 
     private KeyHandler keyHandler;
 
@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void init() {
         isRunning = true;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        g2d = (Graphics2D) image.getGraphics();
+        graphics2D = (Graphics2D) image.getGraphics();
 
         keyHandler = new KeyHandler();
 
@@ -130,10 +130,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void render(){
-        if( g2d != null) {
+        if( graphics2D != null) {
             // background
-            g2d.setColor(new Color(0,0,0)); // black
-            g2d.fillRect(0,0,width,height);
+            graphics2D.setColor(new Color(0,0,0)); // black
+            graphics2D.fillRect(0,0,width,height);
         }
 
     }
