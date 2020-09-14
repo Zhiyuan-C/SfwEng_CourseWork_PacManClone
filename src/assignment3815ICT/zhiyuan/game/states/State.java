@@ -4,11 +4,11 @@ import assignment3815ICT.zhiyuan.game.userInteractions.KeyHandler;
 
 import java.awt.*;
 
-public abstract class Game {
+public abstract class State {
 
     private StateManager stateManager;
 
-    public Game(StateManager stateManager){
+    public State(StateManager stateManager){
         this.stateManager = stateManager;
     }
 
