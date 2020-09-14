@@ -12,7 +12,7 @@ public class StateManager {
     public StateManager() {
         states = new ArrayList<State>();
 
-//        states.add();
+        states.add(new Play(this));
     }
 
     public void update() {
