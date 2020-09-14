@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
+import assignment3815ICT.zhiyuan.game.states.StateManager;
 import assignment3815ICT.zhiyuan.game.userInteractions.KeyHandler;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Graphics2D graphics2D;
 
     private KeyHandler keyHandler;
+    private StateManager stateManager;
 
     public GamePanel(int width, int height) {
         this.width = width;
@@ -44,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
         graphics2D = (Graphics2D) image.getGraphics();
 
         keyHandler = new KeyHandler();
+        stateManager = new StateManager();
 
     }
 
@@ -122,11 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
     private void input(KeyHandler keyHandler) {
     }
 
-    private int x = 0;
-
     public void update(){
-        x ++;
-
+        stateManager.update();
     }
 
     public void render(){
@@ -134,6 +134,7 @@ public class GamePanel extends JPanel implements Runnable {
             // background
             graphics2D.setColor(new Color(0,0,0)); // black
             graphics2D.fillRect(0,0,width,height);
+            stateManager.render(graphics2D);
         }
 
     }
