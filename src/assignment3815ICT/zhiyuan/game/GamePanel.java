@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean isRunning = false;
 
     private BufferedImage image;
-    private Graphics2D g;
+    private Graphics2D g2d;
 
     public GamePanel(int width, int height) {
         this.width = width;
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void init() {
         isRunning = true;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        g = (Graphics2D) image.getGraphics();
+        g2d = (Graphics2D) image.getGraphics();
 
     }
 
@@ -59,10 +59,17 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void render(){
+        if( g2d != null) {
+            // background
+            g2d.setColor(new Color(0,0,0)); // black
+            g2d.fillRect(0,0,width,height);
+        }
 
     }
 
     public void draw(){
-
+        Graphics g = (Graphics) this.getGraphics();
+        g.drawImage(image, 0, 0, width, height, null);
+        g.dispose();
     }
 }
