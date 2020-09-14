@@ -1,5 +1,7 @@
 package assignment3815ICT.zhiyuan.game;
 
+import assignment3815ICT.zhiyuan.game.userInteractions.KeyHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,6 +16,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private BufferedImage image;
     private Graphics2D g2d;
+
+    private KeyHandler keyHandler;
 
     public GamePanel(int width, int height) {
         this.width = width;
@@ -38,6 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
         isRunning = true;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         g2d = (Graphics2D) image.getGraphics();
+
+        keyHandler = new KeyHandler();
 
     }
 
@@ -74,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
             int updateCount = 0;
             while (((now - lastUpdateTime) > TIME_BEFORE_UPDATE) && (updateCount < MOST_UPDATE_BEFORE_RENDER)) {
                 update();
-                input();
+                input(keyHandler);
                 lastUpdateTime += TIME_BEFORE_UPDATE;
                 updateCount ++;
             }
@@ -82,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (now - lastUpdateTime > TIME_BEFORE_UPDATE) {
                 lastUpdateTime = now - TIME_BEFORE_UPDATE;
             }
-            input();
+            input(keyHandler);
             render();
             draw();
             lastRenderTime = now;
@@ -113,7 +119,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    private void input() {
+    private void input(KeyHandler keyHandler) {
     }
 
     private int x = 0;
