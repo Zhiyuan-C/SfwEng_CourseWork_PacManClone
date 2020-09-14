@@ -1,17 +1,26 @@
 package assignment3815ICT.zhiyuan.game.display;
 
-import assignment3815ICT.zhiyuan.game.GamePanel;
-
 import javax.swing.*;
 
-public class GameWindow extends JFrame {
-    public GameWindow() {
-        setTitle("Pac-Man");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setContentPane(new GamePanel(1280, 720)); //set internal pane of the JFrame
+public class GameWindow {
 
-        pack(); //condens the window, compacts the window
-        setLocationRelativeTo(null);
-        setVisible(true);
+    private JFrame frame;
+    private String title;
+    private int width, height;
+
+    public GameWindow(String title, int width, int height) {
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        createWindow();
+    }
+
+    private void createWindow() {
+        frame = new JFrame(title);
+        frame.setSize(width, height);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
