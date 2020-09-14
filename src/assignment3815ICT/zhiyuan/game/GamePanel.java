@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         graphics2D = (Graphics2D) image.getGraphics();
 
-        keyHandler = new KeyHandler();
+        keyHandler = new KeyHandler(this);
         stateManager = new StateManager();
 
     }
@@ -123,6 +123,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void input(KeyHandler keyHandler) {
+        stateManager.input(keyHandler);
     }
 
     public void update(){

@@ -17,6 +17,7 @@ public class Play extends State {
 
     @Override
     public void input(KeyHandler keyHandler) {
+        if(keyHandler.up.isPressed()) System.out.println("up is being pressed");
 
     }
 
