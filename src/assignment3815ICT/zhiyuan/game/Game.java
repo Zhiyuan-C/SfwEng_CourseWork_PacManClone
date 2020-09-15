@@ -3,6 +3,9 @@ package assignment3815ICT.zhiyuan.game;
 import assignment3815ICT.zhiyuan.game.display.GameWindow;
 import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
 import assignment3815ICT.zhiyuan.game.gameGraphics.Sprite;
+import assignment3815ICT.zhiyuan.game.states.PlayState;
+import assignment3815ICT.zhiyuan.game.states.State;
+import assignment3815ICT.zhiyuan.game.states.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -27,6 +30,8 @@ public class Game implements Runnable{
     // initialise game objects
     private ArrayList<BufferedImage> gameObjects;
 
+    private State gameState;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -39,10 +44,16 @@ public class Game implements Runnable{
         gameWindow = new GameWindow(title, width, height);
         GameObject.init();
         gameObjects = GameObject.getGameObjects();
+        gameState = new PlayState();
+        StateManager.setState(gameState);
     }
 
     // update game
-    private void update() {}
+    private void update() {
+        if(StateManager.getCurrentState() != null){
+            StateManager.getCurrentState().update();
+        }
+    }
 
     // render game - draw things to the display
     private void render() {
@@ -58,7 +69,10 @@ public class Game implements Runnable{
         // clear screen every time rendering
         graphics.clearRect(0,0, width, height); // not sure if really need
         // begin drawing
-        graphics.drawImage(gameObjects.get(1), 0, 0, null);
+//        graphics.drawImage(gameObjects.get(1), 0, 0, null);
+        if(StateManager.getCurrentState() != null) {
+            StateManager.getCurrentState().render(graphics, gameObjects.get(1));
+        }
         // finish drawing. start display to screen
         bufferStrategy.show();
         graphics.dispose();
