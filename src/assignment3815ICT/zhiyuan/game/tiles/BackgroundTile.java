@@ -1,9 +1,10 @@
 package assignment3815ICT.zhiyuan.game.tiles;
 
-import java.awt.image.BufferedImage;
+
+import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
 
 public class BackgroundTile extends Tile{
-    public BackgroundTile(BufferedImage tileImage, int TILE_ID) {
-        super(tileImage, TILE_ID);
+    public BackgroundTile(int TILE_ID) {
+        super(GameObject.getGameObjects().get(0), TILE_ID);
     }
 }
