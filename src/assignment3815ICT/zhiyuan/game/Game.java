@@ -44,7 +44,7 @@ public class Game implements Runnable{
         gameWindow = new GameWindow(title, width, height);
         GameObject.init();
         gameObjects = GameObject.getGameObjects();
-        playState = new PlayState();
+        playState = new PlayState(this);
         StateManager.setState(playState);
     }
 

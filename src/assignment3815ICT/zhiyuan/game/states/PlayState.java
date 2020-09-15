@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game.states;
 
+import assignment3815ICT.zhiyuan.game.Game;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 
 import java.awt.*;
@@ -10,7 +11,8 @@ public class PlayState extends State {
     private PacMan pacMan;
 
     // constructor
-    public PlayState() {
+    public PlayState(Game game) {
+        super(game);
         pacMan = new PacMan(10, 10);
     }
 
