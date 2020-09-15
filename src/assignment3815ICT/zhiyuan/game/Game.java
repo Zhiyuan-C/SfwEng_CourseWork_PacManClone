@@ -30,7 +30,7 @@ public class Game implements Runnable{
     // initialise game objects
     private ArrayList<BufferedImage> gameObjects;
 
-    private State gameState;
+    private State playState;
 
 
     public Game(String title, int width, int height) {
@@ -44,8 +44,8 @@ public class Game implements Runnable{
         gameWindow = new GameWindow(title, width, height);
         GameObject.init();
         gameObjects = GameObject.getGameObjects();
-        gameState = new PlayState();
-        StateManager.setState(gameState);
+        playState = new PlayState();
+        StateManager.setState(playState);
     }
 
     // update game
