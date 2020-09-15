@@ -12,7 +12,7 @@ public class PacMan extends Mob {
 
     public PacMan(Game game, float x, float y) {
         super(x, y, 32, 32);
-        speed = 2.0f;
+        speed = 1.5f;
         this.game = game;
     }
 
