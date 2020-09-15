@@ -13,7 +13,7 @@ public class PlayState extends State {
     // constructor
     public PlayState(Game game) {
         super(game);
-        pacMan = new PacMan(10, 10);
+        pacMan = new PacMan(game, 10, 10);
     }
 
     @Override

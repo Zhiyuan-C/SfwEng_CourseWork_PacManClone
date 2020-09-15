@@ -6,6 +6,7 @@ import assignment3815ICT.zhiyuan.game.gameGraphics.Sprite;
 import assignment3815ICT.zhiyuan.game.states.PlayState;
 import assignment3815ICT.zhiyuan.game.states.State;
 import assignment3815ICT.zhiyuan.game.states.StateManager;
+import assignment3815ICT.zhiyuan.game.userInputs.KeyManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -32,16 +33,20 @@ public class Game implements Runnable{
 
     private State playState;
 
+    private KeyManager keyManager;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
         this.title = title;
+        keyManager = new KeyManager();
     }
 
     // initialise all the graphics for the game
     private void init() {
         gameWindow = new GameWindow(title, width, height);
+        gameWindow.getFrame().addKeyListener(keyManager);
         GameObject.init();
         gameObjects = GameObject.getGameObjects();
         playState = new PlayState(this);
@@ -50,6 +55,8 @@ public class Game implements Runnable{
 
     // update game
     private void update() {
+        keyManager.update();
+
         if(StateManager.getCurrentState() != null){
             StateManager.getCurrentState().update();
         }
@@ -139,5 +146,9 @@ public class Game implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 }

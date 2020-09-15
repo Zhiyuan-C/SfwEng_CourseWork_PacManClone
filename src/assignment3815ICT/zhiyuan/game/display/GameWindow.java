@@ -29,6 +29,7 @@ public class GameWindow {
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
+        canvas.setFocusable(false);
 
         frame.add(canvas);
         frame.pack();
@@ -38,4 +39,7 @@ public class GameWindow {
     public Canvas getCanvas() {
         return canvas;
     }
+
+    // get frame
+    public JFrame getFrame() { return frame; }
 }
