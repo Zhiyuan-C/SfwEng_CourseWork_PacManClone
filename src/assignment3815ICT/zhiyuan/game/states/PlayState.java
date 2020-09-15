@@ -13,7 +13,7 @@ public class PlayState extends State {
     // constructor
     public PlayState(Game game) {
         super(game);
-        pacMan = new PacMan(game, 10, 10);
+        pacMan = new PacMan(game, 640 - 16, 360 - 16);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class PlayState extends State {
     @Override
     public void render(Graphics graphics, BufferedImage gameObject) {
         pacMan.render(graphics, gameObject);
-//        pacMan.move();
+        pacMan.move();
     }
 }
