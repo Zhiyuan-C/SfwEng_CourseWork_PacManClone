@@ -67,10 +67,40 @@ public class Game implements Runnable{
     @Override
     public void run() {
         init();
+        // variable for set up restrictions for how many times the update and render methods needs to run in 1 sec
+        final int ONE_SEC = 1000000000; // 1000000000 nano sec = 1 sec;
+        final double TARGET_FPS = 60; // frame per sec or tick per sec, how many times per sec we want every frame or update to run
+        final double TIME_PER_UPDATE = ONE_SEC / TARGET_FPS; // time per update or time per tick; 1 / 60 => allow to have the maximum time that allow us to run 60 per sec goal
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime(); // amount of time in nano sec, current time of our computer in nanosec
+
+        // variable for fps counter
+        long timer = 0;
+        int updateNum = 0; // fps rate
+
         // game loop
         while (isRunning) {
-            update();
-            render();
+            now = System.nanoTime();
+            // how much time we have util we have to call the update and render method again, tells comuter when and when not to call the update and render methods
+            delta += (now - lastTime) / TIME_PER_UPDATE; // amount of time passed / maximum time allowed to call the render and update method
+            timer += now - lastTime;
+            lastTime = now;
+
+            if(delta >= 1) {
+                update();
+                render();
+                updateNum ++;
+                delta --;
+            }
+
+            // if timer is greater than 1 sec
+            if( timer >= 1000000000) {
+                System.out.println("Updates and Frames: " + updateNum);
+                updateNum = 0;
+                timer = 0;
+            }
+
         }
 
         stop(); // in case not stop
