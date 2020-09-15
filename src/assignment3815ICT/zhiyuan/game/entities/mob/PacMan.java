@@ -6,7 +6,13 @@ import java.awt.image.BufferedImage;
 public class PacMan extends Mob {
     public PacMan(float x, float y) {
         super(x, y);
+//        speed = 1;
     }
+
+//    @Override
+//    public void move() {
+//        x += speed;
+//    }
 
     @Override
     public void update() {
