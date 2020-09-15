@@ -4,12 +4,27 @@ import assignment3815ICT.zhiyuan.game.entities.Entity;
 
 public abstract class Mob extends Entity {
 
-    protected double speed;
+    protected float speed;
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
 
-    public Mob(float x, float y) {
-        super(x, y);
+    public Mob(float x, float y, int width, int height) {
+        super(x, y, width, height);
     }
 
-    public abstract void move(); // may change latter
+    public void move() {
+        // 1 for up, 2 for down, 3 for left, 4 for right
+        switch (direction) {
+            case 1:
+                y -= speed;
+                break;
+            case 2:
+                y += speed;
+                break;
+            case 3:
+                x -= speed;
+                break;
+            case 4:
+                x += speed;
+        }
+    }
 }

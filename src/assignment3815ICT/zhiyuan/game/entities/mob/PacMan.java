@@ -11,31 +11,19 @@ public class PacMan extends Mob {
 
 
     public PacMan(Game game, float x, float y) {
-        super(x, y);
-        speed = 1;
+        super(x, y, 32, 32);
+        speed = 2.0f;
         this.game = game;
     }
 
-    @Override
-    public void move() {
-        // 1 for up, 2 for down, 3 for left, 4 for right
-        switch (direction) {
-            case 1:
-                y -= speed;
-                break;
-            case 2:
-                y += speed;
-                break;
-            case 3:
-                x -= speed;
-                break;
-            case 4:
-                x += speed;
-        }
-    }
 
     @Override
     public void update() {
+        getInput();
+        move();
+    }
+
+    private void getInput() {
         if(game.getKeyManager().up) direction = 1;
         if(game.getKeyManager().down) direction = 2;
         if(game.getKeyManager().left) direction = 3;
@@ -44,6 +32,6 @@ public class PacMan extends Mob {
 
     @Override
     public void render(Graphics graphics, BufferedImage image) {
-        graphics.drawImage(image, (int) x, (int) y, null);
+        graphics.drawImage(image, (int) x, (int) y, width, height, null);
     }
 }

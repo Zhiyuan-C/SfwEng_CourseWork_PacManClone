@@ -24,6 +24,6 @@ public class PlayState extends State {
     @Override
     public void render(Graphics graphics, BufferedImage gameObject) {
         pacMan.render(graphics, gameObject);
-        pacMan.move();
+//        pacMan.move();
     }
 }
