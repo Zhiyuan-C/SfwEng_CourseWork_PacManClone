@@ -1,9 +1,11 @@
 package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.display.GameWindow;
+import assignment3815ICT.zhiyuan.game.gameGraphics.Sprite;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
     // hold everything base game
@@ -20,6 +22,10 @@ public class Game implements Runnable{
     private BufferStrategy bufferStrategy; // normally bs
     private Graphics graphics; // normally g
 
+    // prepare sprite sheet
+    private BufferedImage image; // if only used in one place, then move into method
+    private Sprite spriteSheet;
+
     public Game(String title, int width, int height) {
         this.width = width;
         this.height = height;
@@ -29,6 +35,9 @@ public class Game implements Runnable{
     // initialise all the graphics for the game
     private void init() {
         gameWindow = new GameWindow(title, width, height);
+
+        spriteSheet = new Sprite("/spriteSheetForPacMan.png");
+
     }
 
     // update game
@@ -46,8 +55,11 @@ public class Game implements Runnable{
         graphics = bufferStrategy.getDrawGraphics(); // this is like to have paint brushes prepared ready to draw things onto canvas
 
         // clear screen every time rendering
-
+        graphics.clearRect(0,0, width, height); // not sure if really need
         // begin drawing
+        BufferedImage testImage = spriteSheet.getSpriteSheet();
+        BufferedImage testImage2 = spriteSheet.getSpriteTileImage(16,0,16,16);
+        graphics.drawImage(testImage2,0,0,null);
 
         // finish drawing. start display to screen
         bufferStrategy.show();
