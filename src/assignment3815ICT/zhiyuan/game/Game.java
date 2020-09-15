@@ -1,11 +1,13 @@
 package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.display.GameWindow;
+import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
 import assignment3815ICT.zhiyuan.game.gameGraphics.Sprite;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Game implements Runnable{
     // hold everything base game
@@ -22,9 +24,9 @@ public class Game implements Runnable{
     private BufferStrategy bufferStrategy; // normally bs
     private Graphics graphics; // normally g
 
-    // prepare sprite sheet
-    private BufferedImage image; // if only used in one place, then move into method
-    private Sprite spriteSheet;
+    // initialise game objects
+    private ArrayList<BufferedImage> gameObjects;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -35,9 +37,8 @@ public class Game implements Runnable{
     // initialise all the graphics for the game
     private void init() {
         gameWindow = new GameWindow(title, width, height);
-
-        spriteSheet = new Sprite("/spriteSheetForPacMan.png");
-
+        GameObject.init();
+        gameObjects = GameObject.getGameObjects();
     }
 
     // update game
@@ -57,10 +58,7 @@ public class Game implements Runnable{
         // clear screen every time rendering
         graphics.clearRect(0,0, width, height); // not sure if really need
         // begin drawing
-        BufferedImage testImage = spriteSheet.getSpriteSheet();
-        BufferedImage testImage2 = spriteSheet.getSpriteTileImage(16,0,16,16);
-        graphics.drawImage(testImage2,0,0,null);
-
+        graphics.drawImage(gameObjects.get(1), 0, 0, null);
         // finish drawing. start display to screen
         bufferStrategy.show();
         graphics.dispose();
