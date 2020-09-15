@@ -33,4 +33,9 @@ public class GameWindow {
         frame.add(canvas);
         frame.pack();
     }
+
+    // get canvas
+    public Canvas getCanvas() {
+        return canvas;
+    }
 }

@@ -2,6 +2,9 @@ package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.display.GameWindow;
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 public class Game implements Runnable{
     // hold everything base game
 
@@ -12,6 +15,10 @@ public class Game implements Runnable{
 
     private Thread thread;
     private boolean isRunning = false;
+
+    // initialise drawing things for render
+    private BufferStrategy bufferStrategy; // normally bs
+    private Graphics graphics; // normally g
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -27,8 +34,25 @@ public class Game implements Runnable{
     // update game
     private void update() {}
 
-    // render game
-    private void render() {}
+    // render game - draw things to the display
+    private void render() {
+        bufferStrategy = gameWindow.getCanvas().getBufferStrategy(); // buffere strategy is a way computer use to draw things onto the screen
+        // create buffer if not exist yet
+        if(bufferStrategy == null) {
+            gameWindow.getCanvas().createBufferStrategy(3); // no more than 3, maxmium is 3
+            return;
+        }
+
+        graphics = bufferStrategy.getDrawGraphics(); // this is like to have paint brushes prepared ready to draw things onto canvas
+
+        // clear screen every time rendering
+
+        // begin drawing
+
+        // finish drawing. start display to screen
+        bufferStrategy.show();
+        graphics.dispose();
+    }
 
     @Override
     public void run() {
