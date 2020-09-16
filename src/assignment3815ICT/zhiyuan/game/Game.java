@@ -78,7 +78,7 @@ public class Game implements Runnable{
         // begin drawing
 //        graphics.drawImage(gameObjects.get(1), 0, 0, null);
         if(StateManager.getCurrentState() != null) {
-            StateManager.getCurrentState().render(graphics, gameObjects.get(1));
+            StateManager.getCurrentState().render(graphics, gameObjects.get(34));
         }
         // finish drawing. start display to screen
         bufferStrategy.show();
@@ -99,6 +99,7 @@ public class Game implements Runnable{
         // variable for fps counter
         long timer = 0;
         int updateNum = 0; // fps rate
+        int lastUpdateNum = 0;
 
         // game loop
         while (isRunning) {
@@ -117,7 +118,8 @@ public class Game implements Runnable{
 
             // if timer is greater than 1 sec
             if( timer >= ONE_SEC) {
-                System.out.println("Updates and Frames: " + updateNum);
+                if(lastUpdateNum != updateNum) System.out.println("Updates and Frames: " + updateNum);
+                lastUpdateNum = updateNum;
                 updateNum = 0;
                 timer = 0;
             }
