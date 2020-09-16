@@ -18,8 +18,8 @@ public class Game implements Runnable{
 
     private GameWindow gameWindow;
 
-    public String title;
-    public int width, height;
+    private String title;
+    private int width, height;
 
     private Thread thread;
     private boolean isRunning = false;
@@ -152,5 +152,13 @@ public class Game implements Runnable{
 
     public KeyManager getKeyManager() {
         return keyManager;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
