@@ -52,6 +52,9 @@ public class Map {
     }
 
     public Tile getTile(int x, int y) {
+        // check do not let player outside of map
+        if(x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return new BackgroundTile(0);
+
         Tile tile = Tile.tiles[tiles[x][y]];
         if(tile == null) {
             return new BackgroundTile(0);
