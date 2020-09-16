@@ -7,17 +7,17 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity {
     protected GameHandler gameHandler;
-    protected float x, y; // x position and y position
+    protected float xPos, yPos; // x position and y position
     protected int width, height; // size of the entity
 
     //collision detection
     protected Rectangle collisionBounds;
 
     // constructor
-    public Entity(GameHandler gameHandler, float x, float y, int width, int height) {
+    public Entity(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         this.gameHandler = gameHandler;
-        this.x = x;
-        this.y = y;
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.width = width;
         this.height = height;
 

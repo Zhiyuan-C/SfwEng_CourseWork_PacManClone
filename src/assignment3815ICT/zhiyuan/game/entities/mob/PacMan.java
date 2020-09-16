@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class PacMan extends Mob {
 
-    public PacMan(GameHandler gameHandler, float x, float y) {
-        super(gameHandler, x, y, 32, 32);
+    public PacMan(GameHandler gameHandler, float xPos, float yPos) {
+        super(gameHandler, xPos, yPos, 32, 32);
         speed = 1.5f;
 
         // set up collision bounds
@@ -35,9 +35,9 @@ public class PacMan extends Mob {
 
     @Override
     public void render(Graphics graphics, BufferedImage image) {
-        graphics.drawImage(image, (int) x, (int) y, width, height, null);
+        graphics.drawImage(image, (int) xPos, (int) yPos, width, height, null);
 
         graphics.setColor(Color.RED);
-        graphics.fillRect((int)(x + collisionBounds.x), (int)(y + collisionBounds.y), collisionBounds.width, collisionBounds.height);
+        graphics.fillRect((int)(xPos + collisionBounds.x), (int)(yPos + collisionBounds.y), collisionBounds.width, collisionBounds.height);
     }
 }
