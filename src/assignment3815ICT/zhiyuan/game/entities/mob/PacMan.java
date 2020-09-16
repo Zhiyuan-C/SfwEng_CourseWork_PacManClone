@@ -11,6 +11,12 @@ public class PacMan extends Mob {
     public PacMan(GameHandler gameHandler, float x, float y) {
         super(gameHandler, x, y, 32, 32);
         speed = 1.5f;
+
+        // set up collision bounds
+        collisionBounds.x = 8;
+        collisionBounds.y = 16;
+        collisionBounds.width = 16;
+        collisionBounds.height = 16;
     }
 
 
@@ -30,5 +36,8 @@ public class PacMan extends Mob {
     @Override
     public void render(Graphics graphics, BufferedImage image) {
         graphics.drawImage(image, (int) x, (int) y, width, height, null);
+
+        graphics.setColor(Color.RED);
+        graphics.fillRect((int)(x + collisionBounds.x), (int)(y + collisionBounds.y), collisionBounds.width, collisionBounds.height);
     }
 }

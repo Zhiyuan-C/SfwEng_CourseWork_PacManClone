@@ -10,6 +10,9 @@ public abstract class Entity {
     protected float x, y; // x position and y position
     protected int width, height; // size of the entity
 
+    //collision detection
+    protected Rectangle collisionBounds;
+
     // constructor
     public Entity(GameHandler gameHandler, float x, float y, int width, int height) {
         this.gameHandler = gameHandler;
@@ -17,6 +20,8 @@ public abstract class Entity {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        collisionBounds = new Rectangle(0 ,0, width, height);
     }
 
     //abstract methods
