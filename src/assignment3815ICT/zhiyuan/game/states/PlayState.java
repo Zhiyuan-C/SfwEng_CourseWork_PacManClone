@@ -15,7 +15,7 @@ public class PlayState extends State {
     // constructor
     public PlayState(Game game) {
         super(game);
-        pacMan = new PacMan(game, 640 - 16, 360 - 16);
+        pacMan = new PacMan(game, 640, 360-8);
         map = new Map("res/map.txt");
     }
 
