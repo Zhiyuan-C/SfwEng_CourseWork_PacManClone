@@ -6,14 +6,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class PacMan extends Mob {
-    private Game game;
-
-
 
     public PacMan(Game game, float x, float y) {
-        super(x, y, 32, 32);
+        super(game, x, y, 32, 32);
         speed = 1.5f;
-        this.game = game;
     }
 
 

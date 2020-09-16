@@ -16,7 +16,7 @@ public class PlayState extends State {
     public PlayState(Game game) {
         super(game);
         pacMan = new PacMan(game, 640, 360-8);
-        map = new Map("res/map.txt");
+        map = new Map(game,"res/map.txt");
     }
 
     @Override
