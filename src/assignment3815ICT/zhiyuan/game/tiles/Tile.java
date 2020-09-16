@@ -29,7 +29,8 @@ public class Tile {
 
     // check if is wall tile, default false
     public boolean isWall() {
-        if(TILE_ID >= 2 && TILE_ID <= 19) {
+        if(TILE_ID > 1 && TILE_ID < 20) {
+//            System.out.println("tile id: " + TILE_ID);
             return true;
         } else {
             return false;

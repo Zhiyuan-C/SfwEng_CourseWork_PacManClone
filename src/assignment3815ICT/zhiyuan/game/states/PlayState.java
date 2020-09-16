@@ -18,7 +18,7 @@ public class PlayState extends State {
         super(gameHandler);
         map = new Map(gameHandler,"res/map.txt");
         gameHandler.setMap(map);
-        pacMan = new PacMan(gameHandler, 640, 360-8);
+        pacMan = new PacMan(gameHandler, 645, 356);
 
     }
 

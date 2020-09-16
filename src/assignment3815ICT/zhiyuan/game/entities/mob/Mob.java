@@ -26,18 +26,29 @@ public abstract class Mob extends Entity {
         int tileYPosLower = (int)(yPos + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
         switch (direction) {
             case 3: // move left
-                tileXPos = (int)(xPos + speed + collisionBounds.x) / Tile.TILE_WIDTH;
+                tileXPos = (int)(xPos - 2 + collisionBounds.x) / Tile.TILE_WIDTH;
                 if(!collisionWithWall(tileXPos, tileYPosUpper) &&
                         !collisionWithWall(tileXPos, tileYPosLower)) {
+                    if(isCrossing((int)(xPos - 2))) {
+                        xPos = gameHandler.getGameWidth();
+                    }
                     xPos -= speed;
+                } else {
+                    xPos = tileXPos * Tile.TILE_WIDTH + Tile.TILE_WIDTH - collisionBounds.x;
+
                 }
                 break;
 
             case 4: // move right
-                tileXPos = (int)(xPos + speed + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
+                tileXPos = (int)(xPos + 2 + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
                 if(!collisionWithWall(tileXPos, tileYPosUpper) &&
                         !collisionWithWall(tileXPos, tileYPosLower)) {
+                    if(isCrossing((int)(xPos + 2))) {
+                        xPos = 0;
+                    }
                     xPos += speed;
+                } else {
+                    xPos = tileXPos * Tile.TILE_WIDTH - collisionBounds.x - collisionBounds.width - 2;
                 }
                 break;
         }
@@ -48,17 +59,21 @@ public abstract class Mob extends Entity {
         int tileXPosRight = (int)(xPos + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
         switch (direction) {
             case 1: // up
-                tileYPos = (int)(yPos + speed + collisionBounds.y) / Tile.TILE_HEIGHT;
+                tileYPos = (int)(yPos - 2 + collisionBounds.y) / Tile.TILE_HEIGHT;
                 if(!collisionWithWall(tileXPosLeft, tileYPos) &&
                         !collisionWithWall(tileXPosRight, tileYPos)) {
                     yPos -= speed;
+                } else {
+                    yPos = tileYPos * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - collisionBounds.y;
                 }
                 break;
             case 2: //down
-                tileYPos = (int)(yPos + speed + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
+                tileYPos = (int)(yPos + 2 + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
                 if(!collisionWithWall(tileXPosLeft, tileYPos) &&
                         !collisionWithWall(tileXPosRight, tileYPos)) {
                     yPos += speed;
+                } else {
+                    yPos = tileYPos * Tile.TILE_HEIGHT - collisionBounds.height - collisionBounds.y - 2;
                 }
                 break;
         }
@@ -66,6 +81,15 @@ public abstract class Mob extends Entity {
     }
 
     protected boolean collisionWithWall(int x, int y) {
+        // x and y in tile measure
         return gameHandler.getMap().getTile(x, y).isWall();
+    }
+
+    protected boolean isCrossing(int x) {
+        // x and y in pixel measure
+        if (x < 0 || x > gameHandler.getGameWidth()) {
+            return true;
+        }
+        return false;
     }
 }
