@@ -28,4 +28,15 @@ public abstract class Mob extends Entity {
                 x += speed;
         }
     }
+
+    public void moveX() {
+
+    }
+    public void moveY() {
+
+    }
+
+    protected boolean collisionWithWall(int x, int y) {
+        return gameHandler.getMap().getTile(x, y).isWall();
+    }
 }
