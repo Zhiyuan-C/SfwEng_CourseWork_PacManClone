@@ -16,15 +16,7 @@ public abstract class Mob extends Entity {
     }
 
     public void move() {
-        // 1 for up, 2 for down, 3 for left, 4 for right
-        switch (direction) {
-            case 1:
-                yPos -= speed;
-                break;
-            case 2:
-                yPos += speed;
-                break;
-        }
+        moveY();
         moveX();
     }
 
@@ -51,6 +43,25 @@ public abstract class Mob extends Entity {
         }
     }
     public void moveY() {
+        int tileYPos = 0;
+        int tileXPosLeft = (int)(xPos + collisionBounds.x) / Tile.TILE_WIDTH;
+        int tileXPosRight = (int)(xPos + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
+        switch (direction) {
+            case 1: // up
+                tileYPos = (int)(yPos + speed + collisionBounds.y) / Tile.TILE_HEIGHT;
+                if(!collisionWithWall(tileXPosLeft, tileYPos) &&
+                        !collisionWithWall(tileXPosRight, tileYPos)) {
+                    yPos -= speed;
+                }
+                break;
+            case 2: //down
+                tileYPos = (int)(yPos + speed + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
+                if(!collisionWithWall(tileXPosLeft, tileYPos) &&
+                        !collisionWithWall(tileXPosRight, tileYPos)) {
+                    yPos += speed;
+                }
+                break;
+        }
 
     }
 
