@@ -1,6 +1,6 @@
 package assignment3815ICT.zhiyuan.game.entities.mob;
 
-import assignment3815ICT.zhiyuan.game.Game;
+import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 
 public abstract class Mob extends Entity {
@@ -8,8 +8,8 @@ public abstract class Mob extends Entity {
     protected float speed;
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
 
-    public Mob(Game game, float x, float y, int width, int height) {
-        super(game, x, y, width, height);
+    public Mob(GameHandler gameHandler, float x, float y, int width, int height) {
+        super(gameHandler, x, y, width, height);
     }
 
     public void move() {

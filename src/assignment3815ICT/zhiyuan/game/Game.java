@@ -35,6 +35,8 @@ public class Game implements Runnable{
 
     private KeyManager keyManager;
 
+    private GameHandler gameHandler;
+
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -47,9 +49,13 @@ public class Game implements Runnable{
     private void init() {
         gameWindow = new GameWindow(title, width, height);
         gameWindow.getFrame().addKeyListener(keyManager);
+        // load game object
         GameObject.init();
         gameObjects = GameObject.getGameObjects();
-        playState = new PlayState(this);
+        // set handler
+        gameHandler = new GameHandler(this);
+        // set play state
+        playState = new PlayState(gameHandler);
         StateManager.setState(playState);
     }
 

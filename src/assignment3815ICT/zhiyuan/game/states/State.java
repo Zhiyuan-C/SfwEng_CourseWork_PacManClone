@@ -1,15 +1,15 @@
 package assignment3815ICT.zhiyuan.game.states;
 
-import assignment3815ICT.zhiyuan.game.Game;
+import assignment3815ICT.zhiyuan.game.GameHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class State {
-    protected Game game;
+    protected GameHandler gameHandler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(GameHandler gameHandler) {
+        this.gameHandler = gameHandler;
     }
     public abstract void update();
     public abstract void render(Graphics graphics, BufferedImage gameObject);

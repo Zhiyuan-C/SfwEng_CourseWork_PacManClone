@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.states;
 
 import assignment3815ICT.zhiyuan.game.Game;
+import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 import assignment3815ICT.zhiyuan.game.map.Map;
 
@@ -13,10 +14,11 @@ public class PlayState extends State {
     private Map map;
 
     // constructor
-    public PlayState(Game game) {
-        super(game);
-        pacMan = new PacMan(game, 640, 360-8);
-        map = new Map(game,"res/map.txt");
+    public PlayState(GameHandler gameHandler) {
+        super(gameHandler);
+        map = new Map(gameHandler,"res/map.txt");
+        pacMan = new PacMan(gameHandler, 640, 360-8);
+
     }
 
     @Override
