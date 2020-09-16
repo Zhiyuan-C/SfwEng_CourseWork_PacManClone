@@ -55,11 +55,15 @@ public class Map {
         // check do not let player outside of map
         if(x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return new BackgroundTile(0);
 
-        Tile tile = Tile.tiles[tiles[x][y]];
+        Tile tile = Tile.tileObjects[tiles[x][y]];
         if(tile == null) {
             return new BackgroundTile(0);
         }
         return tile;
+    }
+
+    public ArrayList<Tile> getTileObjects() {
+        return tileObjects;
     }
 
     public void update() {}

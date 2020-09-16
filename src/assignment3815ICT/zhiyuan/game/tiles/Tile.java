@@ -5,8 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     private static final int TOTAL_TILES = 256; // 16 * 16, total tiles on the sprite sheet
-
-    public static Tile[] tiles = new Tile[TOTAL_TILES];
+    public static Tile[] tileObjects = new Tile[TOTAL_TILES];
 
     public static final int TILE_WIDTH = 32, TILE_HEIGHT = 32;
 
@@ -17,7 +16,7 @@ public class Tile {
         this.tileImage = tileImage;
         this.TILE_ID = TILE_ID;
 
-        tiles[TILE_ID] = this;
+        tileObjects[TILE_ID] = this;
     }
 
     public void update() {
@@ -30,7 +29,12 @@ public class Tile {
 
     // check if is wall tile, default false
     public boolean isWall() {
-        return false;
+        if(TILE_ID >= 2 && TILE_ID <= 19) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public int getTileId() {

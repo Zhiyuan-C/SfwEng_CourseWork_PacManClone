@@ -2,6 +2,9 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
+import assignment3815ICT.zhiyuan.game.tiles.Tile;
+
+import java.util.ArrayList;
 
 public abstract class Mob extends Entity {
 
@@ -22,7 +25,8 @@ public abstract class Mob extends Entity {
                 yPos += speed;
                 break;
             case 3:
-                xPos -= speed;
+//                xPos -= speed;
+                moveX();
                 break;
             case 4:
                 xPos += speed;
@@ -30,7 +34,10 @@ public abstract class Mob extends Entity {
     }
 
     public void moveX() {
-
+        int tempXPos = (int)(xPos + speed + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
+        if(!collisionWithWall(tempXPos, (int)(yPos + collisionBounds.y) / Tile.TILE_HEIGHT)) {
+            xPos -= speed;
+        }
     }
     public void moveY() {
 

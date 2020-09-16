@@ -2,6 +2,7 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 
 import assignment3815ICT.zhiyuan.game.Game;
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,10 +14,10 @@ public class PacMan extends Mob {
         speed = 1.5f;
 
         // set up collision bounds
-        collisionBounds.x = 8;
-        collisionBounds.y = 16;
-        collisionBounds.width = 16;
-        collisionBounds.height = 16;
+//        collisionBounds.x = 8;
+//        collisionBounds.y = 16;
+//        collisionBounds.width = 16;
+//        collisionBounds.height = 16;
     }
 
 
