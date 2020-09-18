@@ -4,7 +4,6 @@ import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.tiles.Tile;
 
-import java.util.ArrayList;
 
 public abstract class Mob extends Entity {
 

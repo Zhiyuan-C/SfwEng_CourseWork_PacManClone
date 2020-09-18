@@ -1,8 +1,6 @@
 package assignment3815ICT.zhiyuan.game.entities.mob;
 
-import assignment3815ICT.zhiyuan.game.Game;
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,7 +17,6 @@ public class PacMan extends Mob {
         collisionBounds.width = 30;
         collisionBounds.height = 30;
     }
-
 
     @Override
     public void update() {
