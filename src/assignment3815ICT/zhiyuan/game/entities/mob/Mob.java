@@ -22,7 +22,11 @@ public abstract class Mob extends Entity {
     public void moveX() {
         int tileXPos = 0;
         int tileYPosUpper = (int)(yPos + collisionBounds.y) / Tile.TILE_HEIGHT;
+        int tileYPosMiddle = (int)(yPos + collisionBounds.y + collisionBounds.height / 2) / Tile.TILE_HEIGHT;
         int tileYPosLower = (int)(yPos + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
+        boolean upperPoint;
+        boolean middlePoint;
+        boolean lowerPoint;
         switch (direction) {
             case 3: // move left
                 tileXPos = (int)(xPos - 2 + collisionBounds.x) / Tile.TILE_WIDTH;

@@ -1,7 +1,7 @@
 package assignment3815ICT.zhiyuan.game.map;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
+import assignment3815ICT.zhiyuan.game.graphics.GameObject;
 import assignment3815ICT.zhiyuan.game.tiles.BackgroundTile;
 import assignment3815ICT.zhiyuan.game.tiles.Tile;
 import assignment3815ICT.zhiyuan.game.utils.Utils;

@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 public class PacMan extends Mob {
 
     public PacMan(GameHandler gameHandler, float xPos, float yPos) {
-        super(gameHandler, xPos, yPos, 24, 24);
+        super(gameHandler, xPos, yPos, 32, 32);
         speed = 1.5f;
 
         // set up collision bounds
-        collisionBounds.x = -4;
-        collisionBounds.y = -4;
-        collisionBounds.width = 30;
-        collisionBounds.height = 30;
+//        collisionBounds.x = -4;
+//        collisionBounds.y = -4;
+//        collisionBounds.width = 30;
+//        collisionBounds.height = 30;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package assignment3815ICT.zhiyuan.game.tiles;
 
 
-import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
+import assignment3815ICT.zhiyuan.game.graphics.GameObject;
 
 public class BackgroundTile extends Tile{
     public BackgroundTile(int TILE_ID) {

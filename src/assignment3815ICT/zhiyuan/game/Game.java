@@ -1,8 +1,7 @@
 package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.display.GameWindow;
-import assignment3815ICT.zhiyuan.game.gameGraphics.GameObject;
-import assignment3815ICT.zhiyuan.game.gameGraphics.Sprite;
+import assignment3815ICT.zhiyuan.game.graphics.GameObject;
 import assignment3815ICT.zhiyuan.game.states.PlayState;
 import assignment3815ICT.zhiyuan.game.states.State;
 import assignment3815ICT.zhiyuan.game.states.StateManager;
