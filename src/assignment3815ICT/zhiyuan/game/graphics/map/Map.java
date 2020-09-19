@@ -1,9 +1,9 @@
-package assignment3815ICT.zhiyuan.game.map;
+package assignment3815ICT.zhiyuan.game.graphics.map;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
-import assignment3815ICT.zhiyuan.game.tiles.BackgroundTile;
-import assignment3815ICT.zhiyuan.game.tiles.Tile;
+import assignment3815ICT.zhiyuan.game.graphics.tiles.BackgroundTile;
+import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
 import assignment3815ICT.zhiyuan.game.utils.Utils;
 
 import java.awt.*;

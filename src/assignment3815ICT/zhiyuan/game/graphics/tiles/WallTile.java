@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.tiles;
+package assignment3815ICT.zhiyuan.game.graphics.tiles;
 
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 
