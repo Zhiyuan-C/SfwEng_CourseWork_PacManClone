@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.collisionDetection.Collision;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ public abstract class Entity {
 
     //collision detection
     protected Rectangle collisionBounds;
+    protected Collision collisionDetection;
 
     // constructor
     public Entity(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
@@ -22,6 +24,7 @@ public abstract class Entity {
         this.height = height;
 
         collisionBounds = new Rectangle(0 ,0, width, height);
+        collisionDetection = new Collision(gameHandler);
     }
 
     //abstract methods

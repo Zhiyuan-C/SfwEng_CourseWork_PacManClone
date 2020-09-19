@@ -20,72 +20,66 @@ public abstract class Mob extends Entity {
     }
 
     public void moveX() {
-        int tileXPos = 0;
-        int tileYPosUpper = (int)(yPos + collisionBounds.y) / Tile.TILE_HEIGHT;
-        int tileYPosMiddle = (int)(yPos + collisionBounds.y + collisionBounds.height / 2) / Tile.TILE_HEIGHT;
-        int tileYPosLower = (int)(yPos + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
-        boolean upperPoint;
-        boolean middlePoint;
-        boolean lowerPoint;
+        collisionDetection.setStaticPoint(yPos, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
         switch (direction) {
             case 3: // move left
-                tileXPos = (int)(xPos - 2 + collisionBounds.x) / Tile.TILE_WIDTH;
-                if(!collisionWithWall(tileXPos, tileYPosUpper) &&
-                        !collisionWithWall(tileXPos, tileYPosLower)) {
+                collisionDetection.setOriginalPoint(xPos);
+                collisionDetection.setNewPoint(-2, collisionBounds.x, 0, Tile.TILE_WIDTH);
+                if(!collisionDetection.squareWallCollision(true)) {
+                    // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos - 2))) {
                         xPos = gameHandler.getGameWidth();
                     }
                     xPos -= speed;
                 } else {
-                    xPos = tileXPos * Tile.TILE_WIDTH + Tile.TILE_WIDTH - collisionBounds.x;
-
+                    xPos = collisionDetection.getOriginalPoint();
+                    direction = 0;
                 }
                 break;
 
             case 4: // move right
-                tileXPos = (int)(xPos + 2 + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
-                if(!collisionWithWall(tileXPos, tileYPosUpper) &&
-                        !collisionWithWall(tileXPos, tileYPosLower)) {
+                collisionDetection.setOriginalPoint(xPos);
+                collisionDetection.setNewPoint(2, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
+
+                if (!collisionDetection.squareWallCollision(true)) {
+                    // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos + 2))) {
                         xPos = 0;
                     }
                     xPos += speed;
                 } else {
-                    xPos = tileXPos * Tile.TILE_WIDTH - collisionBounds.x - collisionBounds.width - 2;
+                    xPos = collisionDetection.getOriginalPoint();
+                    direction = 0;
                 }
                 break;
         }
     }
     public void moveY() {
-        int tileYPos = 0;
-        int tileXPosLeft = (int)(xPos + collisionBounds.x) / Tile.TILE_WIDTH;
-        int tileXPosRight = (int)(xPos + collisionBounds.x + collisionBounds.width) / Tile.TILE_WIDTH;
+        collisionDetection.setStaticPoint(xPos, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
         switch (direction) {
             case 1: // up
-                tileYPos = (int)(yPos - 2 + collisionBounds.y) / Tile.TILE_HEIGHT;
-                if(!collisionWithWall(tileXPosLeft, tileYPos) &&
-                        !collisionWithWall(tileXPosRight, tileYPos)) {
+                collisionDetection.setOriginalPoint(yPos);
+                collisionDetection.setNewPoint(-2, collisionBounds.y, 0, Tile.TILE_HEIGHT);
+                if(!collisionDetection.squareWallCollision(false)) {
                     yPos -= speed;
                 } else {
-                    yPos = tileYPos * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - collisionBounds.y;
+                    yPos = collisionDetection.getOriginalPoint();
+                    break;
                 }
                 break;
             case 2: //down
-                tileYPos = (int)(yPos + 2 + collisionBounds.y + collisionBounds.height) / Tile.TILE_HEIGHT;
-                if(!collisionWithWall(tileXPosLeft, tileYPos) &&
-                        !collisionWithWall(tileXPosRight, tileYPos)) {
+                collisionDetection.setOriginalPoint(yPos);
+                collisionDetection.setNewPoint(2, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
+                if(!collisionDetection.squareWallCollision(false)) {
                     yPos += speed;
                 } else {
-                    yPos = tileYPos * Tile.TILE_HEIGHT - collisionBounds.height - collisionBounds.y - 2;
+                    yPos = collisionDetection.getOriginalPoint();
+                    break;
                 }
+
                 break;
         }
 
-    }
-
-    protected boolean collisionWithWall(int x, int y) {
-        // x and y in tile measure
-        return gameHandler.getMap().getTile(x, y).isWall();
     }
 
     protected boolean isCrossing(int x) {
