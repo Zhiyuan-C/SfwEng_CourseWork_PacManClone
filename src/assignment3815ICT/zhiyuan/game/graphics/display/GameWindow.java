@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.display;
+package assignment3815ICT.zhiyuan.game.graphics.display;
 
 import javax.swing.*;
 import java.awt.*;
