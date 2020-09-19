@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.userInputs;
+package assignment3815ICT.zhiyuan.game.inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,7 +1,7 @@
 package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
-import assignment3815ICT.zhiyuan.game.userInputs.KeyManager;
+import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
 public class GameHandler {
     private Game game;

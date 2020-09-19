@@ -5,7 +5,7 @@ import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.states.PlayState;
 import assignment3815ICT.zhiyuan.game.states.State;
 import assignment3815ICT.zhiyuan.game.states.StateManager;
-import assignment3815ICT.zhiyuan.game.userInputs.KeyManager;
+import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
