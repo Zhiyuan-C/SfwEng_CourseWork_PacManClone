@@ -34,19 +34,11 @@ public class Collision {
 
     }
 
-    public float getNewPoint() {
-        return newPoint;
-    }
-
-
     public float getOriginalPoint() {
         return originalPoint;
     }
 
-
-
-    public boolean squareWallCollision(boolean xCoordinate) {
-
+    public boolean isCollideSG(boolean xCoordinate) { // is collided for square gride
         boolean pointA;
         boolean pointB;
         boolean pointC;
@@ -59,14 +51,14 @@ public class Collision {
             pointB = isPointWall(staticPointB, newPoint);
             pointC = isPointWall(staticPointC, newPoint);
         }
-        return isSideWall(pointA, pointB, pointC);
+        return isSideCollide(pointA, pointB, pointC);
     }
 
     private boolean isPointWall(float x, float y) {
         return gameHandler.getMap().getTile((int) x, (int) y).isWall();
     }
 
-    private boolean isSideWall(boolean pointA, boolean pointB, boolean pointC) {
+    private boolean isSideCollide(boolean pointA, boolean pointB, boolean pointC) {
         if (!pointB) { // if middle point is not wall
             if(pointA && pointC) {
                 return true;

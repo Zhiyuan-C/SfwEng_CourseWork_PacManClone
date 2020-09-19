@@ -25,7 +25,7 @@ public abstract class Mob extends Entity {
             case 3: // move left
                 collisionDetection.setOriginalPoint(xPos);
                 collisionDetection.setNewPoint(-2, collisionBounds.x, 0, Tile.TILE_WIDTH);
-                if(!collisionDetection.squareWallCollision(true)) {
+                if(!collisionDetection.isCollideSG(true)) {
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos - 2))) {
                         xPos = gameHandler.getGameWidth();
@@ -41,7 +41,7 @@ public abstract class Mob extends Entity {
                 collisionDetection.setOriginalPoint(xPos);
                 collisionDetection.setNewPoint(2, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
 
-                if (!collisionDetection.squareWallCollision(true)) {
+                if (!collisionDetection.isCollideSG(true)) {
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos + 2))) {
                         xPos = 0;
@@ -60,7 +60,7 @@ public abstract class Mob extends Entity {
             case 1: // up
                 collisionDetection.setOriginalPoint(yPos);
                 collisionDetection.setNewPoint(-2, collisionBounds.y, 0, Tile.TILE_HEIGHT);
-                if(!collisionDetection.squareWallCollision(false)) {
+                if(!collisionDetection.isCollideSG(false)) {
                     yPos -= speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
@@ -70,7 +70,7 @@ public abstract class Mob extends Entity {
             case 2: //down
                 collisionDetection.setOriginalPoint(yPos);
                 collisionDetection.setNewPoint(2, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
-                if(!collisionDetection.squareWallCollision(false)) {
+                if(!collisionDetection.isCollideSG(false)) {
                     yPos += speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
