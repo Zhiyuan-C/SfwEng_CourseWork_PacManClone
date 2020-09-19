@@ -1,6 +1,6 @@
 package assignment3815ICT.zhiyuan.game.tiles;
 
-import assignment3815ICT.zhiyuan.game.graphics.GameObject;
+import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 
 public class WallTile extends Tile{
     public WallTile(int tile, int TILE_ID) {

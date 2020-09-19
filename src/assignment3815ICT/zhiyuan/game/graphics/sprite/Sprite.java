@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.graphics;
+package assignment3815ICT.zhiyuan.game.graphics.sprite;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
