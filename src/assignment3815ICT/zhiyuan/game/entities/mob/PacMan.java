@@ -11,14 +11,14 @@ public class PacMan extends Mob {
     private boolean keyPressed = false;
 
     public PacMan(GameHandler gameHandler, float xPos, float yPos) {
-        super(gameHandler, xPos, yPos, 30, 30);
+        super(gameHandler, xPos, yPos, 28, 28);
         speed = 1.5f;
 
         // set up collision bounds
-        collisionBounds.x = 2;
-        collisionBounds.y = 2;
-        collisionBounds.width = 24;
-        collisionBounds.height = 24;
+        collisionBounds.x = 3;
+        collisionBounds.y = 3;
+        collisionBounds.width = 22;
+        collisionBounds.height = 22;
     }
 
     @Override
