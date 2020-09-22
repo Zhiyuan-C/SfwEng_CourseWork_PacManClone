@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class PacMan extends Mob {
 
+    private boolean keyPressed = false;
+
     public PacMan(GameHandler gameHandler, float xPos, float yPos) {
         super(gameHandler, xPos, yPos, 30, 30);
         speed = 1.5f;
@@ -33,6 +35,12 @@ public class PacMan extends Mob {
         if(gameHandler.getKeyManager().down) direction = 2;
         if(gameHandler.getKeyManager().left) direction = 3;
         if(gameHandler.getKeyManager().right) direction = 4;
+        if(!keyPressed) {
+            if(direction > 0) {
+                keyPressed = true;
+                isMoving = true;
+            }
+        }
     }
 
     @Override
