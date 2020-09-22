@@ -8,16 +8,16 @@ public class GameObject {
     private static final int TILE_SIZE = 32;
 //    private static final int SPRITE_SHEET_SIZE = 256; // 256 x 256
     private static ArrayList<BufferedImage> gameObjects = new ArrayList<>();
-    private static ArrayList<BufferedImage> wallObjects;
+    private static ArrayList<BufferedImage> mapObjects;
     private static ArrayList<BufferedImage> playerObjects;
     private static ArrayList<BufferedImage> itemObjects;
     private static ArrayList<BufferedImage> fontObjects;
 
     public static void init() {
-        Sprite wallSprite = new Sprite("/pacManWallSheet.png");
+        Sprite mapSprite = new Sprite("/pacManMapSheet.png");
         Sprite playerSprite = new Sprite("/pacManPlayerSheet.png");
         Sprite fontSprite = new Sprite("/pacManFontSheet.png");
-        wallObjects = setObjects(wallSprite, 4, 4);
+        mapObjects = setObjects(mapSprite, 4, 4);
         playerObjects = setObjects(playerSprite, 3, 4);
         fontObjects = setObjects(fontSprite, 9, 9);
     }
@@ -32,8 +32,8 @@ public class GameObject {
         return objects;
     }
 
-    public static ArrayList<BufferedImage> getWallObjects() {
-        return wallObjects;
+    public static ArrayList<BufferedImage> getMapObjects() {
+        return mapObjects;
     }
 
     public static ArrayList<BufferedImage> getPlayerObjects() {
