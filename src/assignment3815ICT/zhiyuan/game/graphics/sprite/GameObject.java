@@ -24,8 +24,8 @@ public class GameObject {
 
     private static ArrayList<BufferedImage> setObjects(Sprite spriteSheet, int rowNum, int colNum) {
         ArrayList<BufferedImage> objects = new ArrayList<>();
-        for(int y = 0; y < colNum; y++) {
-            for(int x = 0; x < rowNum; x++) {
+        for(int y = 0; y < rowNum; y++) {
+            for(int x = 0; x < colNum; x++) {
                 objects.add(spriteSheet.getSpriteTileImage(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
             }
         }

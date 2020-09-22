@@ -83,7 +83,7 @@ public class Game implements Runnable{
         // begin drawing
 //        graphics.drawImage(gameObjects.get(1), 0, 0, null);
         if(StateManager.getCurrentState() != null) {
-            StateManager.getCurrentState().render(graphics, gameObjects.get(34));
+            StateManager.getCurrentState().render(graphics);
         }
         // finish drawing. start display to screen
         bufferStrategy.show();

@@ -29,7 +29,7 @@ public abstract class Entity {
 
     //abstract methods
     public abstract void update();
-    public abstract void render(Graphics graphics, BufferedImage image);
+    public abstract void render(Graphics graphics);
 
     // getters and setters
 

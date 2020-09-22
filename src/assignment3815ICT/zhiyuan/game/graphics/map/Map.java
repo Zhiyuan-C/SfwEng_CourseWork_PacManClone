@@ -15,18 +15,20 @@ public class Map {
     private int mapWidth, mapHeight; // measure in tiles
     private int[][] tiles; //[x][y]
     private int spawnX, spawnY;
+    private ArrayList<BufferedImage> mapObjects = new ArrayList<>();
     private ArrayList<Tile> tileObjects = new ArrayList<>();
 
     public Map(GameHandler gameHandler, String path) {
         this.gameHandler = gameHandler;
+        Tile.setTileObjects(4 * 4);
         loadObjectTiles();
         loadMap(path);
     }
 
     private void loadObjectTiles() {
-        ArrayList<BufferedImage> gameObjects = GameObject.getGameObjects();
-        for(int i = 0; i < gameObjects.size(); i++) {
-            Tile tile = new Tile(gameObjects.get(i), i);
+        mapObjects = GameObject.getMapObjects();
+        for(int i = 0; i < mapObjects.size(); i++) {
+            Tile tile = new Tile(mapObjects.get(i), i);
             tileObjects.add(tile);
         }
     }
@@ -53,11 +55,12 @@ public class Map {
 
     public Tile getTile(int x, int y) {
         // check do not let player outside of map
-        if(x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return new BackgroundTile(0);
+        Tile background = new Tile(mapObjects.get(0), 0);
+        if(x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return background;
 
         Tile tile = Tile.tileObjects[tiles[x][y]];
         if(tile == null) {
-            return new BackgroundTile(0);
+            return background;
         }
         return tile;
     }

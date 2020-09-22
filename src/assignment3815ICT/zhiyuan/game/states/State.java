@@ -12,5 +12,5 @@ public abstract class State {
         this.gameHandler = gameHandler;
     }
     public abstract void update();
-    public abstract void render(Graphics graphics, BufferedImage gameObject);
+    public abstract void render(Graphics graphics);
 }

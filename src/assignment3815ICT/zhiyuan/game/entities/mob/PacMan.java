@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.entities.mob;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -35,8 +36,8 @@ public class PacMan extends Mob {
     }
 
     @Override
-    public void render(Graphics graphics, BufferedImage image) {
-        graphics.drawImage(image, (int) xPos, (int) yPos, width, height, null);
+    public void render(Graphics graphics) {
+        graphics.drawImage(GameObject.getPlayerObjects().get(1), (int) xPos, (int) yPos, width, height, null);
 
         graphics.setColor(Color.RED);
         graphics.drawRect((int)(xPos + collisionBounds.x), (int)(yPos + collisionBounds.y), collisionBounds.width, collisionBounds.height);

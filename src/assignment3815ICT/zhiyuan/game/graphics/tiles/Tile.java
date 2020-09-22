@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Tile {
-    private static final int TOTAL_TILES = 256; // 16 * 16, total tiles on the sprite sheet
-    public static Tile[] tileObjects = new Tile[TOTAL_TILES];
+    private static final int MAX_TILES = 256; // 16 * 16, total tiles on the sprite sheet
+    public static Tile[] tileObjects = new Tile[MAX_TILES];
 
     public static final int TILE_WIDTH = 32, TILE_HEIGHT = 32;
 
@@ -23,13 +23,17 @@ public class Tile {
 
     }
 
+    public static void setTileObjects(int totalTiles) {
+        Tile.tileObjects = new Tile[totalTiles];
+    }
+
     public void render(Graphics graphics, int xPos, int yPos) {
         graphics.drawImage(tileImage, xPos, yPos, TILE_WIDTH, TILE_HEIGHT, null);
     }
 
     // check if is wall tile, default false
     public boolean isWall() {
-        if(TILE_ID > 1 && TILE_ID < 30) {
+        if(TILE_ID > 1 && TILE_ID < 5) {
 //            System.out.println("tile id: " + TILE_ID);
             return true;
         } else {

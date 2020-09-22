@@ -43,7 +43,7 @@ public abstract class Mob extends Entity {
 
                 if (!collisionDetection.isCollideSG(true)) {
                     // check if the object is moving over the screen width
-                    if(isCrossing((int)(xPos + 2))) {
+                    if(isCrossing((int)(xPos + 1))) {
                         xPos = 0;
                     }
                     xPos += speed;
