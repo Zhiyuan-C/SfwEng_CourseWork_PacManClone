@@ -28,7 +28,7 @@ public class Game implements Runnable{
     private Graphics graphics; // normally g
 
     // initialise game objects
-    private ArrayList<BufferedImage> gameObjects;
+    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects;
 
     private State playState;
 
@@ -50,7 +50,10 @@ public class Game implements Runnable{
         gameWindow.getFrame().addKeyListener(keyManager);
         // load game object
         GameObject.init();
-        gameObjects = GameObject.getGameObjects();
+//        gameObjects = GameObject.getGameObjects();
+        playerObjects = GameObject.getPlayerObjects();
+        mapObjects = GameObject.getMapObjects();
+
         // set handler
         gameHandler = new GameHandler(this);
         // set play state
@@ -165,5 +168,17 @@ public class Game implements Runnable{
 
     public int getHeight() {
         return height;
+    }
+
+    public ArrayList<BufferedImage> getPlayerObjects() {
+        return playerObjects;
+    }
+
+    public ArrayList<BufferedImage> getMapObjects() {
+        return mapObjects;
+    }
+
+    public ArrayList<BufferedImage> getItemObjects() {
+        return itemObjects;
     }
 }

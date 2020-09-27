@@ -9,7 +9,7 @@ public abstract class Mob extends Entity {
 
     protected float speed;
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
-    protected boolean isMoving = false;
+//    protected boolean isMoving = false;
 
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);

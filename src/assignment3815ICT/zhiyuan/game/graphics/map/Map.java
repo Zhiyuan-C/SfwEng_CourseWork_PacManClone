@@ -26,7 +26,7 @@ public class Map {
     }
 
     private void loadObjectTiles() {
-        mapObjects = GameObject.getMapObjects();
+        mapObjects = gameHandler.getMapObjects();
         for(int i = 0; i < mapObjects.size(); i++) {
             Tile tile = new Tile(mapObjects.get(i), i);
             tileObjects.add(tile);
