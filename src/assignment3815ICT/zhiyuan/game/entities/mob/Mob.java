@@ -22,6 +22,14 @@ public abstract class Mob extends Entity {
         super(gameHandler, xPos, yPos, width, height);
     }
 
+    /**
+     * Return an array of buffered image containing the frames of the object for animation
+     *
+     * @param objects an arraylist containing object's buffered image retrieved from sprite sheet
+     * @param startIndex start index of the object
+     * @param length how many objects is required for that animation frame
+     * @return BufferedImage[] objects for particular animation frame
+     */
     public BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
         BufferedImage[] objectFrames = new BufferedImage[length];
         for (int frameIndex = 0; frameIndex < length; frameIndex ++) {
@@ -31,6 +39,10 @@ public abstract class Mob extends Entity {
         return objectFrames;
     }
 
+    /**
+     *
+     * @return
+     */
     public BufferedImage getCurrentObjectFrame() {
         if(direction == 1) {
             objectLastFrame = animeUp.getCurrentObjectFrame();
@@ -49,11 +61,17 @@ public abstract class Mob extends Entity {
         }
     }
 
+    /**
+     *
+     */
     public void move() {
         moveY();
         moveX();
     }
 
+    /**
+     *
+     */
     private void moveX() {
         collisionDetection.setStaticPoint(yPos, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
         switch (direction) {
@@ -90,6 +108,9 @@ public abstract class Mob extends Entity {
         }
     }
 
+    /**
+     *
+     */
     private void moveY() {
         collisionDetection.setStaticPoint(xPos, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
         switch (direction) {
@@ -120,6 +141,11 @@ public abstract class Mob extends Entity {
 
     }
 
+    /**
+     *
+     * @param x
+     * @return boolean
+     */
     private boolean isCrossing(int x) {
         // x and y in pixel measure
         if (x < 0 || x > gameHandler.getGameWidth()) {
