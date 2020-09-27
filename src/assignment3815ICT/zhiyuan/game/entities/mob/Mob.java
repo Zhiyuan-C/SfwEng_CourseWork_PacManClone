@@ -2,10 +2,17 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
+import assignment3815ICT.zhiyuan.game.graphics.display.Animation;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public abstract class Mob extends Entity {
+
+    protected Animation animeUp, animeLeft, animeRight, animeDown;
+    protected BufferedImage objectLastFrame;
 
     protected float speed;
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
@@ -15,12 +22,39 @@ public abstract class Mob extends Entity {
         super(gameHandler, xPos, yPos, width, height);
     }
 
+    public BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
+        BufferedImage[] objectFrames = new BufferedImage[length];
+        for (int frameIndex = 0; frameIndex < length; frameIndex ++) {
+            objectFrames[frameIndex] = objects.get(startIndex);
+            startIndex ++;
+        }
+        return objectFrames;
+    }
+
+    public BufferedImage getCurrentObjectFrame() {
+        if(direction == 1) {
+            objectLastFrame = animeUp.getCurrentObjectFrame();
+            return objectLastFrame;
+        } else if (direction == 2) {
+            objectLastFrame = animeDown.getCurrentObjectFrame();
+            return objectLastFrame;
+        } else if (direction == 3) {
+            objectLastFrame = animeLeft.getCurrentObjectFrame();
+            return objectLastFrame;
+        } else if (direction == 4) {
+            objectLastFrame = animeRight.getCurrentObjectFrame();
+            return objectLastFrame;
+        } else {
+            return objectLastFrame;
+        }
+    }
+
     public void move() {
         moveY();
         moveX();
     }
 
-    public void moveX() {
+    private void moveX() {
         collisionDetection.setStaticPoint(yPos, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
         switch (direction) {
             case 3: // move left
@@ -55,7 +89,8 @@ public abstract class Mob extends Entity {
                 break;
         }
     }
-    public void moveY() {
+
+    private void moveY() {
         collisionDetection.setStaticPoint(xPos, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
         switch (direction) {
             case 1: // up
@@ -65,6 +100,7 @@ public abstract class Mob extends Entity {
                     yPos -= speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
+                    direction = 0;
                     break;
                 }
                 break;
@@ -75,6 +111,7 @@ public abstract class Mob extends Entity {
                     yPos += speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
+                    direction = 0;
                     break;
                 }
 
@@ -83,11 +120,13 @@ public abstract class Mob extends Entity {
 
     }
 
-    protected boolean isCrossing(int x) {
+    private boolean isCrossing(int x) {
         // x and y in pixel measure
         if (x < 0 || x > gameHandler.getGameWidth()) {
             return true;
         }
         return false;
     }
+
+
 }
