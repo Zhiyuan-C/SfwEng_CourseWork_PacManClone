@@ -33,4 +33,20 @@ public abstract class Entity {
 
     // getters and setters
 
+
+    public void setxPos(float xPos) {
+        this.xPos = xPos;
+    }
+
+    public void setyPos(float yPos) {
+        this.yPos = yPos;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }

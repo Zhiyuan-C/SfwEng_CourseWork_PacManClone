@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.graphics.map;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.entities.EntityManager;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.BackgroundTile;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
@@ -17,12 +18,17 @@ public class Map {
     private int spawnX, spawnY;
     private ArrayList<BufferedImage> mapObjects = new ArrayList<>();
     private ArrayList<Tile> tileObjects = new ArrayList<>();
+    private EntityManager entityManager;
 
     public Map(GameHandler gameHandler, String path) {
         this.gameHandler = gameHandler;
+        entityManager = new EntityManager(gameHandler);
         Tile.setTileObjects(4 * 4);
         loadObjectTiles();
         loadMap(path);
+        // spawn
+        entityManager.getPacMan().setxPos(spawnX);
+        entityManager.getPacMan().setyPos(spawnY);
     }
 
     private void loadObjectTiles() {
@@ -69,12 +75,15 @@ public class Map {
         return tileObjects;
     }
 
-    public void update() {}
+    public void update() {
+        entityManager.update();
+    }
     public void render(Graphics graphics) {
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++){
                 getTile(x, y).render(graphics, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
             }
         }
+        entityManager.render(graphics);
     }
 }

@@ -16,8 +16,8 @@ public class PacMan extends Mob {
 
 //    private boolean keyPressed = false;
 
-    public PacMan(GameHandler gameHandler, float xPos, float yPos) {
-        super(gameHandler, xPos, yPos, 28, 28);
+    public PacMan(GameHandler gameHandler) {
+        super(gameHandler, 0, 0, 28, 28);
         init();
     }
 

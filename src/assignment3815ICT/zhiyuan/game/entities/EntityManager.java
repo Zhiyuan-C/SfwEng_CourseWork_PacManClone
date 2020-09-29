@@ -12,9 +12,9 @@ public class EntityManager {
     private PacMan pacMan;
     private ArrayList<Entity> items;
 
-    public EntityManager(GameHandler gameHandler, PacMan pacMan) {
+    public EntityManager(GameHandler gameHandler) {
         this.gameHandler = gameHandler;
-        this.pacMan = pacMan;
+        pacMan = new PacMan(gameHandler);
         items = new ArrayList<>();
     }
 
