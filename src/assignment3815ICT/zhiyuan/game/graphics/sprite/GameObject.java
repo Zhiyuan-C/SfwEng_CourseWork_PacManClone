@@ -17,9 +17,11 @@ public class GameObject {
         Sprite mapSprite = new Sprite("/pacManMapSheet.png");
         Sprite playerSprite = new Sprite("/pacManPlayerSheet.png");
         Sprite fontSprite = new Sprite("/pacManFontSheet.png");
+        Sprite itemSprite = new Sprite("/pacManItemSheet.png");
         mapObjects = setObjects(mapSprite, 4, 4);
         playerObjects = setObjects(playerSprite, 3, 4);
         fontObjects = setObjects(fontSprite, 9, 9);
+        itemObjects = setObjects(itemSprite, 2, 2);
     }
 
     private static ArrayList<BufferedImage> setObjects(Sprite spriteSheet, int rowNum, int colNum) {
