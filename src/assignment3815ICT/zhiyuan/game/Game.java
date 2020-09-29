@@ -53,6 +53,7 @@ public class Game implements Runnable{
 //        gameObjects = GameObject.getGameObjects();
         playerObjects = GameObject.getPlayerObjects();
         mapObjects = GameObject.getMapObjects();
+        itemObjects = GameObject.getItemObjects();
 
         // set handler
         gameHandler = new GameHandler(this);
