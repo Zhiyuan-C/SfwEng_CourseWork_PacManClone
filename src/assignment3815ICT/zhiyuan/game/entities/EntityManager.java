@@ -11,30 +11,35 @@ public class EntityManager {
     private GameHandler gameHandler;
     private PacMan pacMan;
     private ArrayList<Entity> items;
+    private ArrayList<Entity> mob;
 
     public EntityManager(GameHandler gameHandler) {
         this.gameHandler = gameHandler;
         pacMan = new PacMan(gameHandler);
         items = new ArrayList<>();
+        mob = new ArrayList<>();
+        addMob(pacMan);
     }
 
     public void update() {
         for (int i = 0; i < items.size(); i++) {
-            Entity entity = items.get(i);
-            entity.update();
+            Entity item = items.get(i);
+            item.update();
         }
         pacMan.update();
     }
     public void render(Graphics graphics) {
-        for (Entity entity : items) {
-            entity.render(graphics);
-        }
+//        for (Entity item : items) {
+//            item.render(graphics);
+//        }
+//        items.forEach(item -> item.render(graphics));
         pacMan.render(graphics);
     }
 
-    public void addEntity(Entity entity) {
+    public void addItem(Entity entity) {
         items.add(entity);
     }
+    public void addMob(Entity entity) { mob.add(entity); }
 
     public PacMan getPacMan() {
         return pacMan;
