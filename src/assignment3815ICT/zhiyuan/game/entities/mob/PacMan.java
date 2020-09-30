@@ -36,6 +36,9 @@ public class PacMan extends Mob {
         objectLastFrame = pacManImages.get(0);
         // moving speed
         speed = 1.5f;
+        // score
+        currentScore = 0;
+        lastScore = 0;
         // set up collision bounds
         collisionBox.x = 3;
         collisionBox.y = 3;

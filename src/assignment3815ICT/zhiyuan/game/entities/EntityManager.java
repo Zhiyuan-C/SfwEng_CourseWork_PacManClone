@@ -39,6 +39,10 @@ public class EntityManager {
     public void addItem(Entity entity) {
         items.add(entity);
     }
+
+    public void removeItem(Entity entity) {
+        items.remove(entity);
+    }
     public void addMob(Entity entity) { mob.add(entity); }
 
     public PacMan getPacMan() {

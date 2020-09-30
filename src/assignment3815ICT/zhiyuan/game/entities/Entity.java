@@ -32,7 +32,7 @@ public abstract class Entity {
     public abstract void render(Graphics graphics);
 
     //entity collision
-    public boolean checkEntityCollisions(float xOffset, float yOffset) {
+    public boolean checkItemCollisions(float xOffset, float yOffset) {
         for (Entity item : gameHandler.getMap().getEntityManager().getItems()) {
             if (item.equals(this)) continue;
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) return true;

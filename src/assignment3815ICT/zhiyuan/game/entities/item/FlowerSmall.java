@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 public class FlowerSmall extends Item{
 
     private BufferedImage flowerSmall;
+    private int value = 10;
 
     public FlowerSmall(GameHandler gameHandler, float xPos, float yPos) {
         super(gameHandler, xPos, yPos, 32, 32);
@@ -31,5 +32,9 @@ public class FlowerSmall extends Item{
 
         graphics.setColor(Color.RED);
         graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

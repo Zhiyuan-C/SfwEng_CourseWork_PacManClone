@@ -17,6 +17,8 @@ public abstract class Mob extends Entity {
     protected float speed;
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
 //    protected boolean isMoving = false;
+    protected int currentScore;
+    protected int lastScore;
 
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
@@ -67,6 +69,9 @@ public abstract class Mob extends Entity {
     public void move() {
         moveY();
         moveX();
+        if(lastScore != currentScore) {
+            System.out.println(currentScore);
+        }
     }
 
     /**
@@ -82,6 +87,11 @@ public abstract class Mob extends Entity {
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos - 2))) {
                         xPos = gameHandler.getGameWidth();
+                    }
+                    if(checkItemCollisions(-2f, 0f)) {
+                        lastScore = currentScore;
+                        currentScore += 1;
+
                     }
                     xPos -= speed;
                 } else {
