@@ -88,11 +88,9 @@ public class Map {
                 if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
                 // render items
                 if (getTile(x, y).getTileId() == 1){
-//                    entityManager.addItem(new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT));
                     Entity item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
                     entityManager.addItem(item);
                     item.render(graphics);
-
                 }
             }
         }
