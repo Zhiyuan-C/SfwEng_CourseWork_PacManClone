@@ -8,9 +8,14 @@ import java.util.ArrayList;
 
 public abstract class Item extends Entity {
     protected ArrayList<BufferedImage> itemImages;
+    protected int value;
 
     public Item(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
         this.itemImages = gameHandler.getItemObjects();
+    }
+
+    public int getValue() {
+        return value;
     }
 }

@@ -38,6 +38,7 @@ public abstract class Entity {
             if (item.equals(this)) continue;
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
 //                gameHandler.getMap().getEntityManager().removeItem(item);
+
                 return true;
             }
         }
