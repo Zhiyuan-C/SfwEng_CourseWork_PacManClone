@@ -37,10 +37,10 @@ public class PacMan extends Mob {
         // moving speed
         speed = 1.5f;
         // set up collision bounds
-        collisionBounds.x = 3;
-        collisionBounds.y = 3;
-        collisionBounds.width = 22;
-        collisionBounds.height = 22;
+        collisionBox.x = 3;
+        collisionBox.y = 3;
+        collisionBox.width = 22;
+        collisionBox.height = 22;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class PacMan extends Mob {
         graphics.drawImage(getCurrentObjectFrame(), (int) xPos, (int) yPos, width, height, null);
 
         graphics.setColor(Color.RED);
-        graphics.drawRect((int)(xPos + collisionBounds.x), (int)(yPos + collisionBounds.y), collisionBounds.width, collisionBounds.height);
+        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
     }
 
     private void getInput() {

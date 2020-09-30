@@ -14,10 +14,10 @@ public class FlowerSmall extends Item{
         this.flowerSmall = itemImages.get(0);
 
         // setup collision bond
-        collisionBounds.x = 3;
-        collisionBounds.y = 5;
-        collisionBounds.width = 20;
-        collisionBounds.height = 20;
+        collisionBox.x = 3;
+        collisionBox.y = 5;
+        collisionBox.width = 20;
+        collisionBox.height = 20;
     }
 
     @Override
@@ -30,6 +30,6 @@ public class FlowerSmall extends Item{
         graphics.drawImage(flowerSmall, (int)xPos, (int)yPos, width, height, null);
 
         graphics.setColor(Color.RED);
-        graphics.drawRect((int)(xPos + collisionBounds.x), (int)(yPos + collisionBounds.y), collisionBounds.width, collisionBounds.height);
+        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
     }
 }

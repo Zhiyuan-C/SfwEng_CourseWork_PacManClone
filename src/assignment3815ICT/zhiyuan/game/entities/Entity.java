@@ -12,7 +12,7 @@ public abstract class Entity {
     protected int width, height; // size of the entity
 
     //collision detection
-    protected Rectangle collisionBounds;
+    protected Rectangle collisionBox;
     protected Collision collisionDetection;
 
     // constructor
@@ -23,7 +23,7 @@ public abstract class Entity {
         this.width = width;
         this.height = height;
 
-        collisionBounds = new Rectangle(0 ,0, width, height);
+        collisionBox = new Rectangle(0 ,0, width, height);
         collisionDetection = new Collision(gameHandler);
     }
 

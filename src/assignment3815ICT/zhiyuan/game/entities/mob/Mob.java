@@ -73,11 +73,11 @@ public abstract class Mob extends Entity {
      *
      */
     private void moveX() {
-        collisionDetection.setStaticPoint(yPos, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
+        collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, Tile.TILE_HEIGHT);
         switch (direction) {
             case 3: // move left
                 collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(-2, collisionBounds.x, 0, Tile.TILE_WIDTH);
+                collisionDetection.setNewPoint(-2, collisionBox.x, 0, Tile.TILE_WIDTH);
                 if(!collisionDetection.isCollideSG(true)) {
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos - 2))) {
@@ -92,7 +92,7 @@ public abstract class Mob extends Entity {
 
             case 4: // move right
                 collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(2, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
+                collisionDetection.setNewPoint(2, collisionBox.x, collisionBox.width, Tile.TILE_WIDTH);
 
                 if (!collisionDetection.isCollideSG(true)) {
                     // check if the object is moving over the screen width
@@ -112,11 +112,11 @@ public abstract class Mob extends Entity {
      *
      */
     private void moveY() {
-        collisionDetection.setStaticPoint(xPos, collisionBounds.x, collisionBounds.width, Tile.TILE_WIDTH);
+        collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, Tile.TILE_WIDTH);
         switch (direction) {
             case 1: // up
                 collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(-2, collisionBounds.y, 0, Tile.TILE_HEIGHT);
+                collisionDetection.setNewPoint(-2, collisionBox.y, 0, Tile.TILE_HEIGHT);
                 if(!collisionDetection.isCollideSG(false)) {
                     yPos -= speed;
                 } else {
@@ -127,7 +127,7 @@ public abstract class Mob extends Entity {
                 break;
             case 2: //down
                 collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(2, collisionBounds.y, collisionBounds.height, Tile.TILE_HEIGHT);
+                collisionDetection.setNewPoint(2, collisionBox.y, collisionBox.height, Tile.TILE_HEIGHT);
                 if(!collisionDetection.isCollideSG(false)) {
                     yPos += speed;
                 } else {
