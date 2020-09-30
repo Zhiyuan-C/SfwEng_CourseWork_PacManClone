@@ -15,6 +15,7 @@ public abstract class Entity {
     //collision detection
     protected Rectangle collisionBox;
     protected Collision collisionDetection;
+    protected boolean active;
 
     // constructor
     public Entity(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
@@ -23,6 +24,7 @@ public abstract class Entity {
         this.yPos = yPos;
         this.width = width;
         this.height = height;
+//        this.active = true;
 
         collisionBox = new Rectangle(0 ,0, width, height);
         collisionDetection = new Collision(gameHandler);
@@ -38,7 +40,7 @@ public abstract class Entity {
             if (item.equals(this)) continue;
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
 //                gameHandler.getMap().getEntityManager().removeItem(item);
-
+                active = false;
                 return true;
             }
         }
@@ -64,5 +66,9 @@ public abstract class Entity {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

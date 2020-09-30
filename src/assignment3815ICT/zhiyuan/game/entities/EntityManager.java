@@ -12,6 +12,7 @@ public class EntityManager {
     private GameHandler gameHandler;
     private PacMan pacMan;
     private ArrayList<Item> items;
+    private Item[] experiment;
     private ArrayList<Entity> mob;
 
     public EntityManager(GameHandler gameHandler) {
@@ -30,9 +31,9 @@ public class EntityManager {
         pacMan.update();
     }
     public void render(Graphics graphics) {
-//        for (Entity item : items) {
-//            item.render(graphics);
-//        }
+        for (Item item : items) {
+            item.render(graphics);
+        }
 //        items.forEach(item -> item.render(graphics));
         pacMan.render(graphics);
     }
@@ -52,5 +53,9 @@ public class EntityManager {
 
     public ArrayList<Item> getItems() {
         return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 }
