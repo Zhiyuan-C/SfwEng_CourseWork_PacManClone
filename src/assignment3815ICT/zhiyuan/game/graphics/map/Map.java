@@ -60,6 +60,8 @@ public class Map {
             }
         }
 
+        loadItem();
+
     }
 
     public Tile getTile(int x, int y) {
@@ -73,6 +75,19 @@ public class Map {
         }
         return tile;
     }
+    private void loadItem() {
+        for(int y = 0; y < mapHeight; y ++) {
+            for(int x = 0; x < mapWidth; x ++) {
+                // position where pacman spwan
+                if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
+                // render items
+                if (getTile(x, y).getTileId() == 1){
+                    Item item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    entityManager.addItem(item);
+                }
+            }
+        }
+    }
 
     public ArrayList<Tile> getTileObjects() {
         return tileObjects;
@@ -82,36 +97,14 @@ public class Map {
         entityManager.update();
     }
     public void render(Graphics graphics) {
-        int count = 0;
-        ArrayList<Item> items = new ArrayList<>();
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++){
                 getTile(x, y).render(graphics, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                // position where pacman spwan
-                if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
-                // render items
-                if (getTile(x, y).getTileId() == 1){
-                    count += 1;
-                    Item item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-                    items.add(item);
-//                    entityManager.addItem(item);
-//                    item.render(graphics);
-                }
             }
         }
-        entityManager.setItems(items);
-//        for(int y = 0; y < mapHeight; y ++) {
-//            for(int x = 0; x < mapWidth; x ++) {
-//                // position where pacman spwan
-//                if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
-//                // render items
-//                if (getTile(x, y).getTileId() == 1){
-//                    Item item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
-//                    entityManager.addItem(item);
-//                }
-//            }
-//        }
 
+
+        System.out.println(entityManager.getItems().size());
         entityManager.render(graphics);
     }
 

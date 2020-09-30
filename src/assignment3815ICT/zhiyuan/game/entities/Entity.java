@@ -39,11 +39,12 @@ public abstract class Entity {
         for (Item item : gameHandler.getMap().getEntityManager().getItems()) {
             if (item.equals(this)) continue;
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
-//                gameHandler.getMap().getEntityManager().removeItem(item);
+                gameHandler.getMap().getEntityManager().removeItem(item);
                 active = false;
                 return true;
             }
         }
+        active = true;
         return false;
     }
 
