@@ -96,4 +96,8 @@ public class Map {
         }
         entityManager.render(graphics);
     }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }

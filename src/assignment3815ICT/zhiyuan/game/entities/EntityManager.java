@@ -44,4 +44,8 @@ public class EntityManager {
     public PacMan getPacMan() {
         return pacMan;
     }
+
+    public ArrayList<Entity> getItems() {
+        return items;
+    }
 }

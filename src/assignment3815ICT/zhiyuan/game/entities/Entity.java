@@ -31,9 +31,20 @@ public abstract class Entity {
     public abstract void update();
     public abstract void render(Graphics graphics);
 
+    //entity collision
+    public boolean checkEntityCollisions(float xOffset, float yOffset) {
+        for (Entity item : gameHandler.getMap().getEntityManager().getItems()) {
+            if (item.equals(this)) continue;
+            if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) return true;
+        }
+        return false;
+    }
+
+    private Rectangle getCollisionBox(float xOffset, float yOffset) {
+        return new Rectangle((int)(xPos + collisionBox.x + xOffset), (int)(yPos + collisionBox.y + yOffset), collisionBox.width, collisionBox.height);
+    }
+
     // getters and setters
-
-
     public void setxPos(float xPos) {
         this.xPos = xPos;
     }
