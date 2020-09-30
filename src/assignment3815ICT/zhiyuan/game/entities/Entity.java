@@ -2,6 +2,7 @@ package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.collisionDetection.Collision;
+import assignment3815ICT.zhiyuan.game.entities.item.Item;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -33,14 +34,17 @@ public abstract class Entity {
 
     //entity collision
     public boolean checkItemCollisions(float xOffset, float yOffset) {
-        for (Entity item : gameHandler.getMap().getEntityManager().getItems()) {
+        for (Item item : gameHandler.getMap().getEntityManager().getItems()) {
             if (item.equals(this)) continue;
-            if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) return true;
+            if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
+//                gameHandler.getMap().getEntityManager().removeItem(item);
+                return true;
+            }
         }
         return false;
     }
 
-    private Rectangle getCollisionBox(float xOffset, float yOffset) {
+    public Rectangle getCollisionBox(float xOffset, float yOffset) {
         return new Rectangle((int)(xPos + collisionBox.x + xOffset), (int)(yPos + collisionBox.y + yOffset), collisionBox.width, collisionBox.height);
     }
 

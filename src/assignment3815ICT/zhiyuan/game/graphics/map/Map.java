@@ -4,6 +4,7 @@ import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.entities.EntityManager;
 import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
+import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.BackgroundTile;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
@@ -88,7 +89,7 @@ public class Map {
                 if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
                 // render items
                 if (getTile(x, y).getTileId() == 1){
-                    Entity item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    Item item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
                     entityManager.addItem(item);
                     item.render(graphics);
                 }

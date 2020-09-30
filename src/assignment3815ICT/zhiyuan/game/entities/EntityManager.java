@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ public class EntityManager {
 
     private GameHandler gameHandler;
     private PacMan pacMan;
-    private ArrayList<Entity> items;
+    private ArrayList<Item> items;
     private ArrayList<Entity> mob;
 
     public EntityManager(GameHandler gameHandler) {
@@ -23,7 +24,7 @@ public class EntityManager {
 
     public void update() {
         for (int i = 0; i < items.size(); i++) {
-            Entity item = items.get(i);
+            Item item = items.get(i);
             item.update();
         }
         pacMan.update();
@@ -36,12 +37,12 @@ public class EntityManager {
         pacMan.render(graphics);
     }
 
-    public void addItem(Entity entity) {
-        items.add(entity);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    public void removeItem(Entity entity) {
-        items.remove(entity);
+    public void removeItem(Item item) {
+        items.remove(item);
     }
     public void addMob(Entity entity) { mob.add(entity); }
 
@@ -49,7 +50,7 @@ public class EntityManager {
         return pacMan;
     }
 
-    public ArrayList<Entity> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 }

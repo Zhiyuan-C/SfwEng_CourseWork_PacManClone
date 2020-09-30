@@ -91,7 +91,6 @@ public abstract class Mob extends Entity {
                     if(checkItemCollisions(-2f, 0f)) {
                         lastScore = currentScore;
                         currentScore += 1;
-
                     }
                     xPos -= speed;
                 } else {
