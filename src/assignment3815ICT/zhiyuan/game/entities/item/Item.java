@@ -18,4 +18,8 @@ public abstract class Item extends Entity {
     public int getValue() {
         return value;
     }
+
+    public void setActive (boolean active) {
+        this.active = active;
+    }
 }

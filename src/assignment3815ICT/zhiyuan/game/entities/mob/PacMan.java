@@ -15,6 +15,7 @@ public class PacMan extends Mob {
 
 
 //    private boolean keyPressed = false;
+    private int score;
 
     public PacMan(GameHandler gameHandler) {
         super(gameHandler, 0, 0, 28, 28);
@@ -37,6 +38,7 @@ public class PacMan extends Mob {
         // moving speed
         speed = 1.5f;
         // score
+        score = 0;
         currentScore = 0;
         lastScore = 0;
         // set up collision bounds
@@ -68,6 +70,9 @@ public class PacMan extends Mob {
 
         graphics.setColor(Color.RED);
         graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+
+        graphics.setColor(Color.WHITE);
+        graphics.drawString("Score: " + score, 0, 20);
     }
 
     private void getInput() {
@@ -83,8 +88,11 @@ public class PacMan extends Mob {
 //        }
     }
 
+    public int getScore() {
+        return score;
+    }
 
-
-
-
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

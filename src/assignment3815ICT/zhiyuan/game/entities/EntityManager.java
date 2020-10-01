@@ -27,9 +27,14 @@ public class EntityManager {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
             item.update();
+            if (!item.isActive()) {
+                pacMan.setScore(pacMan.getScore() + item.getValue());
+                items.remove(item);
+            }
         }
         pacMan.update();
     }
+
     public void render(Graphics graphics) {
         for (Item item : items) {
             item.render(graphics);

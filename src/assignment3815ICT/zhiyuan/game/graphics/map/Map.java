@@ -97,14 +97,12 @@ public class Map {
         entityManager.update();
     }
     public void render(Graphics graphics) {
+
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++){
                 getTile(x, y).render(graphics, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
             }
         }
-
-
-        System.out.println(entityManager.getItems().size());
         entityManager.render(graphics);
     }
 

@@ -24,7 +24,7 @@ public abstract class Entity {
         this.yPos = yPos;
         this.width = width;
         this.height = height;
-//        this.active = true;
+        this.active = true;
 
         collisionBox = new Rectangle(0 ,0, width, height);
         collisionDetection = new Collision(gameHandler);
@@ -35,17 +35,14 @@ public abstract class Entity {
     public abstract void render(Graphics graphics);
 
     //entity collision
-    public boolean checkItemCollisions(float xOffset, float yOffset) {
+    public void itemCollisions(float xOffset, float yOffset) {
         for (Item item : gameHandler.getMap().getEntityManager().getItems()) {
             if (item.equals(this)) continue;
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
-                gameHandler.getMap().getEntityManager().removeItem(item);
-                active = false;
-                return true;
+//                gameHandler.getMap().getEntityManager().removeItem(item);
+                item.setActive(false);
             }
         }
-        active = true;
-        return false;
     }
 
     public Rectangle getCollisionBox(float xOffset, float yOffset) {

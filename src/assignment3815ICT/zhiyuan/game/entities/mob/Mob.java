@@ -88,10 +88,7 @@ public abstract class Mob extends Entity {
                     if(isCrossing((int)(xPos - 2))) {
                         xPos = gameHandler.getGameWidth();
                     }
-                    if(checkItemCollisions(-2f, 0f)) {
-                        lastScore = currentScore;
-                        currentScore += 1;
-                    }
+                    itemCollisions(-2f, 0f);
                     xPos -= speed;
                 } else {
                     xPos = collisionDetection.getOriginalPoint();
