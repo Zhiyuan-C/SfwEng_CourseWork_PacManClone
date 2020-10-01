@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
+import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
 import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
@@ -52,5 +53,9 @@ public class GameHandler {
 
     public ArrayList<BufferedImage> getItemObjects() {
         return game.getItemObjects();
+    }
+
+    public GameFont getGameFont() {
+        return game.getGameFont();
     }
 }

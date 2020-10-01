@@ -71,8 +71,7 @@ public class PacMan extends Mob {
         graphics.setColor(Color.RED);
         graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
 
-        graphics.setColor(Color.WHITE);
-        graphics.drawString("Score: " + score, 0, 20);
+        gameHandler.getGameFont().render(graphics, "score " + score, 0, 5, 20, 20);
     }
 
     private void getInput() {

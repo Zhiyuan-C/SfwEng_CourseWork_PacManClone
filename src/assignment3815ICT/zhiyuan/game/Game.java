@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
+import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.display.GameWindow;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.states.PlayState;
@@ -28,13 +29,15 @@ public class Game implements Runnable{
     private Graphics graphics; // normally g
 
     // initialise game objects
-    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects;
+    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects;
 
     private State playState;
 
     private KeyManager keyManager;
 
     private GameHandler gameHandler;
+
+    private GameFont gameFont;
 
 
     public Game(String title, int width, int height) {
@@ -54,7 +57,9 @@ public class Game implements Runnable{
         playerObjects = GameObject.getPlayerObjects();
         mapObjects = GameObject.getMapObjects();
         itemObjects = GameObject.getItemObjects();
+        fontObjects = GameObject.getFontObjects();
 
+        gameFont = new GameFont(fontObjects);
         // set handler
         gameHandler = new GameHandler(this);
         // set play state
@@ -181,5 +186,9 @@ public class Game implements Runnable{
 
     public ArrayList<BufferedImage> getItemObjects() {
         return itemObjects;
+    }
+
+    public GameFont getGameFont() {
+        return gameFont;
     }
 }
