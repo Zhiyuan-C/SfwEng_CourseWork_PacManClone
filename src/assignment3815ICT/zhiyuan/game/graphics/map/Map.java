@@ -3,6 +3,7 @@ package assignment3815ICT.zhiyuan.game.graphics.map;
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.entities.EntityManager;
+import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
 import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
@@ -76,14 +77,22 @@ public class Map {
         return tile;
     }
     private void loadItem() {
+        int itemCount = 0;
+        Item item;
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++) {
                 // position where pacman spwan
                 if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
                 // render items
                 if (getTile(x, y).getTileId() == 1){
-                    Item item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    itemCount += 1;
+                    if(itemCount % 15 < 1) {
+                        item = new FlowerLarge(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    } else {
+                        item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    }
                     entityManager.addItem(item);
+
                 }
             }
         }

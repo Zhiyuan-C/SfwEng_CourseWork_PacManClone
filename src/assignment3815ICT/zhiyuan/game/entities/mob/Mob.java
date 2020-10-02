@@ -84,11 +84,14 @@ public abstract class Mob extends Entity {
                 collisionDetection.setOriginalPoint(xPos);
                 collisionDetection.setNewPoint(-2, collisionBox.x, 0, Tile.TILE_WIDTH);
                 if(!collisionDetection.isCollideSG(true)) {
+
+                    itemCollisions(-2f, 0f);
+
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos - 2))) {
                         xPos = gameHandler.getGameWidth();
                     }
-                    itemCollisions(-2f, 0f);
+
                     xPos -= speed;
                 } else {
                     xPos = collisionDetection.getOriginalPoint();
@@ -101,6 +104,7 @@ public abstract class Mob extends Entity {
                 collisionDetection.setNewPoint(2, collisionBox.x, collisionBox.width, Tile.TILE_WIDTH);
 
                 if (!collisionDetection.isCollideSG(true)) {
+                    itemCollisions(2f, 0f);
                     // check if the object is moving over the screen width
                     if(isCrossing((int)(xPos + 1))) {
                         xPos = 0;
@@ -124,6 +128,7 @@ public abstract class Mob extends Entity {
                 collisionDetection.setOriginalPoint(yPos);
                 collisionDetection.setNewPoint(-2, collisionBox.y, 0, Tile.TILE_HEIGHT);
                 if(!collisionDetection.isCollideSG(false)) {
+                    itemCollisions(0f, -2f);
                     yPos -= speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
@@ -135,6 +140,7 @@ public abstract class Mob extends Entity {
                 collisionDetection.setOriginalPoint(yPos);
                 collisionDetection.setNewPoint(2, collisionBox.y, collisionBox.height, Tile.TILE_HEIGHT);
                 if(!collisionDetection.isCollideSG(false)) {
+                    itemCollisions(0f, 2f);
                     yPos += speed;
                 } else {
                     yPos = collisionDetection.getOriginalPoint();
