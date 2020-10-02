@@ -1,13 +1,7 @@
 package assignment3815ICT.zhiyuan.game.graphics.map;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.entities.EntityManager;
-import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
-import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
-import assignment3815ICT.zhiyuan.game.entities.item.Item;
-import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
-import assignment3815ICT.zhiyuan.game.graphics.tiles.BackgroundTile;
 import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
 import assignment3815ICT.zhiyuan.game.utils.Utils;
 
@@ -20,6 +14,7 @@ public class Map {
     private int mapWidth, mapHeight; // measure in tiles
     private int[][] tiles; //[x][y]
     private int spawnX, spawnY;
+    private int ghostSpawnX, ghostSpawnY;
     private ArrayList<BufferedImage> mapObjects = new ArrayList<>();
     private ArrayList<Tile> tileObjects = new ArrayList<>();
     private EntityManager entityManager;
@@ -30,9 +25,11 @@ public class Map {
         Tile.setTileObjects(4 * 4);
         loadObjectTiles();
         loadMap(path);
-        // spawn
+        // spawn pacman
         entityManager.getPacMan().setxPos(spawnX);
         entityManager.getPacMan().setyPos(spawnY);
+        // spawn ghsot
+        //loadGhost();
     }
 
     private void loadObjectTiles() {
@@ -76,9 +73,10 @@ public class Map {
         }
         return tile;
     }
+
     private void loadItem() {
         int itemCount = 0;
-        Item item;
+        int randomNum = 100 + (int) (Math.random() * 260); // generate random fruit
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++) {
                 // position where pacman spwan
@@ -86,13 +84,24 @@ public class Map {
                 // render items
                 if (getTile(x, y).getTileId() == 1){
                     itemCount += 1;
-                    if(itemCount % 15 < 1) {
-                        item = new FlowerLarge(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    if( itemCount == randomNum ) {
+                        entityManager.addFruit(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                    } else if ( itemCount % 15 < 1 ) {
+                        entityManager.addFlowerLarge(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
                     } else {
-                        item = new FlowerSmall(gameHandler,x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                        entityManager.addFlowerSmall(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
                     }
-                    entityManager.addItem(item);
 
+                }
+            }
+        }
+    }
+
+    private void loadGhost() {
+        for(int y = 0; y < mapHeight; y ++) {
+            for(int x = 0; x < mapWidth; x ++) {
+                if (getTile(x, y).getTileId() == 5) {
+                    // add ghost to entityManager.addGhost
                 }
             }
         }

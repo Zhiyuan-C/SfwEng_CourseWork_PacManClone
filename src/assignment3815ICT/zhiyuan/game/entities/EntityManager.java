@@ -1,6 +1,9 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
+import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
+import assignment3815ICT.zhiyuan.game.entities.item.Fruit;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 
@@ -41,6 +44,16 @@ public class EntityManager {
         }
 //        items.forEach(item -> item.render(graphics));
         pacMan.render(graphics);
+    }
+
+    public void addFlowerSmall(float xPos, float yPos){
+        items.add(new FlowerSmall(gameHandler, xPos, yPos));
+    }
+    public void addFlowerLarge(float xPos, float yPos) {
+        items.add(new FlowerLarge(gameHandler, xPos,yPos));
+    }
+    public void addFruit(float xPos, float yPos){
+        items.add(new Fruit(gameHandler, xPos, yPos));
     }
 
     public void addItem(Item item) {
