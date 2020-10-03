@@ -2,6 +2,7 @@ package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
+import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
 import java.awt.image.BufferedImage;
@@ -10,9 +11,21 @@ import java.util.ArrayList;
 public class GameHandler {
     private Game game;
     private Map map;
+    // initialise game objects
+    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
+    private GameFont gameFont;
 
     public GameHandler(Game game) {
         this.game = game;
+        // load game object
+        GameObject.init();
+        playerObjects = GameObject.getPlayerObjects();
+        mapObjects = GameObject.getMapObjects();
+        itemObjects = GameObject.getItemObjects();
+        ghostObjects = GameObject.getGhostObjects();
+        // load fonts
+        fontObjects = GameObject.getFontObjects();
+        gameFont = new GameFont(fontObjects);
     }
 
     public void setGame(Game game) {
@@ -43,24 +56,45 @@ public class GameHandler {
         this.map = map;
     }
 
+//    public ArrayList<BufferedImage> getPlayerObjects() {
+//        return game.getPlayerObjects();
+//    }
+//
+//    public ArrayList<BufferedImage> getMapObjects() {
+//        return game.getMapObjects();
+//    }
+//
+//    public ArrayList<BufferedImage> getItemObjects() {
+//        return game.getItemObjects();
+//    }
+
+//    public GameFont getGameFont() {
+//        return game.getGameFont();
+//    }
+
+//    public ArrayList<BufferedImage> getGhostObjects() {
+//        return game.getGhostObjects();
+//    }
+
+
     public ArrayList<BufferedImage> getPlayerObjects() {
-        return game.getPlayerObjects();
+        return playerObjects;
     }
 
     public ArrayList<BufferedImage> getMapObjects() {
-        return game.getMapObjects();
+        return mapObjects;
     }
 
     public ArrayList<BufferedImage> getItemObjects() {
-        return game.getItemObjects();
-    }
-
-    public GameFont getGameFont() {
-        return game.getGameFont();
+        return itemObjects;
     }
 
     public ArrayList<BufferedImage> getGhostObjects() {
-        return game.getGhostObjects();
+        return ghostObjects;
+    }
+
+    public GameFont getGameFont() {
+        return gameFont;
     }
 
     public int getTILE_WIDTH() {

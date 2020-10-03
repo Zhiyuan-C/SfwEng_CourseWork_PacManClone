@@ -1,8 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
-import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.display.GameWindow;
-import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.states.PlayState;
 import assignment3815ICT.zhiyuan.game.states.State;
 import assignment3815ICT.zhiyuan.game.states.StateManager;
@@ -10,8 +8,6 @@ import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Game implements Runnable{
     // hold everything base game
@@ -28,16 +24,11 @@ public class Game implements Runnable{
     private BufferStrategy bufferStrategy; // normally bs
     private Graphics graphics; // normally g
 
-    // initialise game objects
-    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
-
     private State playState;
 
     private KeyManager keyManager;
 
     private GameHandler gameHandler;
-
-    private GameFont gameFont;
 
 
     public Game(String title, int width, int height) {
@@ -51,17 +42,10 @@ public class Game implements Runnable{
     private void init() {
         gameWindow = new GameWindow(title, width, height);
         gameWindow.getFrame().addKeyListener(keyManager);
-        // load game object
-        GameObject.init();
-        playerObjects = GameObject.getPlayerObjects();
-        mapObjects = GameObject.getMapObjects();
-        itemObjects = GameObject.getItemObjects();
-        ghostObjects = GameObject.getGhostObjects();
-        // load fonts
-        fontObjects = GameObject.getFontObjects();
-        gameFont = new GameFont(fontObjects);
+
         // set handler
         gameHandler = new GameHandler(this);
+
         // set play state
         playState = new PlayState(gameHandler);
         StateManager.setState(playState);
@@ -176,23 +160,4 @@ public class Game implements Runnable{
         return height;
     }
 
-    public ArrayList<BufferedImage> getPlayerObjects() {
-        return playerObjects;
-    }
-
-    public ArrayList<BufferedImage> getMapObjects() {
-        return mapObjects;
-    }
-
-    public ArrayList<BufferedImage> getItemObjects() {
-        return itemObjects;
-    }
-
-    public ArrayList<BufferedImage> getGhostObjects() {
-        return ghostObjects;
-    }
-
-    public GameFont getGameFont() {
-        return gameFont;
-    }
 }

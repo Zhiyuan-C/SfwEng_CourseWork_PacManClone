@@ -34,7 +34,7 @@ public abstract class Entity {
     public abstract void update();
     public abstract void render(Graphics graphics);
 
-    //entity collision
+    //item collision
     public void itemCollisions(float xOffset, float yOffset) {
         for (Item item : gameHandler.getMap().getEntityManager().getItems()) {
             if (item.equals(this)) continue;
