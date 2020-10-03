@@ -7,7 +7,7 @@ public class GameObject {
     // load all game object once from the sprite sheet
     private static final int TILE_SIZE = 32;
 //    private static final int SPRITE_SHEET_SIZE = 256; // 256 x 256
-    private static ArrayList<BufferedImage> gameObjects = new ArrayList<>();
+    private static ArrayList<BufferedImage> ghostObjects;
     private static ArrayList<BufferedImage> mapObjects;
     private static ArrayList<BufferedImage> playerObjects;
     private static ArrayList<BufferedImage> itemObjects;
@@ -18,10 +18,12 @@ public class GameObject {
         Sprite playerSprite = new Sprite("/pacManPlayerSheet.png");
         Sprite fontSprite = new Sprite("/pacManFontSheet.png");
         Sprite itemSprite = new Sprite("/pacManItemSheet.png");
+        Sprite ghostSprite = new Sprite("/pacManGhostSheet.png");
         mapObjects = setObjects(mapSprite, 4, 4);
         playerObjects = setObjects(playerSprite, 3, 4);
         fontObjects = setObjects(fontSprite, 9, 9);
         itemObjects = setObjects(itemSprite, 2, 2);
+        ghostObjects = setObjects(ghostSprite, 5, 5);
     }
 
     private static ArrayList<BufferedImage> setObjects(Sprite spriteSheet, int rowNum, int colNum) {
@@ -50,8 +52,7 @@ public class GameObject {
         return fontObjects;
     }
 
-    public static ArrayList<BufferedImage> getGameObjects() {
-        return gameObjects;
+    public static ArrayList<BufferedImage> getGhostObjects() {
+        return ghostObjects;
     }
-
 }
