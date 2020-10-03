@@ -78,11 +78,11 @@ public abstract class Mob extends Entity {
      *
      */
     private void moveX() {
-        collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, Tile.TILE_HEIGHT);
+        collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
         switch (direction) {
             case 3: // move left
                 collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(-2, collisionBox.x, 0, Tile.TILE_WIDTH);
+                collisionDetection.setNewPoint(-2, collisionBox.x, 0, gameHandler.getTILE_WIDTH());
                 if(!collisionDetection.isCollideSG(true)) {
 
                     itemCollisions(-2f, 0f);
@@ -101,7 +101,7 @@ public abstract class Mob extends Entity {
 
             case 4: // move right
                 collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(2, collisionBox.x, collisionBox.width, Tile.TILE_WIDTH);
+                collisionDetection.setNewPoint(2, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
 
                 if (!collisionDetection.isCollideSG(true)) {
                     itemCollisions(2f, 0f);
@@ -122,11 +122,11 @@ public abstract class Mob extends Entity {
      *
      */
     private void moveY() {
-        collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, Tile.TILE_WIDTH);
+        collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
         switch (direction) {
             case 1: // up
                 collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(-2, collisionBox.y, 0, Tile.TILE_HEIGHT);
+                collisionDetection.setNewPoint(-2, collisionBox.y, 0, gameHandler.getTILE_HEIGHT());
                 if(!collisionDetection.isCollideSG(false)) {
                     itemCollisions(0f, -2f);
                     yPos -= speed;
@@ -138,7 +138,7 @@ public abstract class Mob extends Entity {
                 break;
             case 2: //down
                 collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(2, collisionBox.y, collisionBox.height, Tile.TILE_HEIGHT);
+                collisionDetection.setNewPoint(2, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
                 if(!collisionDetection.isCollideSG(false)) {
                     itemCollisions(0f, 2f);
                     yPos += speed;
