@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class GameObject {
     // load all game object once from the sprite sheet
-    private static final int TILE_SIZE = 32;
+    private final int TILE_SIZE = 32;
 //    private static final int SPRITE_SHEET_SIZE = 256; // 256 x 256
-    private static ArrayList<BufferedImage> ghostObjects;
-    private static ArrayList<BufferedImage> mapObjects;
-    private static ArrayList<BufferedImage> playerObjects;
-    private static ArrayList<BufferedImage> itemObjects;
-    private static ArrayList<BufferedImage> fontObjects;
+    private ArrayList<BufferedImage> ghostObjects;
+    private ArrayList<BufferedImage> mapObjects;
+    private ArrayList<BufferedImage> playerObjects;
+    private ArrayList<BufferedImage> itemObjects;
+    private ArrayList<BufferedImage> fontObjects;
 
-    public static void init() {
+    public GameObject() {
         Sprite mapSprite = new Sprite("/pacManMapSheet.png");
         Sprite playerSprite = new Sprite("/pacManPlayerSheet.png");
         Sprite fontSprite = new Sprite("/pacManFontSheet.png");
@@ -26,7 +26,7 @@ public class GameObject {
         ghostObjects = setObjects(ghostSprite, 5, 5);
     }
 
-    private static ArrayList<BufferedImage> setObjects(Sprite spriteSheet, int rowNum, int colNum) {
+    private ArrayList<BufferedImage> setObjects(Sprite spriteSheet, int rowNum, int colNum) {
         ArrayList<BufferedImage> objects = new ArrayList<>();
         for(int y = 0; y < rowNum; y++) {
             for(int x = 0; x < colNum; x++) {
@@ -36,23 +36,40 @@ public class GameObject {
         return objects;
     }
 
-    public static ArrayList<BufferedImage> getMapObjects() {
+    /**
+     * Return an array of buffered image containing the frames of the object for animation
+     *
+     * @param objects an arraylist containing object's buffered image retrieved from sprite sheet
+     * @param startIndex start index of the object
+     * @param length how many objects is required for that animation frame
+     * @return BufferedImage[] objects for particular animation frame
+     */
+    public BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
+        BufferedImage[] objectFrames = new BufferedImage[length];
+        for (int frameIndex = 0; frameIndex < length; frameIndex ++) {
+            objectFrames[frameIndex] = objects.get(startIndex);
+            startIndex ++;
+        }
+        return objectFrames;
+    }
+
+    public ArrayList<BufferedImage> getMapObjects() {
         return mapObjects;
     }
 
-    public static ArrayList<BufferedImage> getPlayerObjects() {
+    public ArrayList<BufferedImage> getPlayerObjects() {
         return playerObjects;
     }
 
-    public static ArrayList<BufferedImage> getItemObjects() {
+    public ArrayList<BufferedImage> getItemObjects() {
         return itemObjects;
     }
 
-    public static ArrayList<BufferedImage> getFontObjects() {
+    public ArrayList<BufferedImage> getFontObjects() {
         return fontObjects;
     }
 
-    public static ArrayList<BufferedImage> getGhostObjects() {
+    public ArrayList<BufferedImage> getGhostObjects() {
         return ghostObjects;
     }
 }

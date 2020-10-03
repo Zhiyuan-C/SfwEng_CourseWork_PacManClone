@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class GameHandler {
     private Game game;
     private Map map;
+    private GameObject gameObject;
     // initialise game objects
     private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
     private GameFont gameFont;
@@ -18,13 +19,13 @@ public class GameHandler {
     public GameHandler(Game game) {
         this.game = game;
         // load game object
-        GameObject.init();
-        playerObjects = GameObject.getPlayerObjects();
-        mapObjects = GameObject.getMapObjects();
-        itemObjects = GameObject.getItemObjects();
-        ghostObjects = GameObject.getGhostObjects();
+        gameObject = new GameObject();
+        playerObjects = gameObject.getPlayerObjects();
+        mapObjects = gameObject.getMapObjects();
+        itemObjects = gameObject.getItemObjects();
+        ghostObjects = gameObject.getGhostObjects();
         // load fonts
-        fontObjects = GameObject.getFontObjects();
+        fontObjects = gameObject.getFontObjects();
         gameFont = new GameFont(fontObjects);
     }
 
@@ -55,26 +56,6 @@ public class GameHandler {
     public void setMap(Map map) {
         this.map = map;
     }
-
-//    public ArrayList<BufferedImage> getPlayerObjects() {
-//        return game.getPlayerObjects();
-//    }
-//
-//    public ArrayList<BufferedImage> getMapObjects() {
-//        return game.getMapObjects();
-//    }
-//
-//    public ArrayList<BufferedImage> getItemObjects() {
-//        return game.getItemObjects();
-//    }
-
-//    public GameFont getGameFont() {
-//        return game.getGameFont();
-//    }
-
-//    public ArrayList<BufferedImage> getGhostObjects() {
-//        return game.getGhostObjects();
-//    }
 
 
     public ArrayList<BufferedImage> getPlayerObjects() {
@@ -111,5 +92,9 @@ public class GameHandler {
 
     public int getMapHeight() {
         return map.getMapHeight();
+    }
+
+    public GameObject getGameObject() {
+        return gameObject;
     }
 }

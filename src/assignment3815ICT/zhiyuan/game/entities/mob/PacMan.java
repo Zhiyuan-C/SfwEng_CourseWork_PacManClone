@@ -25,11 +25,11 @@ public class PacMan extends Mob {
     private void init() {
         // set up for animation
         this.pacManImages = gameHandler.getPlayerObjects();
-        BufferedImage[] left = getObjectFrames(pacManImages, 0, 2);
-        BufferedImage[] up = getObjectFrames(pacManImages, 2, 2);
-        BufferedImage[] right = getObjectFrames(pacManImages, 4, 2);
-        BufferedImage[] down = getObjectFrames(pacManImages, 6, 2);
-        BufferedImage[] vanish = getObjectFrames(pacManImages, 8, 4);
+        BufferedImage[] left = gameHandler.getGameObject().getObjectFrames(pacManImages, 0, 2);
+        BufferedImage[] up = gameHandler.getGameObject().getObjectFrames(pacManImages, 2, 2);
+        BufferedImage[] right = gameHandler.getGameObject().getObjectFrames(pacManImages, 4, 2);
+        BufferedImage[] down = gameHandler.getGameObject().getObjectFrames(pacManImages, 6, 2);
+        BufferedImage[] vanish = gameHandler.getGameObject().getObjectFrames(pacManImages, 8, 4);
         this.animeLeft = new Animation(left, 500);
         this.animeUp = new Animation(up, 500);
         this.animeRight = new Animation(right, 500);
