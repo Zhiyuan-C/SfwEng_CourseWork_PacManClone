@@ -1,7 +1,5 @@
 package assignment3815ICT.zhiyuan.game.graphics.display;
 
-import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

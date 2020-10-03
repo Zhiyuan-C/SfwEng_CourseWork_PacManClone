@@ -3,7 +3,7 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.graphics.display.Animation;
-import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
+import assignment3815ICT.zhiyuan.game.graphics.map.Tile;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

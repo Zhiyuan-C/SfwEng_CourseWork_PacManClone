@@ -58,4 +58,24 @@ public class GameHandler {
     public GameFont getGameFont() {
         return game.getGameFont();
     }
+
+    public ArrayList<BufferedImage> getGhostObjects() {
+        return game.getGhostObjects();
+    }
+
+    public int getTILE_WIDTH() {
+        return map.getTILE_WIDTH();
+    }
+
+    public int getTILE_HEIGHT() {
+        return map.getTILE_HEIGHT();
+    }
+
+    public int getMapWidth() {
+        return map.getMapWidth();
+    }
+
+    public int getMapHeight() {
+        return map.getMapHeight();
+    }
 }

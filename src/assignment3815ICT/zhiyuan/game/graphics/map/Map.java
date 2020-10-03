@@ -2,7 +2,6 @@ package assignment3815ICT.zhiyuan.game.graphics.map;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.EntityManager;
-import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
 import assignment3815ICT.zhiyuan.game.utils.Utils;
 
 import java.awt.*;
@@ -10,6 +9,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Map {
+
+    private final int TILE_WIDTH = Tile.TILE_WIDTH;
+    private final int TILE_HEIGHT = Tile.TILE_HEIGHT;
+
     private GameHandler gameHandler;
     private int mapWidth, mapHeight; // measure in tiles
     private int[][] tiles; //[x][y]
@@ -80,16 +83,16 @@ public class Map {
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++) {
                 // position where pacman spwan
-                if(x * Tile.TILE_WIDTH == spawnX && y * Tile.TILE_HEIGHT == spawnY) continue;
+                if(x * Tile.TILE_WIDTH == spawnX && y * TILE_HEIGHT == spawnY) continue;
                 // render items
                 if (getTile(x, y).getTileId() == 1){
                     itemCount += 1;
                     if( itemCount == randomNum ) {
-                        entityManager.addFruit(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                        entityManager.addFruit(x * TILE_WIDTH, y * TILE_HEIGHT);
                     } else if ( itemCount % 15 < 1 ) {
-                        entityManager.addFlowerLarge(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                        entityManager.addFlowerLarge(x * TILE_WIDTH, y * TILE_HEIGHT);
                     } else {
-                        entityManager.addFlowerSmall(x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                        entityManager.addFlowerSmall(x * TILE_WIDTH, y * TILE_HEIGHT);
                     }
 
                 }
@@ -118,7 +121,7 @@ public class Map {
 
         for(int y = 0; y < mapHeight; y ++) {
             for(int x = 0; x < mapWidth; x ++){
-                getTile(x, y).render(graphics, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
+                getTile(x, y).render(graphics, x * TILE_WIDTH, y * TILE_HEIGHT);
             }
         }
         entityManager.render(graphics);
@@ -126,5 +129,21 @@ public class Map {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public int getTILE_WIDTH() {
+        return TILE_WIDTH;
+    }
+
+    public int getTILE_HEIGHT() {
+        return TILE_HEIGHT;
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
     }
 }

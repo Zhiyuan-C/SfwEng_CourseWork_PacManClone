@@ -2,7 +2,7 @@
 //
 //import assignment3815ICT.zhiyuan.game.GameHandler;
 //import assignment3815ICT.zhiyuan.game.collisionDetection.Collision;
-//import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
+//import assignment3815ICT.zhiyuan.game.graphics.map.Tile;
 //
 //import java.awt.*;
 //

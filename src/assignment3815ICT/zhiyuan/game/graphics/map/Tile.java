@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.graphics.tiles;
+package assignment3815ICT.zhiyuan.game.graphics.map;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

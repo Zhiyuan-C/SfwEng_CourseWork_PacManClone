@@ -29,7 +29,7 @@ public class Game implements Runnable{
     private Graphics graphics; // normally g
 
     // initialise game objects
-    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects;
+    private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
 
     private State playState;
 
@@ -53,12 +53,12 @@ public class Game implements Runnable{
         gameWindow.getFrame().addKeyListener(keyManager);
         // load game object
         GameObject.init();
-//        gameObjects = GameObject.getGameObjects();
         playerObjects = GameObject.getPlayerObjects();
         mapObjects = GameObject.getMapObjects();
         itemObjects = GameObject.getItemObjects();
+        ghostObjects = GameObject.getGhostObjects();
+        // load fonts
         fontObjects = GameObject.getFontObjects();
-
         gameFont = new GameFont(fontObjects);
         // set handler
         gameHandler = new GameHandler(this);
@@ -186,6 +186,10 @@ public class Game implements Runnable{
 
     public ArrayList<BufferedImage> getItemObjects() {
         return itemObjects;
+    }
+
+    public ArrayList<BufferedImage> getGhostObjects() {
+        return ghostObjects;
     }
 
     public GameFont getGameFont() {

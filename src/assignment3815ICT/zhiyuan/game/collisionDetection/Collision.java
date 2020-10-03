@@ -1,9 +1,6 @@
 package assignment3815ICT.zhiyuan.game.collisionDetection;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.graphics.tiles.Tile;
-
-import java.awt.*;
 
 public class Collision {
     private float originalPoint;
