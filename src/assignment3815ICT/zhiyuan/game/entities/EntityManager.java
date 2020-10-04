@@ -5,6 +5,7 @@ import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
 import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
 import assignment3815ICT.zhiyuan.game.entities.item.Fruit;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
+import assignment3815ICT.zhiyuan.game.entities.mob.Ghost.Blinky;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ public class EntityManager {
 
     private GameHandler gameHandler;
     private PacMan pacMan;
+    private Blinky blinky;
     private ArrayList<Item> items;
     private Item[] experiment;
     private ArrayList<Entity> mob;
@@ -23,6 +25,7 @@ public class EntityManager {
         pacMan = new PacMan(gameHandler);
         items = new ArrayList<>();
         mob = new ArrayList<>();
+        blinky = new Blinky(gameHandler, 640, 320);
         addMob(pacMan);
     }
 
@@ -44,6 +47,7 @@ public class EntityManager {
         }
 //        items.forEach(item -> item.render(graphics));
         pacMan.render(graphics);
+        blinky.render(graphics);
     }
 
     public void addFlowerSmall(float xPos, float yPos){

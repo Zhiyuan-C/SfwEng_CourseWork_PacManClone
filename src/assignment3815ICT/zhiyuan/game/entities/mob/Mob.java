@@ -23,15 +23,7 @@ public abstract class Mob extends Entity {
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
     }
-    /**
-     * Return an array of buffered image containing the frames of the object for animation
-     *
-     * @param objects an arraylist containing object's buffered image retrieved from sprite sheet
-     * @param startIndex start index of the object
-     * @param length how many objects is required for that animation frame
-     * @return BufferedImage[] objects for particular animation frame
-     */
-    protected abstract BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length);
+
 
     /**
      *

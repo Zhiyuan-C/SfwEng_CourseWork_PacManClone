@@ -8,15 +8,19 @@ import java.util.ArrayList;
 
 public class Blinky extends Ghost {
 
-    private BufferedImage[] blinkyImages;
+    private ArrayList<BufferedImage> blinkyImages;
 
-    public Blinky(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
-        super(gameHandler, xPos, yPos, width, height);
+    public Blinky(GameHandler gameHandler, float xPos, float yPos) {
+        super(gameHandler, xPos, yPos);
         init();
     }
 
     private void init() {
-//        blinkyImages = gameHandler.getGameObject().getObjectFrames(ghostImages, )
+        blinkyImages = getIndividualImages(0);
+        BufferedImage[] left = getObjectFrames(blinkyImages, 1, 0);
+        BufferedImage[] right = getObjectFrames(blinkyImages, 2, 0);
+        BufferedImage[] up = getObjectFrames(blinkyImages, 3, 0);
+        BufferedImage[] down = getObjectFrames(blinkyImages, 4, 0);
     }
 
     @Override
@@ -26,6 +30,6 @@ public class Blinky extends Ghost {
 
     @Override
     public void render(Graphics graphics) {
-
+        graphics.drawImage(blinkyImages.get(1), (int) xPos, (int) yPos, width, height, null);
     }
 }

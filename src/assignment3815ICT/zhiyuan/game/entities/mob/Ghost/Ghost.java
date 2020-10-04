@@ -9,14 +9,25 @@ import java.util.ArrayList;
 public abstract class Ghost extends Mob {
     protected ArrayList<BufferedImage> ghostImages;
 
-    public Ghost(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
-        super(gameHandler, xPos, yPos, width, height);
+    public Ghost(GameHandler gameHandler, float xPos, float yPos) {
+        super(gameHandler, xPos, yPos, 28, 28);
 
         this.ghostImages = gameHandler.getGhostObjects();
     }
 
-    @Override
-    protected BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
-        return new BufferedImage[0];
+    protected BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int endIndex) {
+        BufferedImage[] objectFrames = new BufferedImage[2];
+        // hard code from here
+        objectFrames[0] = objects.get(startIndex);
+        objectFrames[1] = objects.get(endIndex);
+        return objectFrames;
+    }
+
+    protected ArrayList<BufferedImage> getIndividualImages(int startIndex){
+        ArrayList<BufferedImage> newImages = new ArrayList<>();
+        for (int i = startIndex; i < 5; i ++) {
+            newImages.add(ghostImages.get(i));
+        }
+        return newImages;
     }
 }
