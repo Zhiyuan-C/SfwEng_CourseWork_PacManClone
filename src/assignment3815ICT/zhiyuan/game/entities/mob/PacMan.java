@@ -11,6 +11,8 @@ public class PacMan extends Mob {
 
     //Animation
     private ArrayList<BufferedImage> pacManImages;
+    private int life = 3;
+    private long timeDied = 0;
 
 
 //    private boolean keyPressed = false;
@@ -33,7 +35,10 @@ public class PacMan extends Mob {
         this.animeUp = new Animation(up, 500);
         this.animeRight = new Animation(right, 500);
         this.animeDown = new Animation(down, 500);
+        this.animeVanish = new Animation(vanish, 1000);
         objectLastFrame = pacManImages.get(0);
+        // alive
+        isAlive = true;
         // moving speed
         upLeftSpeed = -1.5f;
         downRightSpeed = 1.5f;
@@ -69,41 +74,68 @@ public class PacMan extends Mob {
     public void update() {
 
         // movement
-        getInput();
+        if(isAlive) getInput();
+
         if (direction > 0) {
             // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
             switch (direction){
                 case 1:
                     if(canMoveVertical(-2, 0, upLeftSpeed)) {
-                        yPos -= speed;
                         itemCollisions(0f, -2f);
+                        mobCollisions(0f, -2f);
                     }
                     break;
                 case 2:
                     if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
-                        yPos += speed;
                         itemCollisions(0f, 2f);
+                        mobCollisions(0f, 2f);
                     }
                     break;
                 case 3:
                     if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
                         itemCollisions(-2f, 0f);
+                        mobCollisions(-2f, 0f);
                     }
                     break;
                 case 4:
                     if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
-                        xPos += speed;
                         itemCollisions(2f, 0f);
+                        mobCollisions(2f, 0f);
                     }
                     break;
 
             }
-            // animation
-            animeDown.update();
-            animeLeft.update();
-            animeRight.update();
-            animeUp.update();
+
+            // life
+            if(!isAlive) {
+                if(life > 0) {
+                    life -= 1;
+                    xPos = defaultXpos;
+                    yPos = defaultYpos;
+                    timeDied = System.currentTimeMillis();
+                    direction = 0;
+                }
+                else {
+                    System.out.println("GAME OVER!");
+                }
+            }
         }
+
+        if(!isAlive) {
+            if((System.currentTimeMillis() - timeDied) > 2500){
+                objectLastFrame = pacManImages.get(0);
+                isAlive = true;
+            }
+        }
+
+
+
+        // animation
+        animeDown.update();
+        animeLeft.update();
+        animeRight.update();
+        animeUp.update();
+        animeVanish.update();
 
     }
 
@@ -132,7 +164,11 @@ public class PacMan extends Mob {
         this.score = score;
     }
 
+    public int getLife() {
+        return life;
+    }
 
-
-
+    public void setLife(int life) {
+        this.life = life;
+    }
 }

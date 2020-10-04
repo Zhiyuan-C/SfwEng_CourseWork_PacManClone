@@ -3,6 +3,7 @@ package assignment3815ICT.zhiyuan.game.entities;
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.collisionDetection.Collision;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
+import assignment3815ICT.zhiyuan.game.entities.mob.Ghost.Ghost;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,20 @@ public abstract class Entity {
             if (item.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
 //                gameHandler.getMap().getEntityManager().removeItem(item);
                 item.setActive(false);
+            }
+        }
+    }
+    //entity collision
+    public void mobCollisions(float xOffset, float yOffset) {
+        for (Ghost ghost : gameHandler.getMap().getEntityManager().getGhosts()) {
+            if (ghost.equals(this)) continue;
+            if (ghost.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
+                // check if in the frightened mode
+                if(ghost.isFrightenedMode()){
+                    ghost.setAlive(false);
+                } else {
+                    gameHandler.getMap().getEntityManager().getPacMan().setAlive(false);
+                }
             }
         }
     }

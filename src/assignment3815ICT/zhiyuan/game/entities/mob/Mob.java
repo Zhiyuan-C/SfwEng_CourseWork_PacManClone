@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Mob extends Entity {
 
-    protected Animation animeUp, animeLeft, animeRight, animeDown;
+    protected Animation animeUp, animeLeft, animeRight, animeDown, animeVanish;
     protected BufferedImage objectLastFrame;
 
     protected float speed;
@@ -18,6 +18,8 @@ public abstract class Mob extends Entity {
 //    protected boolean isMoving = false;
     protected int currentScore;
     protected int lastScore;
+    protected boolean isAlive;
+    protected float defaultXpos, defaultYpos;
 
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
@@ -29,21 +31,27 @@ public abstract class Mob extends Entity {
      * @return
      */
     public BufferedImage getCurrentObjectFrame() {
-        if(direction == 1) {
-            objectLastFrame = animeUp.getCurrentObjectFrame();
-            return objectLastFrame;
-        } else if (direction == 2) {
-            objectLastFrame = animeDown.getCurrentObjectFrame();
-            return objectLastFrame;
-        } else if (direction == 3) {
-            objectLastFrame = animeLeft.getCurrentObjectFrame();
-            return objectLastFrame;
-        } else if (direction == 4) {
-            objectLastFrame = animeRight.getCurrentObjectFrame();
-            return objectLastFrame;
+        if(isAlive) {
+            if(direction == 1) {
+                objectLastFrame = animeUp.getCurrentObjectFrame();
+                return objectLastFrame;
+            } else if (direction == 2) {
+                objectLastFrame = animeDown.getCurrentObjectFrame();
+                return objectLastFrame;
+            } else if (direction == 3) {
+                objectLastFrame = animeLeft.getCurrentObjectFrame();
+                return objectLastFrame;
+            } else if (direction == 4) {
+                objectLastFrame = animeRight.getCurrentObjectFrame();
+                return objectLastFrame;
+            } else {
+                return objectLastFrame;
+            }
         } else {
+            objectLastFrame = animeVanish.getCurrentObjectFrame();
             return objectLastFrame;
         }
+
     }
 
     /**
@@ -101,5 +109,27 @@ public abstract class Mob extends Entity {
         return false;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
 
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public float getDefaultXpos() {
+        return defaultXpos;
+    }
+
+    public void setDefaultXpos(float defaultXpos) {
+        this.defaultXpos = defaultXpos;
+    }
+
+    public float getDefaultYpos() {
+        return defaultYpos;
+    }
+
+    public void setDefaultYpos(float defaultYpos) {
+        this.defaultYpos = defaultYpos;
+    }
 }

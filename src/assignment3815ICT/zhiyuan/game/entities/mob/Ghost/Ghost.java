@@ -20,6 +20,8 @@ public abstract class Ghost extends Mob {
 
         // moving speed
         speed = 1.5f;
+        // alive
+        isAlive = true;
         // set up collision bounds
         collisionBox.x = 3;
         collisionBox.y = 3;
@@ -86,4 +88,6 @@ public abstract class Ghost extends Mob {
     public void setStartTimeFrightened(long startTimeFrightened) {
         this.startTimeFrightened = startTimeFrightened;
     }
+
+
 }

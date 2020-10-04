@@ -31,6 +31,8 @@ public class Map {
         // spawn pacman
         entityManager.getPacMan().setxPos(spawnX);
         entityManager.getPacMan().setyPos(spawnY);
+        entityManager.getPacMan().setDefaultXpos(spawnX);
+        entityManager.getPacMan().setDefaultYpos(spawnY);
         // spawn ghsot
         //loadGhost();
     }

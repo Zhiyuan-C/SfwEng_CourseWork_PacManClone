@@ -6,6 +6,7 @@ import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
 import assignment3815ICT.zhiyuan.game.entities.item.Fruit;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.mob.Ghost.*;
+import assignment3815ICT.zhiyuan.game.entities.mob.Mob;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 
 import java.awt.*;
@@ -30,9 +31,13 @@ public class EntityManager {
         items = new ArrayList<>();
         ghosts = new ArrayList<>();
         blinky = new Blinky(gameHandler, 640, 320);
+        setDefaultPos(blinky, 2 * TILE_SIZE, 3 * TILE_SIZE);
         pinky = new Pinky(gameHandler, 37 * TILE_SIZE, 3 * TILE_SIZE);
+        setDefaultPos(pinky, 37 * TILE_SIZE, 3 * TILE_SIZE);
         inky = new Inky(gameHandler, 2 * TILE_SIZE, 19 * TILE_SIZE);
+        setDefaultPos(inky,2 * TILE_SIZE, 19 * TILE_SIZE);
         clyde = new Clyde(gameHandler, 37 * TILE_SIZE, 19 * TILE_SIZE);
+        setDefaultPos(clyde, 37 * TILE_SIZE, 19 * TILE_SIZE);
         addGhost(blinky);
         addGhost(pinky);
         addGhost(inky);
@@ -43,6 +48,14 @@ public class EntityManager {
         pacMan.update();
         for (Ghost ghost: ghosts) {
             ghost.update();
+            if(!ghost.isAlive()) {
+                System.out.println("died");
+                ghost.setxPos(ghost.getDefaultXpos());
+                ghost.setyPos(ghost.getDefaultYpos());
+                pacMan.setScore(pacMan.getScore() + 1000);
+                ghost.setAlive(true);
+                // spawn back to base
+            }
         }
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
@@ -100,7 +113,16 @@ public class EntityManager {
         return items;
     }
 
+    public ArrayList<Ghost> getGhosts() {
+        return ghosts;
+    }
+
     public void setItems(ArrayList<Item> items) {
         this.items = items;
+    }
+
+    public void setDefaultPos(Mob mob, float xPos, float yPos){
+        mob.setDefaultXpos(xPos);
+        mob.setDefaultYpos(yPos);
     }
 }
