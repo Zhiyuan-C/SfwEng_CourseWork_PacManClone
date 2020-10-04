@@ -25,11 +25,11 @@ public class PacMan extends Mob {
     private void init() {
         // set up for animation
         this.pacManImages = gameHandler.getPlayerObjects();
-        BufferedImage[] left = gameHandler.getGameObject().getObjectFrames(pacManImages, 0, 2);
-        BufferedImage[] up = gameHandler.getGameObject().getObjectFrames(pacManImages, 2, 2);
-        BufferedImage[] right = gameHandler.getGameObject().getObjectFrames(pacManImages, 4, 2);
-        BufferedImage[] down = gameHandler.getGameObject().getObjectFrames(pacManImages, 6, 2);
-        BufferedImage[] vanish = gameHandler.getGameObject().getObjectFrames(pacManImages, 8, 4);
+        BufferedImage[] left = getObjectFrames(pacManImages, 0, 2);
+        BufferedImage[] up = getObjectFrames(pacManImages, 2, 2);
+        BufferedImage[] right = getObjectFrames(pacManImages, 4, 2);
+        BufferedImage[] down = getObjectFrames(pacManImages, 6, 2);
+        BufferedImage[] vanish = getObjectFrames(pacManImages, 8, 4);
         this.animeLeft = new Animation(left, 500);
         this.animeUp = new Animation(up, 500);
         this.animeRight = new Animation(right, 500);
@@ -46,6 +46,17 @@ public class PacMan extends Mob {
         collisionBox.y = 3;
         collisionBox.width = 22;
         collisionBox.height = 22;
+    }
+
+
+    @Override
+    protected BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
+        BufferedImage[] objectFrames = new BufferedImage[length];
+        for (int frameIndex = 0; frameIndex < length; frameIndex ++) {
+            objectFrames[frameIndex] = objects.get(startIndex);
+            startIndex ++;
+        }
+        return objectFrames;
     }
 
     @Override
@@ -79,12 +90,6 @@ public class PacMan extends Mob {
         if(gameHandler.getKeyManager().down) direction = 2;
         if(gameHandler.getKeyManager().left) direction = 3;
         if(gameHandler.getKeyManager().right) direction = 4;
-//        if(!keyPressed) {
-//            if(direction > 0) {
-//                keyPressed = true;
-//                isMoving = true;
-//            }
-//        }
     }
 
     public int getScore() {
@@ -94,4 +99,8 @@ public class PacMan extends Mob {
     public void setScore(int score) {
         this.score = score;
     }
+
+
+
+
 }

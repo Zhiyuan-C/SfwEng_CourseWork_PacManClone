@@ -36,23 +36,6 @@ public class GameObject {
         return objects;
     }
 
-    /**
-     * Return an array of buffered image containing the frames of the object for animation
-     *
-     * @param objects an arraylist containing object's buffered image retrieved from sprite sheet
-     * @param startIndex start index of the object
-     * @param length how many objects is required for that animation frame
-     * @return BufferedImage[] objects for particular animation frame
-     */
-    public BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int length) {
-        BufferedImage[] objectFrames = new BufferedImage[length];
-        for (int frameIndex = 0; frameIndex < length; frameIndex ++) {
-            objectFrames[frameIndex] = objects.get(startIndex);
-            startIndex ++;
-        }
-        return objectFrames;
-    }
-
     public ArrayList<BufferedImage> getMapObjects() {
         return mapObjects;
     }
