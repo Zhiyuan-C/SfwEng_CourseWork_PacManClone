@@ -35,10 +35,16 @@ public class EntityManager {
             item.update();
             if (!item.isActive()) {
                 pacMan.setScore(pacMan.getScore() + item.getValue());
+                if(item.isEnergyBooster()) {
+                    blinky.setFrightenedMode(true);
+                    blinky.setStartTimeFrightened(System.currentTimeMillis());
+                }
+
                 items.remove(item);
             }
         }
         pacMan.update();
+        blinky.update();
     }
 
     public void render(Graphics graphics) {

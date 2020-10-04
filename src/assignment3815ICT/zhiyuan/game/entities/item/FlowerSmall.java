@@ -14,6 +14,7 @@ public class FlowerSmall extends Item{
         this.flowerSmall = itemImages.get(0);
         // set value
         value = 10;
+        isEnergyBooster = false;
         // setup collision bond
         collisionBox.x = 3;
         collisionBox.y = 5;

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public abstract class Ghost extends Mob {
     protected ArrayList<BufferedImage> ghostImages;
+    protected boolean frightenedMode;
+    protected long startTimeFrightened;
 
     public Ghost(GameHandler gameHandler, float xPos, float yPos) {
         super(gameHandler, xPos, yPos, 28, 28);
@@ -29,5 +31,17 @@ public abstract class Ghost extends Mob {
             newImages.add(ghostImages.get(i));
         }
         return newImages;
+    }
+
+    public boolean isFrightenedMode() {
+        return frightenedMode;
+    }
+
+    public void setFrightenedMode(boolean frightenedMode) {
+        this.frightenedMode = frightenedMode;
+    }
+
+    public void setStartTimeFrightened(long startTimeFrightened) {
+        this.startTimeFrightened = startTimeFrightened;
     }
 }

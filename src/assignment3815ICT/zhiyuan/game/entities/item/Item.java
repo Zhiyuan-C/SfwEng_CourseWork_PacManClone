@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public abstract class Item extends Entity {
     protected ArrayList<BufferedImage> itemImages;
     protected int value;
+    protected boolean isEnergyBooster;
 
     public Item(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
@@ -21,5 +22,9 @@ public abstract class Item extends Entity {
 
     public void setActive (boolean active) {
         this.active = active;
+    }
+
+    public boolean isEnergyBooster() {
+        return isEnergyBooster;
     }
 }

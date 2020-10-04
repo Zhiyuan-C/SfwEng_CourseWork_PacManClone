@@ -25,11 +25,25 @@ public class Blinky extends Ghost {
 
     @Override
     public void update() {
+        int timePassed = 0;
+        if(frightenedMode) {
+            timePassed = (int) ((System.currentTimeMillis() - startTimeFrightened) / 1000);
+        }
+        if (timePassed > 5) {
+            // five sec, change later
+            frightenedMode = false;
+        }
+
 
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(blinkyImages.get(1), (int) xPos, (int) yPos, width, height, null);
+        if(frightenedMode) {
+            graphics.drawImage(ghostImages.get(20), (int) xPos, (int) yPos, width, height, null);
+        } else {
+            graphics.drawImage(blinkyImages.get(1), (int) xPos, (int) yPos, width, height, null);
+        }
+
     }
 }

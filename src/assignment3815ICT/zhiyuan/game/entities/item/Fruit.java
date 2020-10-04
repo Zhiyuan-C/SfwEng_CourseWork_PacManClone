@@ -14,6 +14,7 @@ public class Fruit extends Item {
         this.fruit = itemImages.get(2);
         // set value
         value = 200;
+        isEnergyBooster = false;
         // setup collision bond
         collisionBox.x = 3;
         collisionBox.y = 5;

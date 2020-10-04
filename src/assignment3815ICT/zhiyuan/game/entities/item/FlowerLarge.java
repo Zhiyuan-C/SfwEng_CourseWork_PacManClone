@@ -13,6 +13,7 @@ public class FlowerLarge extends Item{
         super(gameHandler, xPos, yPos, 32, 32);
         this.flowerLarge = itemImages.get(1);
         value = 20;
+        isEnergyBooster = true;
 
         // setup collision bond
         collisionBox.x = 2;
