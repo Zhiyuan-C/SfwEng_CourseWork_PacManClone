@@ -30,7 +30,5 @@ public class FlowerLarge extends Item{
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(flowerLarge, (int)xPos, (int)yPos, width, height, null);
-        graphics.setColor(Color.RED);
-        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
     }
 }
