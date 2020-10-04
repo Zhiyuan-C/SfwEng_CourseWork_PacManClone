@@ -2,7 +2,6 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.graphics.display.Animation;
-import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -36,7 +35,8 @@ public class PacMan extends Mob {
         this.animeDown = new Animation(down, 500);
         objectLastFrame = pacManImages.get(0);
         // moving speed
-        speed = 1.5f;
+        upLeftSpeed = -1.5f;
+        downRightSpeed = 1.5f;
         // score
         score = 0;
         currentScore = 0;
@@ -71,7 +71,33 @@ public class PacMan extends Mob {
         // movement
         getInput();
         if (direction > 0) {
-            move();
+            // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
+            switch (direction){
+                case 1:
+                    if(canMoveVertical(-2, 0, upLeftSpeed)) {
+                        yPos -= speed;
+                        itemCollisions(0f, -2f);
+                    }
+                    break;
+                case 2:
+                    if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
+                        yPos += speed;
+                        itemCollisions(0f, 2f);
+                    }
+                    break;
+                case 3:
+                    if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
+                        itemCollisions(-2f, 0f);
+                    }
+                    break;
+                case 4:
+                    if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
+                        xPos += speed;
+                        itemCollisions(2f, 0f);
+                    }
+                    break;
+
+            }
             // animation
             animeDown.update();
             animeLeft.update();

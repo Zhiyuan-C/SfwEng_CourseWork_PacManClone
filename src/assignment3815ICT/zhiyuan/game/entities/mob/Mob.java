@@ -3,10 +3,8 @@ package assignment3815ICT.zhiyuan.game.entities.mob;
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.Entity;
 import assignment3815ICT.zhiyuan.game.graphics.display.Animation;
-import assignment3815ICT.zhiyuan.game.graphics.map.Tile;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 
 public abstract class Mob extends Entity {
@@ -15,6 +13,7 @@ public abstract class Mob extends Entity {
     protected BufferedImage objectLastFrame;
 
     protected float speed;
+    protected float upLeftSpeed, downRightSpeed; // upLeft -> move up or left, downRight -> move down or right
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
 //    protected boolean isMoving = false;
     protected int currentScore;
@@ -50,91 +49,43 @@ public abstract class Mob extends Entity {
     /**
      *
      */
-    public void move() {
-        moveY();
-        moveX();
-        if(lastScore != currentScore) {
-            System.out.println(currentScore);
-        }
-    }
-
-    /**
-     *
-     */
-    private void moveX() {
+    public boolean canMoveHorizontal(int delta, int length, float speed) {
         collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
-        switch (direction) {
-            case 3: // move left
-                collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(-2, collisionBox.x, 0, gameHandler.getTILE_WIDTH());
-                if(!collisionDetection.isCollideSG(true)) {
-
-                    itemCollisions(-2f, 0f);
-
-                    // check if the object is moving over the screen width
-                    if(isCrossing((int)(xPos - 2))) {
-                        xPos = gameHandler.getGameWidth();
-                    }
-
-                    xPos -= speed;
-                } else {
-                    xPos = collisionDetection.getOriginalPoint();
-                    direction = 0;
+        collisionDetection.setOriginalPoint(xPos);
+        collisionDetection.setNewPoint(delta, collisionBox.x, length, gameHandler.getTILE_WIDTH());
+        if(!collisionDetection.isCollideSG(true)) {
+            // check if the object is moving over the screen width
+            if(delta > 0) {
+                if(isCrossing((int)(xPos + delta))) {
+                    xPos = 0;
                 }
-                break;
-
-            case 4: // move right
-                collisionDetection.setOriginalPoint(xPos);
-                collisionDetection.setNewPoint(2, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
-
-                if (!collisionDetection.isCollideSG(true)) {
-                    itemCollisions(2f, 0f);
-                    // check if the object is moving over the screen width
-                    if(isCrossing((int)(xPos + 1))) {
-                        xPos = 0;
-                    }
-                    xPos += speed;
-                } else {
-                    xPos = collisionDetection.getOriginalPoint();
-                    direction = 0;
+            } else {
+                if(isCrossing((int)(xPos - delta))) {
+                    xPos = gameHandler.getGameWidth();
                 }
-                break;
+            }
+            xPos += speed;
+            return true;
+        }
+        else {
+            xPos = collisionDetection.getOriginalPoint();
+            direction = 0;
+            return false;
         }
     }
 
-    /**
-     *
-     */
-    private void moveY() {
+    public boolean canMoveVertical(int delta, int length, float speed) {
         collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
-        switch (direction) {
-            case 1: // up
-                collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(-2, collisionBox.y, 0, gameHandler.getTILE_HEIGHT());
-                if(!collisionDetection.isCollideSG(false)) {
-                    itemCollisions(0f, -2f);
-                    yPos -= speed;
-                } else {
-                    yPos = collisionDetection.getOriginalPoint();
-                    direction = 0;
-                    break;
-                }
-                break;
-            case 2: //down
-                collisionDetection.setOriginalPoint(yPos);
-                collisionDetection.setNewPoint(2, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
-                if(!collisionDetection.isCollideSG(false)) {
-                    itemCollisions(0f, 2f);
-                    yPos += speed;
-                } else {
-                    yPos = collisionDetection.getOriginalPoint();
-                    direction = 0;
-                    break;
-                }
-
-                break;
+        collisionDetection.setOriginalPoint(yPos);
+        collisionDetection.setNewPoint(delta, collisionBox.y, length, gameHandler.getTILE_HEIGHT());
+        if(!collisionDetection.isCollideSG(false)) {
+            yPos += speed;
+            return true;
+        } else {
+            yPos = collisionDetection.getOriginalPoint();
+            direction = 0;
+            return false;
         }
-
     }
 
     /**
