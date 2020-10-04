@@ -2,6 +2,7 @@ package assignment3815ICT.zhiyuan.game.entities.mob.Ghost;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.mob.Mob;
+import assignment3815ICT.zhiyuan.game.graphics.display.Animation;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -15,6 +16,14 @@ public abstract class Ghost extends Mob {
         super(gameHandler, xPos, yPos, 28, 28);
 
         this.ghostImages = gameHandler.getGhostObjects();
+
+        // moving speed
+        speed = 1.5f;
+        // set up collision bounds
+        collisionBox.x = 3;
+        collisionBox.y = 3;
+        collisionBox.width = 22;
+        collisionBox.height = 22;
     }
 
     protected BufferedImage[] getObjectFrames(ArrayList<BufferedImage> objects, int startIndex, int endIndex) {
@@ -31,6 +40,18 @@ public abstract class Ghost extends Mob {
             newImages.add(ghostImages.get(i));
         }
         return newImages;
+    }
+
+    public void setAnimationFrame(ArrayList<BufferedImage> objectImages) {
+        BufferedImage[] left = getObjectFrames(objectImages, 1, 0);
+        BufferedImage[] right = getObjectFrames(objectImages, 2, 0);
+        BufferedImage[] up = getObjectFrames(objectImages, 3, 0);
+        BufferedImage[] down = getObjectFrames(objectImages, 4, 0);
+        this.animeLeft = new Animation(left, 500);
+        this.animeUp = new Animation(up, 500);
+        this.animeRight = new Animation(right, 500);
+        this.animeDown = new Animation(down, 500);
+        objectLastFrame = objectImages.get(0);
     }
 
     public boolean isFrightenedMode() {

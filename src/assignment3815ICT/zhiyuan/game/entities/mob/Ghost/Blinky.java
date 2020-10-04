@@ -17,10 +17,7 @@ public class Blinky extends Ghost {
 
     private void init() {
         blinkyImages = getIndividualImages(0);
-        BufferedImage[] left = getObjectFrames(blinkyImages, 1, 0);
-        BufferedImage[] right = getObjectFrames(blinkyImages, 2, 0);
-        BufferedImage[] up = getObjectFrames(blinkyImages, 3, 0);
-        BufferedImage[] down = getObjectFrames(blinkyImages, 4, 0);
+        setAnimationFrame(blinkyImages);
     }
 
     @Override
@@ -42,7 +39,7 @@ public class Blinky extends Ghost {
         if(frightenedMode) {
             graphics.drawImage(ghostImages.get(20), (int) xPos, (int) yPos, width, height, null);
         } else {
-            graphics.drawImage(blinkyImages.get(1), (int) xPos, (int) yPos, width, height, null);
+            graphics.drawImage(getCurrentObjectFrame(), (int) xPos, (int) yPos, width, height, null);
         }
 
     }
