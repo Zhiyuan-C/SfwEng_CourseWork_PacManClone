@@ -5,7 +5,7 @@ import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
 import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
 import assignment3815ICT.zhiyuan.game.entities.item.Fruit;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
-import assignment3815ICT.zhiyuan.game.entities.mob.Ghost.*;
+import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.*;
 import assignment3815ICT.zhiyuan.game.entities.mob.Mob;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 

@@ -8,18 +8,20 @@ import java.awt.image.BufferedImage;
 
 
 public abstract class Mob extends Entity {
-
+    // position
+    protected float defaultXpos, defaultYpos;
+    // animation
     protected Animation animeUp, animeLeft, animeRight, animeDown, animeVanish;
     protected BufferedImage objectLastFrame;
-
+    // moving
     protected float speed;
     protected float upLeftSpeed, downRightSpeed; // upLeft -> move up or left, downRight -> move down or right
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
-//    protected boolean isMoving = false;
-    protected int currentScore;
-    protected int lastScore;
+
+    // health and life
     protected boolean isAlive;
-    protected float defaultXpos, defaultYpos;
+    protected boolean isResurrect;
+
 
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {
         super(gameHandler, xPos, yPos, width, height);
@@ -108,6 +110,8 @@ public abstract class Mob extends Entity {
         }
         return false;
     }
+
+    // getters and setters
 
     public boolean isAlive() {
         return isAlive;

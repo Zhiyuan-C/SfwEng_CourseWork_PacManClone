@@ -1,12 +1,11 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.collisionDetection.Collision;
+import assignment3815ICT.zhiyuan.game.entities.mob.movement.Collision;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
-import assignment3815ICT.zhiyuan.game.entities.mob.Ghost.Ghost;
+import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.Ghost;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public abstract class Entity {
     protected GameHandler gameHandler;

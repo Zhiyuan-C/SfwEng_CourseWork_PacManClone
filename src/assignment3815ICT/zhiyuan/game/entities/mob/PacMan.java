@@ -44,8 +44,6 @@ public class PacMan extends Mob {
         downRightSpeed = 1.5f;
         // score
         score = 0;
-        currentScore = 0;
-        lastScore = 0;
         // set up collision bounds
         collisionBox.x = 3;
         collisionBox.y = 3;
