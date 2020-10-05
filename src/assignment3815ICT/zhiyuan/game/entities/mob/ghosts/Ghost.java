@@ -186,6 +186,7 @@ public abstract class Ghost extends Mob {
                     if(newDistance <= currentDistance) {
                         System.out.println("new distance is less or equal to current distance");
                         System.out.println("current Direction: " + currentDirection + " new direction: " + newDirection);
+
                         // chekc if direction is not opposite to current direction
                         if(Math.abs(newDirection - currentDirection) != 2) {
                             System.out.println("direction is not opposite");
@@ -201,10 +202,14 @@ public abstract class Ghost extends Mob {
                             }
 
                         }
+                    } else {
+                        System.out.println("new distance is greater than current distance");
                     }
                 }
             } else {
-                if(!move.isMovable()) currentDirection = 0;
+                if(!move.isMovable()) {
+                    currentDirection = 0;
+                }
             }
         }
 
