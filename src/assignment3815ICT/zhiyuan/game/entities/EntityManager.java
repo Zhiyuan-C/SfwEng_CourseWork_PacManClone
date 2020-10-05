@@ -30,7 +30,7 @@ public class EntityManager {
         pacMan = new PacMan(gameHandler);
         items = new ArrayList<>();
         ghosts = new ArrayList<>();
-        blinky = new Blinky(gameHandler, 640, 320);
+        blinky = new Blinky(gameHandler, 2 * TILE_SIZE, 3 * TILE_SIZE); // 640 320 beside pacman for test
         setDefaultPos(blinky, 2 * TILE_SIZE, 3 * TILE_SIZE);
         pinky = new Pinky(gameHandler, 37 * TILE_SIZE, 3 * TILE_SIZE);
         setDefaultPos(pinky, 37 * TILE_SIZE, 3 * TILE_SIZE);
@@ -42,6 +42,7 @@ public class EntityManager {
         addGhost(pinky);
         addGhost(inky);
         addGhost(clyde);
+        gameHandler.setEntityManager(this);
     }
 
     public void update() {
@@ -77,13 +78,14 @@ public class EntityManager {
     }
 
     public void render(Graphics graphics) {
+        pacMan.render(graphics);
         for (Item item : items) {
             item.render(graphics);
         }
         for (Ghost ghost: ghosts) {
             ghost.render(graphics);
         }
-        pacMan.render(graphics);
+
     }
 
     public void addFlowerSmall(float xPos, float yPos){

@@ -13,8 +13,16 @@ public class Clyde extends Ghost{
         setAnimationFrame(clydeImages);
     }
 
+
+
     @Override
     public void update() {
         frightenedMode();
     }
+
+    @Override
+    public void setTargetPosition() {
+
+    }
+
 }

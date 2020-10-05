@@ -15,8 +15,15 @@ public class Pinky extends Ghost{
         setAnimationFrame(pinkyImages);
     }
 
+
+
     @Override
     public void update() {
         frightenedMode();
+    }
+
+    @Override
+    public void setTargetPosition() {
+
     }
 }

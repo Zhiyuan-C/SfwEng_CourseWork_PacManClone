@@ -13,9 +13,16 @@ public class Inky extends Ghost {
         setAnimationFrame(InkyImages);
     }
 
+
+
     @Override
     public void update() {
         frightenedMode();
+
+    }
+
+    @Override
+    public void setTargetPosition() {
 
     }
 }

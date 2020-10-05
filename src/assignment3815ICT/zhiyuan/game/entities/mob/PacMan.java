@@ -41,8 +41,7 @@ public class PacMan extends Mob {
         isAlive = true;
         isResurrect = false;
         // moving speed
-        upLeftSpeed = -1.5f;
-        downRightSpeed = 1.5f;
+        speed = 1.5f;
         // score
         score = 0;
         // set up collision bounds
@@ -93,8 +92,6 @@ public class PacMan extends Mob {
             }
         }
 
-
-
         // animation
         animeDown.update();
         animeLeft.update();
@@ -126,25 +123,29 @@ public class PacMan extends Mob {
             // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
             switch (direction){
                 case 1:
-                    if(canMoveVertical(-2, 0, upLeftSpeed)) {
+                    if(canMoveVertical(-2, 0)) {
+                        yPos -= 1.5;
                         if(!isResurrect) mobCollisions(0f, -2f);
                         if(isAlive) itemCollisions(0f, -2f);
                     }
                     break;
                 case 2:
-                    if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
+                    if(canMoveVertical(2, collisionBox.height)){
+                        yPos += 1.5;
                         if(!isResurrect) mobCollisions(0f, 2f);
                         if(isAlive) itemCollisions(0f, 2f);
                     }
                     break;
                 case 3:
-                    if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
+                    if(canMoveHorizontal(-2, 0)) {
+                        xPos -= 1.5;
                         if(!isResurrect) itemCollisions(-2f, 0f);
                         if(isAlive) mobCollisions(-2f, 0f);
                     }
                     break;
                 case 4:
-                    if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
+                    if(canMoveHorizontal(2, collisionBox.width)) {
+                        xPos += 1.5;
                         if(!isResurrect) mobCollisions(2f, 0f);
                         if(isAlive) itemCollisions(2f, 0f);
                     }

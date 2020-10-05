@@ -58,7 +58,7 @@ public class Collision {
     private boolean isSideCollide(boolean pointA, boolean pointB, boolean pointC) {
         if (!pointB) { // if middle point is not wall
             if(pointA && pointC) {
-                return true;
+                return false;
             } else if (pointA || pointC) {
                 return true;
             } else { // three points all not wall
@@ -69,5 +69,11 @@ public class Collision {
         }
     }
 
+    public float getNewPoint() {
+        return newPoint;
+    }
 
+    public float getStaticPointA() {
+        return staticPointA;
+    }
 }

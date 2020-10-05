@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
+import assignment3815ICT.zhiyuan.game.entities.EntityManager;
 import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
@@ -15,6 +16,7 @@ public class GameHandler {
     // initialise game objects
     private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
     private GameFont gameFont;
+    private EntityManager entityManager;
 
     public GameHandler(Game game) {
         this.game = game;
@@ -96,5 +98,13 @@ public class GameHandler {
 
     public GameObject getGameObject() {
         return gameObject;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }

@@ -83,4 +83,20 @@ public abstract class Entity {
     public boolean isActive() {
         return active;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public float getxPos() {
+        return xPos;
+    }
+
+    public float getyPos() {
+        return yPos;
+    }
 }

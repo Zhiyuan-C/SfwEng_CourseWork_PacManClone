@@ -15,7 +15,6 @@ public abstract class Mob extends Entity {
     protected BufferedImage objectLastFrame;
     // moving
     protected float speed;
-    protected float upLeftSpeed, downRightSpeed; // upLeft -> move up or left, downRight -> move down or right
     protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
 
     // health and life
@@ -61,7 +60,7 @@ public abstract class Mob extends Entity {
     /**
      *
      */
-    public boolean canMoveHorizontal(int delta, int length, float speed) {
+    public boolean canMoveHorizontal(int delta, int length) {
         collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
         collisionDetection.setOriginalPoint(xPos);
         collisionDetection.setNewPoint(delta, collisionBox.x, length, gameHandler.getTILE_WIDTH());
@@ -76,26 +75,24 @@ public abstract class Mob extends Entity {
                     xPos = gameHandler.getGameWidth();
                 }
             }
-            xPos += speed;
             return true;
         }
         else {
             xPos = collisionDetection.getOriginalPoint();
-            direction = 0;
+//            direction = 0;
             return false;
         }
     }
 
-    public boolean canMoveVertical(int delta, int length, float speed) {
+    public boolean canMoveVertical(int delta, int length) {
         collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
         collisionDetection.setOriginalPoint(yPos);
         collisionDetection.setNewPoint(delta, collisionBox.y, length, gameHandler.getTILE_HEIGHT());
         if(!collisionDetection.isCollideSG(false)) {
-            yPos += speed;
             return true;
         } else {
             yPos = collisionDetection.getOriginalPoint();
-            direction = 0;
+//            direction = 0;
             return false;
         }
     }
@@ -137,5 +134,13 @@ public abstract class Mob extends Entity {
 
     public void setDefaultYpos(float defaultYpos) {
         this.defaultYpos = defaultYpos;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getCurrentDirection() {
+        return direction;
     }
 }
