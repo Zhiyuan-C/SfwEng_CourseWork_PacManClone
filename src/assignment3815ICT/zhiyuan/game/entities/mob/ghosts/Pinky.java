@@ -1,8 +1,7 @@
-package assignment3815ICT.zhiyuan.game.entities.mob.Ghost;
+package assignment3815ICT.zhiyuan.game.entities.mob.ghosts;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
