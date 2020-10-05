@@ -1,4 +1,4 @@
-package assignment3815ICT.zhiyuan.game.collisionDetection;
+package assignment3815ICT.zhiyuan.game.entities.mob.movement;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
 
