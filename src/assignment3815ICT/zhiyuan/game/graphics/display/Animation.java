@@ -30,6 +30,15 @@ public class Animation {
     }
 
     public BufferedImage getCurrentObjectFrame() {
+        System.out.println(index);
         return animationFrames[index];
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setTimer(long timer) {
+        this.timer = timer;
     }
 }

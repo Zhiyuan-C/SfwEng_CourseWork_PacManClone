@@ -35,7 +35,7 @@ public class PacMan extends Mob {
         this.animeUp = new Animation(up, 500);
         this.animeRight = new Animation(right, 500);
         this.animeDown = new Animation(down, 500);
-        this.animeVanish = new Animation(vanish, 1000);
+        this.animeVanish = new Animation(vanish, 1500);
         objectLastFrame = pacManImages.get(0);
         // alive
         isAlive = true;
@@ -72,57 +72,16 @@ public class PacMan extends Mob {
     public void update() {
 
         // movement
-        if(isAlive) getInput();
-
-        if (direction > 0) {
-            // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
-            switch (direction){
-                case 1:
-                    if(canMoveVertical(-2, 0, upLeftSpeed)) {
-                        itemCollisions(0f, -2f);
-                        mobCollisions(0f, -2f);
-                    }
-                    break;
-                case 2:
-                    if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
-                        itemCollisions(0f, 2f);
-                        mobCollisions(0f, 2f);
-                    }
-                    break;
-                case 3:
-                    if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
-                        itemCollisions(-2f, 0f);
-                        mobCollisions(-2f, 0f);
-                    }
-                    break;
-                case 4:
-                    if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
-                        itemCollisions(2f, 0f);
-                        mobCollisions(2f, 0f);
-                    }
-                    break;
-
-            }
-
-            // life
-            if(!isAlive) {
-                if(life > 0) {
-                    life -= 1;
-                    xPos = defaultXpos;
-                    yPos = defaultYpos;
-                    timeDied = System.currentTimeMillis();
-                    direction = 0;
-                }
-                else {
-                    System.out.println("GAME OVER!");
-                }
-            }
-        }
-
-        if(!isAlive) {
-            if((System.currentTimeMillis() - timeDied) > 2500){
+        if(isAlive) {
+            getInput();
+            move();
+        } else {
+            if((System.currentTimeMillis() - timeDied) > 5000){
                 objectLastFrame = pacManImages.get(0);
                 isAlive = true;
+                xPos = defaultXpos;
+                yPos = defaultYpos;
+
             }
         }
 
@@ -152,6 +111,53 @@ public class PacMan extends Mob {
         if(gameHandler.getKeyManager().down) direction = 2;
         if(gameHandler.getKeyManager().left) direction = 3;
         if(gameHandler.getKeyManager().right) direction = 4;
+    }
+
+    private void move() {
+        if (direction > 0) {
+            // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
+            switch (direction){
+                case 1:
+                    if(canMoveVertical(-2, 0, upLeftSpeed)) {
+                        mobCollisions(0f, -2f);
+                        itemCollisions(0f, -2f);
+                    }
+                    break;
+                case 2:
+                    if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
+                        mobCollisions(0f, 2f);
+                        itemCollisions(0f, 2f);
+                    }
+                    break;
+                case 3:
+                    if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
+                        itemCollisions(-2f, 0f);
+                        mobCollisions(-2f, 0f);
+                    }
+                    break;
+                case 4:
+                    if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
+                        mobCollisions(2f, 0f);
+                        itemCollisions(2f, 0f);
+                    }
+                    break;
+
+            }
+
+            // life
+            if(!isAlive) {
+                if(life > 0) {
+                    life -= 1;
+                    timeDied = System.currentTimeMillis();
+                    direction = 0;
+                    animeVanish.setIndex(0);
+                    animeVanish.setTimer(0);
+                }
+                else {
+                    System.out.println("GAME OVER!");
+                }
+            }
+        }
     }
 
     public int getScore() {
