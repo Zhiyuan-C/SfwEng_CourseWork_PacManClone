@@ -21,6 +21,8 @@ public abstract class Mob extends Entity {
     // health and life
     protected boolean isAlive;
     protected boolean isResurrect;
+    protected long timeDied = 0;
+    protected long timeResurrect = 0;
 
 
     public Mob(GameHandler gameHandler, float xPos, float yPos, int width, int height) {

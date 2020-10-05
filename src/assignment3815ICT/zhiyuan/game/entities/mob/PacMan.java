@@ -12,7 +12,7 @@ public class PacMan extends Mob {
     //Animation
     private ArrayList<BufferedImage> pacManImages;
     private int life = 3;
-    private long timeDied = 0;
+
 
 
 //    private boolean keyPressed = false;
@@ -39,6 +39,7 @@ public class PacMan extends Mob {
         objectLastFrame = pacManImages.get(0);
         // alive
         isAlive = true;
+        isResurrect = false;
         // moving speed
         upLeftSpeed = -1.5f;
         downRightSpeed = 1.5f;
@@ -76,12 +77,19 @@ public class PacMan extends Mob {
             getInput();
             move();
         } else {
-            if((System.currentTimeMillis() - timeDied) > 5000){
+            if((System.currentTimeMillis() - timeDied) > 5000){ // 5 sec
                 objectLastFrame = pacManImages.get(0);
-                isAlive = true;
                 xPos = defaultXpos;
                 yPos = defaultYpos;
-
+                isAlive = true;
+                isResurrect = true;
+                timeResurrect = System.currentTimeMillis();
+            }
+        }
+        if(isResurrect) {
+            if((System.currentTimeMillis() - timeDied) > 10000){ // 10 sec
+                timeResurrect = 0;
+                isResurrect = false;
             }
         }
 
@@ -119,26 +127,26 @@ public class PacMan extends Mob {
             switch (direction){
                 case 1:
                     if(canMoveVertical(-2, 0, upLeftSpeed)) {
-                        mobCollisions(0f, -2f);
-                        itemCollisions(0f, -2f);
+                        if(!isResurrect) mobCollisions(0f, -2f);
+                        if(isAlive) itemCollisions(0f, -2f);
                     }
                     break;
                 case 2:
                     if(canMoveVertical(2, collisionBox.height, downRightSpeed)){
-                        mobCollisions(0f, 2f);
-                        itemCollisions(0f, 2f);
+                        if(!isResurrect) mobCollisions(0f, 2f);
+                        if(isAlive) itemCollisions(0f, 2f);
                     }
                     break;
                 case 3:
                     if(canMoveHorizontal(-2, 0, upLeftSpeed)) {
-                        itemCollisions(-2f, 0f);
-                        mobCollisions(-2f, 0f);
+                        if(!isResurrect) itemCollisions(-2f, 0f);
+                        if(isAlive) mobCollisions(-2f, 0f);
                     }
                     break;
                 case 4:
                     if(canMoveHorizontal(2, collisionBox.width, downRightSpeed)) {
-                        mobCollisions(2f, 0f);
-                        itemCollisions(2f, 0f);
+                        if(!isResurrect) mobCollisions(2f, 0f);
+                        if(isAlive) itemCollisions(2f, 0f);
                     }
                     break;
 
