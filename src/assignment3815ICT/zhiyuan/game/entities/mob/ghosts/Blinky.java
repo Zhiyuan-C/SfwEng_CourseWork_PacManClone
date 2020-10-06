@@ -17,17 +17,88 @@ public class Blinky extends Ghost {
         inBase = true;
 //        direction = getDirection();
         speed = 1.5f;
+//        direction = 4;
     }
 
     @Override
     public void update() {
+
         frightenedMode();
         setTargetPosition();
-        setMove();
-        direction = getDirection();
-        movingDir = direction;
+//        setMove();
+//        tilePosX = (int) xPos/gameHandler.getTILE_WIDTH();
+//        tilePosY = (int) yPos/gameHandler.getTILE_HEIGHT();
+//        int topX = tilePosX * gameHandler.getTILE_WIDTH();
+//        int topY = tilePosY * gameHandler.getTILE_HEIGHT();
+//        int centerX = tilePosX * gameHandler.getTILE_WIDTH() + (gameHandler.getTILE_WIDTH() / 2);
+//        int centerY =  tilePosY * gameHandler.getTILE_HEIGHT() + (gameHandler.getTILE_HEIGHT() / 2);
+//
+//        // if topX == current xPos, get a new direction
+////        System.out.println("center tile");
+////        System.out.println(centerX + " " + centerY);
+//        if(xPos == topX && yPos == topY) {
+//            System.out.println("current tile");
+//            System.out.println(tilePosX + " " + tilePosY);
+//            System.out.println("acutal entity: ");
+//            System.out.println(xPos + " " + yPos);
+//            System.out.println("top tile");
+//            System.out.println(topX + " " + topY);
+//            System.out.println("top is equal, check direction");
+//
+//            direction = getDirection();
+//        }
+////        move();
+//
+////        if(currentTileX != tilePosX || currentTileY != tilePosY) {
+////            System.out.println("moved, get new direction");
+////            System.out.println(xPos);
+////            direction = getDirection();
+////            System.out.println("new direction: " + direction);
+////            currentTileX = tilePosX;
+////            currentTileY = tilePosY;
+////        }
+//        if(direction != 0 && movements[direction-1].isMovable()) {
+//            move();
+//        } else {
+//            System.out.println("not able to move");
+//            System.out.println("current tile");
+//            System.out.println(tilePosX + " " + tilePosY);
+//            System.out.println("acutal entity: ");
+//            System.out.println(xPos + " " + yPos);
+//            System.out.println("top tile");
+//            System.out.println(topX + " " + topY);
+//            if((int)xPos == topX && (int)yPos == topY) {
+//                System.out.println("current tile");
+//                System.out.println(tilePosX + " " + tilePosY);
+//                System.out.println("acutal entity: ");
+//                System.out.println(xPos + " " + yPos);
+//                System.out.println("top tile");
+//                System.out.println(topX + " " + topY);
+//                System.out.println("top is equal, check direction");
+//
+//                direction = getDirection();
+//            }
+//        }
+
+
+//        direction = getDirection();
+//        if (getDirection() != direction){
+//            if(System.currentTimeMillis() - currentTime > 500) {
+//                currentTime = System.currentTimeMillis();
+//                direction = getDirection();
+//            }
+//        }
+
+//        movingDir = direction;
 //        System.out.println(direction);
-        move();
+
+//        if( ((xPos - lastMoveX) >= 2 )|| ((yPos - lastMoveY) >= 2)) {
+//            System.out.println("moved. Current direction is: " + direction);
+//            System.out.println("lastMoveX: " + lastMoveX + " xPos: " + xPos + " lastMoveY: " + lastMoveY + " yPos: " + yPos);
+//            moved = true;
+//        } else {
+//            moved = false;
+//        }
 
 
     }

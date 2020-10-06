@@ -19,7 +19,7 @@ public class PacMan extends Mob {
     private int score;
 
     public PacMan(GameHandler gameHandler) {
-        super(gameHandler, 0, 0, 28, 28);
+        super(gameHandler, 0, 0, 32, 32);
         init();
     }
 
@@ -45,10 +45,12 @@ public class PacMan extends Mob {
         // score
         score = 0;
         // set up collision bounds
-        collisionBox.x = 3;
-        collisionBox.y = 3;
-        collisionBox.width = 22;
-        collisionBox.height = 22;
+//        collisionBox.x = 3;
+//        collisionBox.y = 3;
+//        collisionBox.width = 22;
+//        collisionBox.height = 22;
+        isMovable = false;
+
     }
 
     /**
@@ -71,10 +73,31 @@ public class PacMan extends Mob {
     @Override
     public void update() {
 
+        centerX = (int) xPos + width / 2;
+        centerY = (int) yPos + height / 2;
+        if(destinationX == 0) {
+            destinationX = (int) xPos + width / 2;
+            destinationY = (int) yPos + height / 2;
+        }
+
+
         // movement
         if(isAlive) {
-            getInput();
+            // once destiantion point reached, get input
+            System.out.println("centerX: " + centerX + " centerY " + centerY);
+            System.out.println("destinationX: " + destinationX + " destinationY " + destinationY);
+            if(centerX == destinationX && centerY == destinationY) {
+//                System.out.println("centerX: " + centerX + " centerY " + centerY);
+//                System.out.println("destinationX: " + destinationX + " destinationY " + destinationY);
+                getInput();
+
+            }
+            isMovable = isMovable();
             move();
+
+
+
+
         } else {
             if((System.currentTimeMillis() - timeDied) > 5000){ // 5 sec
                 objectLastFrame = pacManImages.get(0);
@@ -112,46 +135,16 @@ public class PacMan extends Mob {
     }
 
     private void getInput() {
+        // 1 - up, 2 - left, 3 - down, 4 - right
         if(gameHandler.getKeyManager().up) direction = 1;
-        if(gameHandler.getKeyManager().down) direction = 2;
-        if(gameHandler.getKeyManager().left) direction = 3;
+        if(gameHandler.getKeyManager().left) direction = 2;
+        if(gameHandler.getKeyManager().down) direction = 3;
         if(gameHandler.getKeyManager().right) direction = 4;
     }
 
-    private void move() {
+    private void moving() {
         if (direction > 0) {
-            // moving - direction 1 for up, 2 for down, 3 for left, 4 for right
-            switch (direction){
-                case 1:
-                    if(canMoveVertical(-2, 0)) {
-                        yPos -= 1.5;
-                        if(!isResurrect) mobCollisions(0f, -2f);
-                        if(isAlive) itemCollisions(0f, -2f);
-                    }
-                    break;
-                case 2:
-                    if(canMoveVertical(2, collisionBox.height)){
-                        yPos += 1.5;
-                        if(!isResurrect) mobCollisions(0f, 2f);
-                        if(isAlive) itemCollisions(0f, 2f);
-                    }
-                    break;
-                case 3:
-                    if(canMoveHorizontal(-2, 0)) {
-                        xPos -= 1.5;
-                        if(!isResurrect) itemCollisions(-2f, 0f);
-                        if(isAlive) mobCollisions(-2f, 0f);
-                    }
-                    break;
-                case 4:
-                    if(canMoveHorizontal(2, collisionBox.width)) {
-                        xPos += 1.5;
-                        if(!isResurrect) mobCollisions(2f, 0f);
-                        if(isAlive) itemCollisions(2f, 0f);
-                    }
-                    break;
-
-            }
+            // 1 - up, 2 - left, 3 - down, 4 - right
 
             // life
             if(!isAlive) {

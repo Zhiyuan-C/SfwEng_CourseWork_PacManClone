@@ -20,14 +20,14 @@ public class Collision {
         this.originalPoint = originalPoint;
     }
 
-    public void setNewPoint(int delta, float boundsPoint, int length, int unitSize) {
+    public void setNewPoint(float delta, float boundsPoint, int length, int unitSize) {
         this.newPoint = (originalPoint + delta + boundsPoint + length) / unitSize;
     }
 
     public void setStaticPoint(float objectPoint, float boundsPoint, int length, int unitSize) {
-        this.staticPointA = (objectPoint + boundsPoint) / unitSize;
+//        this.staticPointA = (objectPoint + boundsPoint) / unitSize;
         this.staticPointB = (objectPoint + boundsPoint + length / 2) / unitSize;
-        this.staticPointC = (objectPoint + boundsPoint + length) / unitSize;
+//        this.staticPointC = (objectPoint + boundsPoint + length) / unitSize;
 
     }
 
@@ -35,39 +35,80 @@ public class Collision {
         return originalPoint;
     }
 
+//    public boolean isCollideSG(boolean xCoordinate) { // is collided for square gride
+//        boolean pointA;
+//        boolean pointB;
+//        boolean pointC;
+//        if (xCoordinate) {
+//            pointA = isPointWall(newPoint, staticPointA);
+//            pointB = isPointWall(newPoint, staticPointB);
+//            pointC = isPointWall(newPoint, staticPointC);
+//        } else {
+//            pointA = isPointWall(staticPointA, newPoint);
+//            pointB = isPointWall(staticPointB, newPoint);
+//            pointC = isPointWall(staticPointC, newPoint);
+//        }
+//        return isSideCollide(pointA, pointB, pointC);
+//    }
     public boolean isCollideSG(boolean xCoordinate) { // is collided for square gride
         boolean pointA;
         boolean pointB;
         boolean pointC;
         if (xCoordinate) {
-            pointA = isPointWall(newPoint, staticPointA);
-            pointB = isPointWall(newPoint, staticPointB);
-            pointC = isPointWall(newPoint, staticPointC);
+//            pointA = isPointMovable(newPoint, staticPointA);
+            pointB = isPointMovable(newPoint, staticPointB);
+//            pointC = isPointMovable(newPoint, staticPointC);
         } else {
-            pointA = isPointWall(staticPointA, newPoint);
-            pointB = isPointWall(staticPointB, newPoint);
-            pointC = isPointWall(staticPointC, newPoint);
+//            pointA = isPointMovable(staticPointA, newPoint);
+            pointB = isPointMovable(staticPointB, newPoint);
+//            pointC = isPointMovable(staticPointC, newPoint);
+
+            System.out.println("newPoint: " + (int)newPoint);
+            System.out.println("staticPointB: " + (int)staticPointB);
+            System.out.println(pointB);
+//            System.out.println("staticPointA: " + (int)staticPointA + " staticPointB: " + (int)staticPointB + " staticPointC: " + (int)staticPointC );
+//            System.out.println("detection: ");
+//            System.out.println("pointA: " + pointA + " pointB: " + pointB + " pointC: " + pointC);
         }
-        return isSideCollide(pointA, pointB, pointC);
+        return isSideCollide(pointB);
     }
 
     private boolean isPointWall(float x, float y) {
         return gameHandler.getMap().getTile((int) x, (int) y).isWall();
     }
-
-    private boolean isSideCollide(boolean pointA, boolean pointB, boolean pointC) {
-        if (!pointB) { // if middle point is not wall
-            if(pointA && pointC) {
-                return false;
-            } else if (pointA || pointC) {
-                return true;
-            } else { // three points all not wall
-                return false;
-            }
-        } else {
-            return true;
-        }
+    private boolean isPointMovable(float x, float y)  {
+        return gameHandler.getMap().getTile((int) x, (int) y).isMovable();
     }
+
+//    private boolean isSideCollide(boolean pointA, boolean pointB, boolean pointC) {
+//        if (!pointB) { // if middle point is not wall
+//            if(pointA && pointC) {
+//                return false;
+//            } else if (pointA || pointC) {
+//                return true;
+//            } else { // three points all not wall
+//                return false;
+//            }
+//        } else {
+//            return true;
+//        }
+//    }
+    private boolean isSideCollide(boolean pointB) {
+        if(pointB) return false;
+        return true;
+//        if (!pointB) { // if middle point is not wall
+//            if(pointA && pointC) {
+//                return false;
+//            } else if (pointA || pointC) {
+//                return true;
+//            } else { // three points all not wall
+//                return false;
+//            }
+//        } else {
+//            return true;
+//        }
+    }
+
 
     public float getNewPoint() {
         return newPoint;

@@ -20,10 +20,16 @@ public abstract class Ghost extends Mob {
     protected float newPosX, newPosY;
     protected double sqrDistance;
     protected int distance;
-    protected int currentDirection;
+    protected int lastDistance;
+//    protected int currentDirection;
+    protected int lastDirection;
     protected boolean inBase;
     protected int movingDir;
     protected int checkMovableDirection;
+    protected long currentTime;
+    protected int tilePosX, tilePosY;
+    protected int currentTileX, currentTileY;
+    protected boolean moved;
 
 
     public Ghost(GameHandler gameHandler, float xPos, float yPos) {
@@ -52,6 +58,14 @@ public abstract class Ghost extends Mob {
         movements[1] = new Movement(2, 0, "left");
         movements[2] = new Movement(3, 0, "down");
         movements[3] = new Movement(4, 0, "right");
+        lastDistance = 0;
+        currentTime = System.currentTimeMillis();
+        moved = false;
+        tilePosX = 0;
+        tilePosY = 0;
+        currentTileX = 0;
+        currentTileY = 0;
+        lastDirection = 0;
 
     }
 
@@ -114,36 +128,36 @@ public abstract class Ghost extends Mob {
 
     public boolean canMove() {
         // 1 - up, 2 - left, 3 - down, 4 - right,
-        switch (checkMovableDirection){
-            case 1:
-                if(canMoveVertical(-2, 0)) {
-                    newPosY = yPos - (height / 2);
-                    newPosX = xPos + (width / 2);
-                    return true;
-                }
-                break;
-            case 2:
-                if(canMoveHorizontal(-2, 0)) {
-                    newPosX = xPos - (width / 2);
-                    newPosY = yPos + (height / 2);
-                    return true;
-                }
-                break;
-            case 3:
-                if(canMoveVertical(2, collisionBox.height)) {
-                    newPosY = yPos + (height / 2);
-                    newPosX = xPos + (width / 2);
-                    return true;
-                }
-                break;
-            case 4:
-                if(canMoveHorizontal(2, collisionBox.width)) {
-                    newPosX = xPos + (width / 2);
-                    newPosY = yPos + (height / 2);
-                    return true;
-                }
-                break;
-        }
+//        switch (checkMovableDirection){
+//            case 1:
+//                if(canMoveVertical(-2, 0)) {
+//                    newPosY = yPos - (height / 2);
+//                    newPosX = xPos + (width / 2);
+//                    return true;
+//                }
+//                break;
+//            case 2:
+//                if(canMoveHorizontal(-2, 0)) {
+//                    newPosX = xPos - (width / 2);
+//                    newPosY = yPos + (height / 2);
+//                    return true;
+//                }
+//                break;
+//            case 3:
+//                if(canMoveVertical(2, collisionBox.height)) {
+//                    newPosY = yPos + (height / 2);
+//                    newPosX = xPos + (width / 2);
+//                    return true;
+//                }
+//                break;
+//            case 4:
+//                if(canMoveHorizontal(2, collisionBox.width)) {
+//                    newPosX = xPos + (width / 2);
+//                    newPosY = yPos + (height / 2);
+//                    return true;
+//                }
+//                break;
+//        }
         return false;
     }
     public void setMove() {
@@ -160,63 +174,86 @@ public abstract class Ghost extends Mob {
             } else {
                 move.setMovable(false);
             }
+
         }
     }
 
     public int getDirection() {
-        currentDirection = direction;
-        System.out.println("currentDirection = direction: " + direction);
-        int currentDistance = 0;
+//        currentDirection = direction;
+        int currentDirection = direction;
         int newDirection;
         int newDistance;
+        int n = 0;
         for(Movement move: movements) {
-            System.out.println("check movement: current direction: " + currentDirection + " move direction: " + move.getDirection());
-            if(currentDirection != move.getDirection()){
-                if(move.isMovable()) {
-                    newDirection = move.getDirection();
-                    newDistance = move.getDistance();
-
-                    if(currentDirection == 0) {
-                        System.out.println("current Direction: " + currentDirection + " Initialise ");
-                        currentDirection = newDirection;
-                        currentDistance = newDistance;
-                        continue;
-                    }
-                    // check if new distance is less or equal to current distance
-                    if(newDistance <= currentDistance) {
-                        System.out.println("new distance is less or equal to current distance");
-                        System.out.println("current Direction: " + currentDirection + " new direction: " + newDirection);
-
-                        // chekc if direction is not opposite to current direction
-                        if(Math.abs(newDirection - currentDirection) != 2) {
-                            System.out.println("direction is not opposite");
-                            // check direction priority
-                            if (newDistance == currentDistance && newDirection < currentDirection) {
-                                System.out.println("distance are same");
-                                currentDirection = newDirection;
-                                currentDistance = newDistance;
-                            } else if(newDistance < currentDistance) {
-                                System.out.println("distance are different");
-                                currentDirection = newDirection;
-                                currentDistance = newDistance;
-                            }
-
-                        }
+            System.out.println("for loop times: " + n);
+            System.out.println("currentDirection: " + currentDirection + " move.getDirection: " + move.getDirection());
+            System.out.println("move.getDirection: " + move.getDirection() + " movable: " + move.isMovable() + " direction: " + move.getDirectionWord());
+            System.out.println("lastDistance: " + lastDistance + " move.getDistance(): " + move.getDistance());
+            if(currentDirection == move.getDirection() && !move.isMovable()) {
+                lastDirection = currentDirection;
+                currentDirection = 0;
+                n += 1;
+                continue;
+            }
+            // check if direction is movable or not
+            if(move.isMovable()) {
+                // check if direction == 0
+                if (currentDirection == 0) {
+                    System.out.println("currentDirection = 0, set currentDirection to this direction: " + move.getDirection());
+                    System.out.println("set lastDistance to current move");
+                    if(lastDirection == 0) {
+                        currentDirection = move.getDirection();
+                        lastDistance = move.getDistance();
                     } else {
-                        System.out.println("new distance is greater than current distance");
+                        if(Math.abs(lastDirection - move.getDirection()) != 2) {
+                            currentDirection = move.getDirection();
+                            lastDistance = move.getDistance();
+                        }
+                    }
+
+                    n += 1;
+                    continue;
+                }
+                // compare if currentDirection's distance is less than the new direction's distance
+                if(move.getDistance() < lastDistance) {
+                    System.out.println("new distance is less than last distance");
+                    System.out.println("lastDistance: " + lastDistance + " move.getDistance(): " + move.getDistance());
+                    System.out.println("check if new distance is opposite to current distance");
+                    if(Math.abs(currentDirection - move.getDirection())!= 2) {
+                        System.out.println("new direction is not opposite to current");
+                        System.out.println("currentDirection: " + currentDirection + " move.getDirection(): " + move.getDirection());
+                        System.out.println("update currentDirection and lastDistance");
+                        currentDirection = move.getDirection();
+                        lastDistance = move.getDistance();
                     }
                 }
-            } else {
-                if(!move.isMovable()) {
-                    currentDirection = 0;
+                // compare if distance are the same
+                if(lastDistance == move.getDistance()) {
+                    // check if new direction have higher priority
+                    System.out.println("distance are the same, check if new direction have higher priority");
+                    if(move.getDirection() <= currentDirection) {
+                        System.out.println("this direction have higher priority");
+                        System.out.println("check if new distance is opposite to current distance");
+                        if(currentDirection - move.getDirection() != 2) {
+                            System.out.println("new direction is not opposite to current");
+                            System.out.println("currentDirection: " + currentDirection + " move.getDirection(): " + move.getDirection());
+                            System.out.println("update currentDirection and lastDistance");
+                            currentDirection = move.getDirection();
+                            lastDistance = move.getDistance();
+                        }
+
+                    }
                 }
             }
+            n += 1;
         }
 
 //        System.out.println(setD);
-        System.out.println("new direction: " + currentDirection);
+
 //        setDirection(currentDirection);
-        direction = currentDirection;
+        System.out.println("for loop finished. currentDirection: " + currentDirection);
+//        currentTime = System.currentTimeMillis();
+//        if(!moved) currentDirection = direction;
         return currentDirection;
     }
 

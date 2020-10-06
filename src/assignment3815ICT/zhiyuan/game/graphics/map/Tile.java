@@ -42,6 +42,14 @@ public class Tile {
 
     }
 
+    public boolean isMovable() {
+        if(TILE_ID == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public int getTileId() {
         return TILE_ID;
     }
