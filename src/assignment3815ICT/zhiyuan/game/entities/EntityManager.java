@@ -1,10 +1,7 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
-import assignment3815ICT.zhiyuan.game.entities.item.FlowerSmall;
-import assignment3815ICT.zhiyuan.game.entities.item.Fruit;
-import assignment3815ICT.zhiyuan.game.entities.item.Item;
+import assignment3815ICT.zhiyuan.game.entities.item.*;
 import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.*;
 import assignment3815ICT.zhiyuan.game.entities.mob.Mob;
 import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
@@ -21,6 +18,7 @@ public class EntityManager {
     private Inky inky;
     private Clyde clyde;
     private ArrayList<Item> items;
+    private ArrayList<Item> walls;
     private Item[] experiment;
     private ArrayList<Ghost> ghosts;
     private final int TILE_SIZE = 32;
@@ -29,6 +27,7 @@ public class EntityManager {
         this.gameHandler = gameHandler;
         pacMan = new PacMan(gameHandler);
         items = new ArrayList<>();
+        walls = new ArrayList<>();
         ghosts = new ArrayList<>();
         blinky = new Blinky(gameHandler, 2 * TILE_SIZE, 3 * TILE_SIZE); // 640 320 beside pacman for test
         setDefaultPos(blinky, 2 * TILE_SIZE, 3 * TILE_SIZE);
@@ -85,6 +84,9 @@ public class EntityManager {
         for (Ghost ghost: ghosts) {
             ghost.render(graphics);
         }
+        for(Item wall : walls) {
+            wall.render(graphics);
+        }
 
     }
 
@@ -97,6 +99,7 @@ public class EntityManager {
     public void addFruit(float xPos, float yPos){
         items.add(new Fruit(gameHandler, xPos, yPos));
     }
+    public void addWall(float xPos, float yPos) {walls.add(new Wall(gameHandler, xPos, yPos));}
 
     public void addItem(Item item) {
         items.add(item);
@@ -115,6 +118,10 @@ public class EntityManager {
         return items;
     }
 
+    public ArrayList<Item> getWalls() {
+        return walls;
+    }
+
     public ArrayList<Ghost> getGhosts() {
         return ghosts;
     }
@@ -127,4 +134,5 @@ public class EntityManager {
         mob.setDefaultXpos(xPos);
         mob.setDefaultYpos(yPos);
     }
+
 }

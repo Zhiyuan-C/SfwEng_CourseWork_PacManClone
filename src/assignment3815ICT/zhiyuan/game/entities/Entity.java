@@ -1,6 +1,7 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
+import assignment3815ICT.zhiyuan.game.entities.item.Wall;
 import assignment3815ICT.zhiyuan.game.entities.mob.movement.Collision;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.Ghost;
@@ -57,6 +58,16 @@ public abstract class Entity {
                 }
             }
         }
+    }
+    //wall collision
+    public boolean isWallCollide(float xOffset, float yOffset){
+        for(Item wall : gameHandler.getMap().getEntityManager().getWalls()) {
+            if(wall.equals(this)) continue;
+            if(wall.getCollisionBox(0f, 0f).intersects(getCollisionBox(xOffset, yOffset))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Rectangle getCollisionBox(float xOffset, float yOffset) {

@@ -163,13 +163,22 @@ public abstract class Ghost extends Mob {
     public void setMove() {
         for(Movement move: movements) {
             checkMovableDirection = move.getDirection();
+            //check if moving direction is wall or not
+            // check how many wall in the way
+            // get current tile
+            // current tile + 1 is the starting tile
+            // x length = target position tile x - starting tile x
+            // y length = target position tile y - starting tile y
+            // for int y = starting tile y; y < y length; y++
+            //    for int x = starting tile x; x < x length; x++
+            // calculate distance
+            // sqrt(abs((x2 - x1))^2 + abs((y2 - y1))^2)
+            sqrDistance = Math.abs(targetPosX - newPosX) + Math.abs(targetPosY - newPosY);
+            distance = (int) Math.sqrt(sqrDistance);
+            move.setDistance(distance);
             // check if can move
             if(canMove()) {
-                // calculate distance
-                // sqrt(abs((x2 - x1))^2 + abs((y2 - y1))^2)
-                sqrDistance = Math.abs(targetPosX - newPosX) + Math.abs(targetPosY - newPosY);
-                distance = (int) Math.sqrt(sqrDistance);
-                move.setDistance(distance);
+
                 move.setMovable(true);
             } else {
                 move.setMovable(false);

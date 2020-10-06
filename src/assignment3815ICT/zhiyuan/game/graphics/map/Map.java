@@ -97,6 +97,8 @@ public class Map {
                         entityManager.addFlowerSmall(x * TILE_WIDTH, y * TILE_HEIGHT);
                     }
 
+                } else if(getTile(x, y).getTileId() != 5) {
+                    entityManager.addWall(x * TILE_WIDTH, y * TILE_HEIGHT);
                 }
             }
         }

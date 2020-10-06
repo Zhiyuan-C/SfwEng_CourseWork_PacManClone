@@ -19,7 +19,7 @@ public class PacMan extends Mob {
     private int score;
 
     public PacMan(GameHandler gameHandler) {
-        super(gameHandler, 0, 0, 32, 32);
+        super(gameHandler, 0, 0, 28, 28);
         init();
     }
 
@@ -45,10 +45,10 @@ public class PacMan extends Mob {
         // score
         score = 0;
         // set up collision bounds
-//        collisionBox.x = 3;
-//        collisionBox.y = 3;
-//        collisionBox.width = 22;
-//        collisionBox.height = 22;
+        collisionBox.x = 3;
+        collisionBox.y = 3;
+        collisionBox.width = 22;
+        collisionBox.height = 22;
         isMovable = false;
 
     }
@@ -80,23 +80,11 @@ public class PacMan extends Mob {
             destinationY = (int) yPos + height / 2;
         }
 
+        getInput();
 
         // movement
         if(isAlive) {
-            // once destiantion point reached, get input
-            System.out.println("centerX: " + centerX + " centerY " + centerY);
-            System.out.println("destinationX: " + destinationX + " destinationY " + destinationY);
-            if(centerX == destinationX && centerY == destinationY) {
-//                System.out.println("centerX: " + centerX + " centerY " + centerY);
-//                System.out.println("destinationX: " + destinationX + " destinationY " + destinationY);
-                getInput();
-
-            }
-            isMovable = isMovable();
-            move();
-
-
-
+            moving();
 
         } else {
             if((System.currentTimeMillis() - timeDied) > 5000){ // 5 sec
@@ -145,7 +133,36 @@ public class PacMan extends Mob {
     private void moving() {
         if (direction > 0) {
             // 1 - up, 2 - left, 3 - down, 4 - right
-
+            switch (direction) {
+                case 1:
+                    if(!isWallCollide(0f, -1.5f)) {
+                        yPos-=1.5f;
+                        itemCollisions(0f, -1.5f);
+                        mobCollisions(0f, -1.5f);
+                    }
+                    break;
+                case 2:
+                    if(!isWallCollide(-1.5f, 0f)) {
+                        xPos -= 1.5f;
+                        itemCollisions(-1.5f, 0f);
+                        mobCollisions(-1.5f, 0f);
+                    }
+                    break;
+                case 3:
+                    if(!isWallCollide(0f, 1.5f)) {
+                        yPos += 1.5f;
+                        itemCollisions(0f, 1.5f);
+                        mobCollisions(0f, 1.5f);
+                    }
+                    break;
+                case 4:
+                    if(!isWallCollide(1.5f, 0f)) {
+                        xPos+=1.5f;
+                        itemCollisions(1.5f, 0f);
+                        mobCollisions(1.5f, 0f);
+                    }
+                    break;
+            }
             // life
             if(!isAlive) {
                 if(life > 0) {
