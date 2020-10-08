@@ -38,6 +38,7 @@ public class PacMan extends Mob {
         this.animeVanish = new Animation(vanish, 1500);
         objectLastFrame = pacManImages.get(0);
         // alive
+        life = gameHandler.getLifeNum();
         isAlive = true;
         isResurrect = false;
         // moving speed
@@ -80,10 +81,11 @@ public class PacMan extends Mob {
             destinationY = (int) yPos + height / 2;
         }
 
-        getInput();
+
 
         // movement
         if(isAlive) {
+            getInput();
             moving();
 
         } else {
@@ -125,6 +127,10 @@ public class PacMan extends Mob {
 
         graphics.setColor(Color.RED);
         graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+
+        for(int i = 0; i < life; i++) {
+            graphics.drawImage(pacManImages.get(0), i * 32, 21 * 32, width, height, null);
+        }
 
         gameHandler.getGameFont().render(graphics, "score " + score, 0, 5, 20, 20);
     }
