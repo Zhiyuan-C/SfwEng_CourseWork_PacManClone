@@ -47,16 +47,17 @@ public class Game implements Runnable{
         gameHandler = new GameHandler(this);
 
         // set play state
-        playState = new PlayState(gameHandler);
-        StateManager.setState(playState);
+        gameHandler.setPlayState(); // change this to setMenuState later
+//        playState = new PlayState(gameHandler);
+//        StateManager.setState(playState);
     }
 
     // update game
     private void update() {
         keyManager.update();
 
-        if(StateManager.getCurrentState() != null){
-            StateManager.getCurrentState().update();
+        if(gameHandler.getStateManager().getCurrentState() != null){
+            gameHandler.getStateManager().getCurrentState().update();
         }
     }
 
@@ -75,8 +76,8 @@ public class Game implements Runnable{
         graphics.clearRect(0,0, width, height); // not sure if really need
         // begin drawing
 //        graphics.drawImage(gameObjects.get(1), 0, 0, null);
-        if(StateManager.getCurrentState() != null) {
-            StateManager.getCurrentState().render(graphics);
+        if(gameHandler.getStateManager().getCurrentState() != null) {
+            gameHandler.getStateManager().getCurrentState().render(graphics);
         }
         // finish drawing. start display to screen
         bufferStrategy.show();

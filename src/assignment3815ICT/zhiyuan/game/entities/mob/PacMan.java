@@ -138,28 +138,29 @@ public class PacMan extends Mob {
                     if(!isWallCollide(0f, -1.5f)) {
                         yPos-=1.5f;
                         itemCollisions(0f, -1.5f);
-                        mobCollisions(0f, -1.5f);
+//                        if(!isResurrect) mobCollisions(0f, -1.5f);
+                        mobCollisions(0f, -1.5f); // this only for game over testing, remove this and uncomment previous
                     }
                     break;
                 case 2:
                     if(!isWallCollide(-1.5f, 0f)) {
                         xPos -= 1.5f;
                         itemCollisions(-1.5f, 0f);
-                        mobCollisions(-1.5f, 0f);
+                        if(!isResurrect) mobCollisions(-1.5f, 0f);
                     }
                     break;
                 case 3:
                     if(!isWallCollide(0f, 1.5f)) {
                         yPos += 1.5f;
                         itemCollisions(0f, 1.5f);
-                        mobCollisions(0f, 1.5f);
+                        if(!isResurrect) mobCollisions(0f, 1.5f);
                     }
                     break;
                 case 4:
                     if(!isWallCollide(1.5f, 0f)) {
                         xPos+=1.5f;
                         itemCollisions(1.5f, 0f);
-                        mobCollisions(1.5f, 0f);
+                        if(!isResurrect) mobCollisions(1.5f, 0f);
                     }
                     break;
             }

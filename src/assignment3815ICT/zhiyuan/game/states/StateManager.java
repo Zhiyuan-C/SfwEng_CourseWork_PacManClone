@@ -1,13 +1,33 @@
 package assignment3815ICT.zhiyuan.game.states;
 
-public class StateManager {
-    private static State currentState = null;
+import assignment3815ICT.zhiyuan.game.GameHandler;
 
-    public static void setState(State state) {
+public class StateManager {
+    private State currentState = null;
+    private GameHandler gameHandler;
+
+    public StateManager(GameHandler gameHandler) {
+        this.gameHandler = gameHandler;
+    }
+
+    public void setPlayState() {
+        this.currentState = new PlayState(gameHandler);
+    }
+
+    public void setGameOverState() {
+        this.currentState = new GameOverState(gameHandler);
+    }
+
+    public void setMenuState() {
+        this.currentState = new MenuState(gameHandler);
+
+    }
+
+    public void setState(State state) {
         currentState = state;
     }
 
-    public static State getCurrentState() {
+    public State getCurrentState() {
         return currentState;
     }
 }

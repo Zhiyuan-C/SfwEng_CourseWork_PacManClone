@@ -5,6 +5,10 @@ import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
+import assignment3815ICT.zhiyuan.game.states.GameOverState;
+import assignment3815ICT.zhiyuan.game.states.PlayState;
+import assignment3815ICT.zhiyuan.game.states.State;
+import assignment3815ICT.zhiyuan.game.states.StateManager;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ public class GameHandler {
     private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
     private GameFont gameFont;
     private EntityManager entityManager;
+    private StateManager stateManager;
 
     public GameHandler(Game game) {
         this.game = game;
@@ -29,10 +34,27 @@ public class GameHandler {
         // load fonts
         fontObjects = gameObject.getFontObjects();
         gameFont = new GameFont(fontObjects);
+        stateManager = new StateManager(this);
     }
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public void setPlayState() {
+        stateManager.setPlayState();
+    }
+
+    public void setGameOverState() {
+        stateManager.setGameOverState();
+    }
+    public void setMenuState() {
+        stateManager.setMenuState();
+
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
     }
 
     public Game getGame() {
@@ -107,4 +129,5 @@ public class GameHandler {
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
 }
