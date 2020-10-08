@@ -87,13 +87,20 @@ public class PacMan extends Mob {
             moving();
 
         } else {
+            // let vanish animation run for 5 sec, respown pacman to original position
             if((System.currentTimeMillis() - timeDied) > 5000){ // 5 sec
                 objectLastFrame = pacManImages.get(0);
                 xPos = defaultXpos;
                 yPos = defaultYpos;
-                isAlive = true;
-                isResurrect = true;
-                timeResurrect = System.currentTimeMillis();
+                if(life == 0) {
+                    gameHandler.setScore(score);
+                    gameHandler.setGameOverState();
+                } else {
+                    isAlive = true;
+                    isResurrect = true;
+                    timeResurrect = System.currentTimeMillis();
+                }
+
             }
         }
         if(isResurrect) {
@@ -138,8 +145,8 @@ public class PacMan extends Mob {
                     if(!isWallCollide(0f, -1.5f)) {
                         yPos-=1.5f;
                         itemCollisions(0f, -1.5f);
-//                        if(!isResurrect) mobCollisions(0f, -1.5f);
-                        mobCollisions(0f, -1.5f); // this only for game over testing, remove this and uncomment previous
+                        if(!isResurrect) mobCollisions(0f, -1.5f);
+//                        mobCollisions(0f, -1.5f); // this only for game over testing, remove this and uncomment previous
                     }
                     break;
                 case 2:
@@ -172,9 +179,6 @@ public class PacMan extends Mob {
                     direction = 0;
                     animeVanish.setIndex(0);
                     animeVanish.setTimer(0);
-                }
-                else {
-                    System.out.println("GAME OVER!");
                 }
             }
         }

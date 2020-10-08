@@ -47,7 +47,8 @@ public class Game implements Runnable{
         gameHandler = new GameHandler(this);
 
         // set play state
-        gameHandler.setPlayState(); // change this to setMenuState later
+//        gameHandler.setPlayState(); // change this to setMenuState later
+        gameHandler.setMenuState();
 //        playState = new PlayState(gameHandler);
 //        StateManager.setState(playState);
     }

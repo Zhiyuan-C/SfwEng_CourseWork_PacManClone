@@ -22,6 +22,10 @@ public class GameHandler {
     private GameFont gameFont;
     private EntityManager entityManager;
     private StateManager stateManager;
+    private int score;
+    private int lifeNum;
+    private int boostingTime;
+    private int level;
 
     public GameHandler(Game game) {
         this.game = game;
@@ -35,6 +39,10 @@ public class GameHandler {
         fontObjects = gameObject.getFontObjects();
         gameFont = new GameFont(fontObjects);
         stateManager = new StateManager(this);
+        score = 0;
+        lifeNum = 3;
+        boostingTime = 10;
+        level = 1;
     }
 
     public void setGame(Game game) {
@@ -130,4 +138,35 @@ public class GameHandler {
         this.entityManager = entityManager;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getLifeNum() {
+        return lifeNum;
+    }
+
+    public void setLifeNum(int lifeNum) {
+        this.lifeNum = lifeNum;
+    }
+
+    public int getBoostingTime() {
+        return boostingTime;
+    }
+
+    public void setBoostingTime(int boostingTime) {
+        this.boostingTime = boostingTime;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
