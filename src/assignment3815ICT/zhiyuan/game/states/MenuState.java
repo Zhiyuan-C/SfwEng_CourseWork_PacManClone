@@ -5,6 +5,7 @@ import assignment3815ICT.zhiyuan.game.buttons.*;
 import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class MenuState extends State{
@@ -14,16 +15,19 @@ public class MenuState extends State{
     private int fontWidth, fontHeight;
     private int initialPosY, boarderHeight;
     private int optionPos1, optionPos2, optionPos3, optionPos4;
-    private int optionIndex1, optionIndex2, optionIndex3;
+    private int optionSizeY;
+    private int optionIndexY;
+    private int optionIndexX;
     private String optionMsg1, optionMsg2, optionMsg3;
     private ArrayList<UIButton> buttons;
     private ArrayList<UIButton> levelButtons, lifeButtons, timeButtons;
     private boolean configuration;
-    private int selectOptionX, selectOptionY;
+    private boolean once, twice;
+    private boolean onceX, twiceX, leftOnceX;
+    private int selectOptionXa, selectOptionXb, selectOptionXc;
     private boolean pressed;
     private long startTime;
     private int upNum, downNum, leftNum, rightNum;
-    private int key;
 
     public MenuState(GameHandler gameHandler) {
         super(gameHandler);
@@ -34,9 +38,7 @@ public class MenuState extends State{
         timeButtons = new ArrayList<>();
         displayPosInit();
         configuration = false;
-        selectOptionX = 0;
-        selectOptionY = 0;
-        key = 0;
+        optionSizeY = 4;
 
         startButton = new StartButton(gameHandler,
                 gameHandler.getGameWidth() / 3.0f, optionPos4);
@@ -96,66 +98,53 @@ public class MenuState extends State{
         for(UIButton button: buttons) {
             button.update();
         }
-        if (!configuration && gameHandler.getKeyManager().down || gameHandler.getKeyManager().up) {
+        if (!configuration && gameHandler.getKeyManager().up) {
             configuration = true;
             startButton.setActive(false);
+            optionIndexY = 0;
         }
         if(configuration) {
-            if(gameHandler.getKeyManager().up) key = 1;
-            if(gameHandler.getKeyManager().down) key = 2;
-            if(gameHandler.getKeyManager().left) key = 3;
-            if(gameHandler.getKeyManager().right) key = 4;
-
-//            System.out.println(gameHandler.getKeyManager().count);
-            if(key == 1) {
-                upNum = gameHandler.getKeyManager().count;
-//                System.out.println(upNum);
-//                if(selectOptionY == 0) selectOptionY = 1;
-                if(upNum == 1) {
-                    if (selectOptionY == 1) {
-                        selectOptionY = 0;
-                    } else if (selectOptionY == 2) {
-                        selectOptionY = 1;
-                    }
-
-                }
-//                if(upNum == 2 && selectOptionY == 2) selectOptionY = 0;
+            if(gameHandler.getKeyManager().justPressedKey(38)) optionIndexY --;
+            if(gameHandler.getKeyManager().justPressedKey(40)) optionIndexY ++;
+            if(gameHandler.getKeyManager().justPressedKey(37)) optionIndexX --;
+            if(gameHandler.getKeyManager().justPressedKey(39)) optionIndexX ++;
+            if(optionIndexY < 0) {
+                optionIndexY = 0;
+            } else if(optionIndexY >= optionSizeY) {
+                optionIndexY = optionSizeY - 1;
             }
-            if(key == 2) {
-                downNum = gameHandler.getKeyManager().count;
-//                if(downNum == 1 && selectOptionY == 0) selectOptionY = 1;
-//                if(downNum == 2 && selectOptionY == 1) selectOptionY = 2;
-                if (downNum > 0 && downNum < 3) selectOptionY = downNum;
+
+            if(optionIndexY == 0) {
+                selectOptionXa = getIndex(selectOptionXa);
+                selectOption(levelButtons, selectOptionXa);
+            } else if (optionIndexY == 1) {
+                selectOptionXb = getIndex(selectOptionXb);
+                selectOption(lifeButtons, selectOptionXb);
+            } else if (optionIndexY == 2) {
+                selectOptionXc = getIndex(selectOptionXc);
+                selectOption(timeButtons, selectOptionXc);
+            } else {
+                configuration = false;
+                startButton.setActive(true);
             }
-            System.out.println("selection: " + selectOptionY);
-
-
-            if (key == 4) {
-                if(gameHandler.getKeyManager().count > 0 && gameHandler.getKeyManager().count < 4) {
-                    selectOptionX = gameHandler.getKeyManager().count - 1;
-                    selectOption(levelButtons, selectOptionX);
-                }
-
-            }
-//            System.out.println(selectOptionX);
-//            if(selectOptionY() == 0) {
-//                optionIndex1 = getOptionIndex();
-//                selectOptionX(levelButtons, optionIndex1);
-//            } else if(selectOptionY() == 1) {
-//                optionIndex2 = getOptionIndex();
-//                selectOptionX(lifeButtons, optionIndex2);
-//            } else if(selectOptionY() == 2) {
-//                selectOptionX = 0;
-//                optionIndex3 = getOptionIndex();
-//                selectOptionX(timeButtons, optionIndex2);
-//            }
         }
-
-
     }
-    private void selectOption(ArrayList<UIButton> selectButtons, int indexVal) {
+    private int getIndex(int index) {
+        if(gameHandler.getKeyManager().justPressedKey(37)) index --;
+        if(gameHandler.getKeyManager().justPressedKey(39)) index ++;
+        if(index < 0) {
+            index = 0;
+            return index;
+        } else if(index >= 3) {
+            index = 3 - 1;
+            return index;
+        }
+        return index;
+    }
+
+    private void selectOption(ArrayList<UIButton> selectButtons, int index) {
         for(int i = 0; i < 3; i ++) {
-            if(indexVal == i) {
+            if(index == i) {
                 selectButtons.get(i).setActive(true);
             } else {
                 selectButtons.get(i).setActive(false);
