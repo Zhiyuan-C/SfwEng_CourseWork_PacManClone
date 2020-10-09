@@ -20,8 +20,8 @@ public abstract class VerticalMove extends Move{
         offsetY = newTileY * tileHeight - yPos;
 
         movable = !ghost.isWallCollide(offsetX, offsetY);
-        if(delta > 0) checkingLength = mapTileHeight - (currentTileY + (delta * 2));
-        else checkingLength = currentTileY + (delta * 2);
+        if(delta > 0) checkingLength = mapTileHeight - (currentTileY + delta);
+        else checkingLength = currentTileY + delta;
         if(movable) {
             // set center position for the tile above
             int targetXtile = (int) targetX / tileWidth;
@@ -40,7 +40,7 @@ public abstract class VerticalMove extends Move{
         int tempTileY;
         float tempOffsetY;
         int count = 0;
-        if(delta > 0) tempTileY = currentTileY + (delta * 2);
+        if(delta > 0) tempTileY = currentTileY + delta;
         else tempTileY = checkingLength;
         for(int i = 0; i < checkingLength; i ++) {
             if(delta > 0) tempOffsetY = (tempTileY + i) * tileHeight - yPos;

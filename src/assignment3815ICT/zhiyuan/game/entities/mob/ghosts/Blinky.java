@@ -24,7 +24,9 @@ public class Blinky extends Ghost {
 
         frightenedMode();
         setTargetPosition();
+
         setMove();
+        moveRight.move();
 //        for(Movement move: movements) {
 //            System.out.println("direction: " + move.getDirectionWord() + " movable: " + move.isMovable());
 //            System.out.println("direction: " + move.getDirectionWord() + " movable tiles: " + move.getMovableTiles());

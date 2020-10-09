@@ -190,58 +190,15 @@ public abstract class Ghost extends Mob {
 //        System.out.println("left movable: " + moveLeft.isMovable() + " distance: " + moveLeft.getDistance() +
 //                " movable tile count:  " + moveLeft.getMovableTiles());
         moveRight.checkMovable(xPos, yPos, targetPosX, targetPosY);
-        System.out.println("right movable: " + moveRight.isMovable() + " distance: " + moveRight.getDistance() +
-                " movable tile count:  " + moveRight.getMovableTiles());
-//        System.out.println(moveUp.getMovableTiles());
-//        System.out.println(moveUp.getMovableTiles());
-//        int count = 0;
-//        for(Movement move: movements) {
-//
-//            boolean checking = false;
-//            checkMovableDirection = move.getDirection();
-//            int currentTileX = (int) xPos / gameHandler.getTILE_WIDTH();
-//            int currentTileY = (int) yPos / gameHandler.getTILE_HEIGHT();
-//            //check if moving direction is wall or not
-//            move.setMovable(checkMove(currentTileX, currentTileY));
-//            // check how many wall in the way
-//            if(move.isMovable()) {
-//                if (move.getDirection() == 1) {
-//                    for(int i = 1; i < currentTileY; i ++){
-//                        int newTileY = currentTileY - i;
-//                        System.out.println(newTileY);
-//                        if(checkMove(currentTileX, newTileY)) {
-//                            count += 1;
-//                            continue;
-//                        } else {
-//                            move.setMovableTiles(count);
-//                            count = 0;
-//                            break;
-//                        }
-//                    }
-//
-//                }
-//            }
-//            // get starting tile
-//            // current tile + 1 is the starting tile
-//
-//            // if new direction is movable
-//            // count how many tiles can move
-//            // count = 0
-//            // while(true)
-//            //    check next tile is wall or not
-//            //    tileNum + 1
-//            //    if movable
-//            //       count+=1
-//            //    if not movable
-//            //       break;
-//            // set movable tile
-//            // calculate distance
-//            // sqrt(abs((x2 - x1))^2 + abs((y2 - y1))^2)
-////            sqrDistance = Math.abs(targetPosX - newPosX) + Math.abs(targetPosY - newPosY);
-////            distance = (int) Math.sqrt(sqrDistance);
-////            move.setDistance(distance);
-//
-//        }
+//        System.out.println("right movable: " + moveRight.isMovable() + " distance: " + moveRight.getDistance() +
+//                " movable tile count:  " + moveRight.getMovableTiles());
+    }
+
+    public Move checkUp() {
+        return moveUp;
+    }
+    public Move checkDown() {
+        return moveDown;
     }
 
 //    public int getDirection() {

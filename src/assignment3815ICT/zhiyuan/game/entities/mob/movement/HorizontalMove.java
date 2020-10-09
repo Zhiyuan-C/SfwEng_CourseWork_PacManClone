@@ -21,8 +21,8 @@ public abstract class HorizontalMove extends Move{
         offsetY = 0;
 
         movable = !ghost.isWallCollide(offsetX, offsetY);
-        if(delta > 0) checkingLength = mapTileWidth - (currentTileX + (delta * 2));
-        else checkingLength = currentTileX + (delta * 2);
+        if(delta > 0) checkingLength = mapTileWidth - (currentTileX + delta);
+        else checkingLength = currentTileX + delta;
 
 
         if(movable) {
@@ -43,11 +43,12 @@ public abstract class HorizontalMove extends Move{
         int tempTileX;
         float tempOffsetX;
         int count = 0;
-        if(delta > 0) tempTileX = currentTileX + (delta * 2);
+        if(delta > 0) tempTileX = currentTileX + delta;
         else tempTileX = checkingLength;
         for(int i = 0; i < checkingLength; i ++) {
             if(delta > 0) tempOffsetX = (tempTileX + i) * tileWidth - xPos;
             else tempOffsetX = (tempTileX - i) * tileWidth - xPos;
+//            System.out.println(tempOffsetX);
             if(ghost.isWallCollide(tempOffsetX, 0)) { // if wall exists
                 movableTiles = count;
                 break;
