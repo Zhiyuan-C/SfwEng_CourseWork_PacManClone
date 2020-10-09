@@ -17,10 +17,11 @@ public abstract class HorizontalMove extends Move{
         int newTileX;
         newTileX = currentTileX + delta;
 
-        offsetX = newTileX * tileWidth - xPos;
-        offsetY = 0;
+        System.out.println( "xPos: " + xPos + " currentTileX: " + currentTileX + " newTileX " + newTileX);
 
-        movable = !ghost.isWallCollide(offsetX, offsetY);
+        offsetX = newTileX * tileWidth - xPos;
+
+        movable = !ghost.isWallCollide(offsetX, 0);
         if(delta > 0) checkingLength = mapTileWidth - (currentTileX + delta);
         else checkingLength = currentTileX + delta;
 
@@ -66,31 +67,14 @@ public abstract class HorizontalMove extends Move{
 
         if(changeMove(up)) {
             // call ghost to move up
-//            System.out.println("go up");
+            System.out.println("go up");
             ghost.setDirection(1);
         }
 
         if(changeMove(down)) {
             // call ghost to move down
-//            System.out.println("go down");
+            System.out.println("go down");
             ghost.setDirection(3);
         }
-    }
-
-    @Override
-    protected boolean changeMove(Move move) {
-        // if up is movable
-        if (move.isMovable()) {
-            // if distance is less
-            if (move.distance < distance) {
-                return true;
-            } else if(move.distance == distance) {
-                // check which one have higher movable tiles
-                if(move.getMovableTiles() > movableTiles) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

@@ -29,7 +29,7 @@ public abstract class Move {
     protected abstract void checkMove(float xPos, float yPos, float targetX, float targetY, int delta);
     protected abstract void checkMovableTiles(int delta);
     protected abstract void listener();
-    protected abstract boolean changeMove(Move move);
+    public abstract void move();
     public abstract void checkMovable(float xPos, float yPos, float targetX, float targetY);
 
 
@@ -38,6 +38,22 @@ public abstract class Move {
         // sqrt(abs((x2 - x1))^2 + abs((y2 - y1))^2)
          double sqrDistance = Math.pow(Math.abs(targetX - newPosX), 2) + Math.pow(Math.abs(targetY - newPosY), 2);
          distance = (int) Math.sqrt(sqrDistance);
+    }
+
+    protected boolean changeMove(Move move) {
+        // if up is movable
+        if (move.isMovable()) {
+            // if distance is less
+            if (move.distance < distance) {
+                return true;
+            } else if(move.distance == distance) {
+                // check which one have higher movable tiles
+                if(move.getMovableTiles() > movableTiles) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public int getDistance() {

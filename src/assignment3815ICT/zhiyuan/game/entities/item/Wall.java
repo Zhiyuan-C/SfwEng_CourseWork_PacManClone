@@ -17,6 +17,6 @@ public class Wall extends Item{
     @Override
     public void render(Graphics graphics) {
 //        graphics.setColor(Color.RED);
-//        graphics.fillRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+//        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
     }
 }

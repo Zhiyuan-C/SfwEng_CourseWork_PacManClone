@@ -10,6 +10,19 @@ public class MoveUp extends VerticalMove{
     }
 
     @Override
+    public void move() {
+        if (movable) {
+            System.out.println("going up");
+            float ghostY = ghost.getyPos();
+            ghost.setyPos(ghostY -= 1);
+        } else {
+            movableTiles = 0;
+//            System.out.println(movable);
+        }
+        listener();
+    }
+
+    @Override
     public void checkMovable(float xPos, float yPos, float targetX, float targetY) {
         checkMove(xPos, yPos, targetX, targetY, -1);
     }

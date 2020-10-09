@@ -11,9 +11,11 @@ public abstract class VerticalMove extends Move{
     protected void checkMove(float xPos, float yPos, float targetX, float targetY, int delta) {
         this.xPos = xPos;
         this.yPos = yPos;
-        int newTileY;
+
         currentTileX = (int) xPos / tileWidth;
         currentTileY = (int) yPos / tileHeight;
+
+        int newTileY;
         newTileY = currentTileY + delta;
 
         offsetX = 0;
@@ -56,36 +58,20 @@ public abstract class VerticalMove extends Move{
     @Override
     protected void listener() {
         // checking for up and down
-        Move up = ghost.checkUp();
-        Move down = ghost.checkDown();
+        Move left = ghost.checkLeft();
+        Move right = ghost.checkRight();
 
-        if(changeMove(up)) {
+
+        if(changeMove(left)) {
             // call ghost to move up
-//            System.out.println("go up");
-            ghost.setDirection(1);
+            System.out.println("go left");
+            ghost.setDirection(2);
         }
 
-        if(changeMove(down)) {
+        if(changeMove(right)) {
             // call ghost to move down
-//            System.out.println("go down");
-            ghost.setDirection(3);
+            System.out.println("go right");
+            ghost.setDirection(4);
         }
-    }
-
-    @Override
-    protected boolean changeMove(Move move) {
-        // if up is movable
-        if (move.isMovable()) {
-            // if distance is less
-            if (move.distance < distance) {
-                return true;
-            } else if(move.distance == distance) {
-                // check which one have higher movable tiles
-                if(move.getMovableTiles() > movableTiles) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

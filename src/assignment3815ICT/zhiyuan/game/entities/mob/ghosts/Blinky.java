@@ -16,7 +16,7 @@ public class Blinky extends Ghost {
         inBase = true;
 //        direction = getDirection();
         speed = 1.5f;
-//        direction = 4;
+        direction = 4;
     }
 
     @Override
@@ -24,9 +24,24 @@ public class Blinky extends Ghost {
 
         frightenedMode();
         setTargetPosition();
+        System.out.println(direction);
 
-        setMove();
-        moveRight.move();
+//        setMove();
+        if(direction == 1) {
+            moveUp.checkMovable(xPos, yPos, targetPosX, targetPosY);
+            moveUp.move();
+        }
+        if(direction == 2) {
+            moveLeft.checkMovable(xPos, yPos, targetPosX, targetPosY);
+            moveLeft.move();
+        }
+        if(direction == 3) {
+            moveDown.checkMovable(xPos, yPos, targetPosX, targetPosY);
+            moveDown.move();
+        }
+        if(direction == 4) {
+            checkRight().move();
+        }
 //        for(Movement move: movements) {
 //            System.out.println("direction: " + move.getDirectionWord() + " movable: " + move.isMovable());
 //            System.out.println("direction: " + move.getDirectionWord() + " movable tiles: " + move.getMovableTiles());

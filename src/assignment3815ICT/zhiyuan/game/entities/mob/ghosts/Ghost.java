@@ -45,10 +45,10 @@ public abstract class Ghost extends Mob {
         // alive
         isAlive = true;
         // set up collision bounds
-//        collisionBox.x = 3;
-//        collisionBox.y = 3;
-        collisionBox.width = 30;
-        collisionBox.height = 30;
+        collisionBox.x = 4;
+        collisionBox.y = 4;
+        collisionBox.width = 22;
+        collisionBox.height = 22;
         // set up default target position
         targetPosX = 0;
         targetPosY = 0;
@@ -195,11 +195,23 @@ public abstract class Ghost extends Mob {
     }
 
     public Move checkUp() {
+        moveUp.checkMovable(xPos, yPos, targetPosX, targetPosY);
         return moveUp;
     }
     public Move checkDown() {
+        moveDown.checkMovable(xPos, yPos, targetPosX, targetPosY);
         return moveDown;
     }
+    public Move checkLeft() {
+        moveLeft.checkMovable(xPos, yPos, targetPosX, targetPosY);
+        return moveLeft;
+    }
+    public Move checkRight() {
+        moveRight.checkMovable(xPos, yPos, targetPosX, targetPosY);
+        return moveRight;
+    }
+
+
 
 //    public int getDirection() {
 ////        currentDirection = direction;
