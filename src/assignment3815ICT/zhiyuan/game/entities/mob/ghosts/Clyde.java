@@ -11,6 +11,7 @@ public class Clyde extends Ghost{
         super(gameHandler, xPos, yPos);
         clydeImages = getIndividualImages(5);
         setAnimationFrame(clydeImages);
+        direction = 1;
     }
 
 
@@ -18,6 +19,8 @@ public class Clyde extends Ghost{
     @Override
     public void update() {
         frightenedMode();
+        tempTargetPosition();
+        move();
     }
 
     @Override

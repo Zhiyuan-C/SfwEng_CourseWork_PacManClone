@@ -11,6 +11,7 @@ public class Inky extends Ghost {
         super(gameHandler, xPos, yPos);
         InkyImages = getIndividualImages(15);
         setAnimationFrame(InkyImages);
+        direction = 4;
     }
 
 
@@ -18,7 +19,8 @@ public class Inky extends Ghost {
     @Override
     public void update() {
         frightenedMode();
-
+        tempTargetPosition();
+        move();
     }
 
     @Override

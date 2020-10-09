@@ -141,6 +141,11 @@ public abstract class Ghost extends Mob {
         if(direction == 4) checkRight().move();
     }
 
+    public void tempTargetPosition () {
+        targetPosX = gameHandler.getEntityManager().getPacMan().getxPos() + (gameHandler.getEntityManager().getPacMan().getWidth() / 2 - (targetWidth / 2));
+        targetPosY = gameHandler.getEntityManager().getPacMan().getyPos() + (gameHandler.getEntityManager().getPacMan().getHeight() / 2 - (targetHeight / 2));
+    }
+
     public boolean isFrightenedMode() {
         return frightenedMode;
     }

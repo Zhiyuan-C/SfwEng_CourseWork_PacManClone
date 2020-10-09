@@ -13,6 +13,7 @@ public class Pinky extends Ghost{
         super(gameHandler, xPos, yPos);
         pinkyImages = getIndividualImages(10);
         setAnimationFrame(pinkyImages);
+        direction = 2;
     }
 
 
@@ -20,6 +21,8 @@ public class Pinky extends Ghost{
     @Override
     public void update() {
         frightenedMode();
+        tempTargetPosition();
+        move();
     }
 
     @Override
