@@ -1,7 +1,6 @@
 package assignment3815ICT.zhiyuan.game.entities.mob.ghosts;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.entities.mob.movement.Movement;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -25,7 +24,11 @@ public class Blinky extends Ghost {
 
         frightenedMode();
         setTargetPosition();
-//        setMove();
+        setMove();
+//        for(Movement move: movements) {
+//            System.out.println("direction: " + move.getDirectionWord() + " movable: " + move.isMovable());
+//            System.out.println("direction: " + move.getDirectionWord() + " movable tiles: " + move.getMovableTiles());
+//        }
 //        tilePosX = (int) xPos/gameHandler.getTILE_WIDTH();
 //        tilePosY = (int) yPos/gameHandler.getTILE_HEIGHT();
 //        int topX = tilePosX * gameHandler.getTILE_WIDTH();

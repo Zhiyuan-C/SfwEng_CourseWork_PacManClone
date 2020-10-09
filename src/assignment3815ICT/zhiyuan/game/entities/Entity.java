@@ -1,8 +1,6 @@
 package assignment3815ICT.zhiyuan.game.entities;
 
 import assignment3815ICT.zhiyuan.game.GameHandler;
-import assignment3815ICT.zhiyuan.game.entities.item.Wall;
-import assignment3815ICT.zhiyuan.game.entities.mob.movement.Collision;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.Ghost;
 
@@ -15,7 +13,7 @@ public abstract class Entity {
 
     //collision detection
     protected Rectangle collisionBox;
-    protected Collision collisionDetection;
+//    protected Collision collisionDetection;
     protected boolean active;
 
     // constructor
@@ -28,7 +26,6 @@ public abstract class Entity {
         this.active = true;
 
         collisionBox = new Rectangle(0 ,0, width, height);
-        collisionDetection = new Collision(gameHandler);
     }
 
     //abstract methods

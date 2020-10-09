@@ -69,30 +69,30 @@ public abstract class Mob extends Entity {
     public boolean isMovable(){
         if(direction == 1) {
             // move up, get current tile
-            int currentTileX = (int)centerX / gameHandler.getTILE_WIDTH();
-            int currentTileY = centerY / gameHandler.getTILE_HEIGHT();
-            int newTileY = (int)(centerY / gameHandler.getTILE_HEIGHT()) - 1;
+            int currentTileX = (int)centerX / gameHandler.getTileWidth();
+            int currentTileY = centerY / gameHandler.getTileHeight();
+            int newTileY = (int)(centerY / gameHandler.getTileHeight()) - 1;
             System.out.println("currentTileX: " + currentTileX + " currentTileY: " + currentTileY +" newTileY " + newTileY);
             boolean movable = gameHandler.getMap().getTile(currentTileX, newTileY).isMovable();
             if(movable) {
                 // get destination point
-                destinationX = (int) currentTileX * gameHandler.getTILE_WIDTH() + width / 2;
-                destinationY = (int) newTileY * gameHandler.getTILE_HEIGHT() + height / 2;
+                destinationX = (int) currentTileX * gameHandler.getTileWidth() + width / 2;
+                destinationY = (int) newTileY * gameHandler.getTileHeight() + height / 2;
                 System.out.println("centerX: " + centerX + " centerY: " + centerY);
                 System.out.println("NEW destinationX: " + destinationX + " NEW destinationY: " + destinationY);
                 return true;
             }
         }else if(direction == 4) {
             // move up, get current tile
-            int currentTileX = (int)centerX / gameHandler.getTILE_WIDTH();
-            int currentTileY = centerY / gameHandler.getTILE_HEIGHT();
+            int currentTileX = (int)centerX / gameHandler.getTileWidth();
+            int currentTileY = centerY / gameHandler.getTileHeight();
             int newTileX = (int)currentTileX + 1;
             System.out.println("currentTileX: " + currentTileX + " currentTileY: " + currentTileY +" newTileX " + newTileX);
             boolean movable = gameHandler.getMap().getTile(newTileX, currentTileY).isMovable();
             if(movable) {
                 // get destination point
-                destinationX = (int) newTileX * gameHandler.getTILE_WIDTH() + width / 2;
-                destinationY = (int) currentTileY * gameHandler.getTILE_HEIGHT() + height / 2;
+                destinationX = (int) newTileX * gameHandler.getTileWidth() + width / 2;
+                destinationY = (int) currentTileY * gameHandler.getTileHeight() + height / 2;
                 System.out.println("centerX: " + centerX + " centerY: " + centerY);
                 System.out.println("destinationX: " + destinationX + " destinationY: " + destinationY);
                 return true;
