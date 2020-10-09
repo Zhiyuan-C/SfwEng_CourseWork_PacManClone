@@ -146,7 +146,7 @@ public abstract class Mob extends Entity {
      * @param x
      * @return boolean
      */
-    private boolean isCrossing(int x) {
+    protected boolean isCrossing(int x) {
         // x and y in pixel measure
         if (x < 0 || x > gameHandler.getGameWidth()) {
             return true;

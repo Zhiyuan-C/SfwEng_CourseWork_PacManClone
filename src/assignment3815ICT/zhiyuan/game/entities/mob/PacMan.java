@@ -157,6 +157,9 @@ public class PacMan extends Mob {
                     break;
                 case 2:
                     if(!isWallCollide(-1.5f, 0f)) {
+                        if(isCrossing((int) (xPos - 1.5))) {
+                            xPos = gameHandler.getGameWidth();
+                        }
                         xPos -= 1.5f;
                         itemCollisions(-1.5f, 0f);
                         if(!isResurrect) mobCollisions(-1.5f, 0f);
@@ -171,6 +174,9 @@ public class PacMan extends Mob {
                     break;
                 case 4:
                     if(!isWallCollide(1.5f, 0f)) {
+                        if(isCrossing((int) (xPos + 1.5))) {
+                            xPos = 0;
+                        }
                         xPos+=1.5f;
                         itemCollisions(1.5f, 0f);
                         if(!isResurrect) mobCollisions(1.5f, 0f);
