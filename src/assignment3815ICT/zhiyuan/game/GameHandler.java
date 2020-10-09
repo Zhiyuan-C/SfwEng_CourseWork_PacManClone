@@ -47,6 +47,8 @@ public class GameHandler {
         lifeNum = 3;
         boostingTime = 10;
         level = 1;
+        mapWidth = 40;
+        mapHeight = 23;
     }
 
     public void setGame(Game game) {

@@ -181,14 +181,14 @@ public abstract class Ghost extends Mob {
 
     public void setMove() {
         moveUp.checkMovable(xPos, yPos, targetPosX, targetPosY);
-        System.out.println("up movable: " + moveUp.isMovable() + " distance: " + moveUp.getDistance() +
-                " movable tile count:  " + moveUp.getMovableTiles());
+//        System.out.println("up movable: " + moveUp.isMovable() + " distance: " + moveUp.getDistance() +
+//                " movable tile count:  " + moveUp.getMovableTiles());
         moveDown.checkMovable(xPos, yPos, targetPosX, targetPosY);
-        System.out.println("down movable: " + moveDown.isMovable() + " distance: " + moveDown.getDistance() +
-                " movable tile count:  " + moveDown.getMovableTiles());
+//        System.out.println("down movable: " + moveDown.isMovable() + " distance: " + moveDown.getDistance() +
+//                " movable tile count:  " + moveDown.getMovableTiles());
         moveLeft.checkMovable(xPos, yPos, targetPosX, targetPosY);
-        System.out.println("left movable: " + moveLeft.isMovable() + " distance: " + moveLeft.getDistance() +
-                " movable tile count:  " + moveLeft.getMovableTiles());
+//        System.out.println("left movable: " + moveLeft.isMovable() + " distance: " + moveLeft.getDistance() +
+//                " movable tile count:  " + moveLeft.getMovableTiles());
         moveRight.checkMovable(xPos, yPos, targetPosX, targetPosY);
         System.out.println("right movable: " + moveRight.isMovable() + " distance: " + moveRight.getDistance() +
                 " movable tile count:  " + moveRight.getMovableTiles());

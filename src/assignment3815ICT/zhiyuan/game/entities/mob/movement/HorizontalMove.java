@@ -21,7 +21,9 @@ public abstract class HorizontalMove extends Move{
         offsetY = 0;
 
         movable = !ghost.isWallCollide(offsetX, offsetY);
-        checkingLength = currentTileX + (delta * 2);
+        if(delta > 0) checkingLength = mapTileWidth - (currentTileX + (delta * 2));
+        else checkingLength = currentTileX + (delta * 2);
+
 
         if(movable) {
             // set center position for the tile above
@@ -38,12 +40,15 @@ public abstract class HorizontalMove extends Move{
 
     @Override
     protected void checkMovableTiles(int delta) {
+        int tempTileX;
         float tempOffsetX;
         int count = 0;
+        if(delta > 0) tempTileX = currentTileX + (delta * 2);
+        else tempTileX = checkingLength;
         for(int i = 0; i < checkingLength; i ++) {
-            if(delta > 0) tempOffsetX = (checkingLength + i) * tileWidth - xPos;
-            else tempOffsetX = (checkingLength - i) * tileWidth - xPos;
-            if(ghost.isWallCollide(tempOffsetX, offsetY)) { // if wall exists
+            if(delta > 0) tempOffsetX = (tempTileX + i) * tileWidth - xPos;
+            else tempOffsetX = (tempTileX - i) * tileWidth - xPos;
+            if(ghost.isWallCollide(tempOffsetX, 0)) { // if wall exists
                 movableTiles = count;
                 break;
             } else {

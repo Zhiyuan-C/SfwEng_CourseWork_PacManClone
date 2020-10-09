@@ -29,7 +29,7 @@ public class EntityManager {
         items = new ArrayList<>();
         walls = new ArrayList<>();
         ghosts = new ArrayList<>();
-        blinky = new Blinky(gameHandler, 640, 320); // 640 320 beside pacman for test
+        blinky = new Blinky(gameHandler, 2 * TILE_SIZE, 3 * TILE_SIZE); // 640 320 beside pacman for test
         setDefaultPos(blinky, 2 * TILE_SIZE, 3 * TILE_SIZE);
         pinky = new Pinky(gameHandler, 37 * TILE_SIZE, 3 * TILE_SIZE);
         setDefaultPos(pinky, 37 * TILE_SIZE, 3 * TILE_SIZE);
