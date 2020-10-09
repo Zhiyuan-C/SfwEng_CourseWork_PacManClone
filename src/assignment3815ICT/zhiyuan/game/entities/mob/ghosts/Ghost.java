@@ -59,10 +59,10 @@ public abstract class Ghost extends Mob {
         // 1 - up, 2 - left, 3 - down, 4 - right, lower number also have higher proprioty
         moveUp = new MoveUp(this, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
                 gameHandler.getTileWidth(), gameHandler.getTileHeight());
-//        moveLeft = new MoveLeft(xPos, yPos, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
-//                gameHandler.getTILE_WIDTH(), gameHandler.getTILE_HEIGHT());
-//        moveRight = new MoveRight(xPos, yPos, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
-//                gameHandler.getTILE_WIDTH(), gameHandler.getTILE_HEIGHT());
+        moveLeft = new MoveLeft(this, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
+                gameHandler.getTileWidth(), gameHandler.getTileHeight());
+        moveRight = new MoveRight(this, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
+                gameHandler.getTileWidth(), gameHandler.getTileHeight());
         moveDown = new MoveDown(this, gameHandler.getMapWidth(), gameHandler.getMapHeight(),
                 gameHandler.getTileWidth(), gameHandler.getTileHeight());
         lastDistance = 0;
@@ -181,11 +181,17 @@ public abstract class Ghost extends Mob {
 
     public void setMove() {
         moveUp.checkMovable(xPos, yPos, targetPosX, targetPosY);
-//        System.out.println("up movable: " + moveUp.isMovable() + " distance: " + moveUp.getDistance() +
-//                " movable tile count:  " + moveUp.getMovableTiles());
+        System.out.println("up movable: " + moveUp.isMovable() + " distance: " + moveUp.getDistance() +
+                " movable tile count:  " + moveUp.getMovableTiles());
         moveDown.checkMovable(xPos, yPos, targetPosX, targetPosY);
-//        System.out.println("down movable: " + moveDown.isMovable() + " distance: " + moveDown.getDistance() +
-//                " movable tile count:  " + moveDown.getMovableTiles());
+        System.out.println("down movable: " + moveDown.isMovable() + " distance: " + moveDown.getDistance() +
+                " movable tile count:  " + moveDown.getMovableTiles());
+        moveLeft.checkMovable(xPos, yPos, targetPosX, targetPosY);
+        System.out.println("left movable: " + moveLeft.isMovable() + " distance: " + moveLeft.getDistance() +
+                " movable tile count:  " + moveLeft.getMovableTiles());
+        moveRight.checkMovable(xPos, yPos, targetPosX, targetPosY);
+        System.out.println("right movable: " + moveRight.isMovable() + " distance: " + moveRight.getDistance() +
+                " movable tile count:  " + moveRight.getMovableTiles());
 //        System.out.println(moveUp.getMovableTiles());
 //        System.out.println(moveUp.getMovableTiles());
 //        int count = 0;

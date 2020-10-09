@@ -9,18 +9,6 @@ public class MoveLeft extends HorizontalMove{
 
     @Override
     public void checkMovable(float xPos, float yPos, float targetX, float targetY) {
-//        this.xPos = xPos;
-//        this.yPos = yPos;
-//        currentTileX = (int) xPos / tileWidth;
-//        currentTileY = (int) yPos / tileHeight;
-//
-//        int newTileX;
-//        newTileX = currentTileX + delta;
-//
-//        offsetX = newTileX * tileWidth - xPos;
-//        offsetY = 0;
-//
-//        movable = !ghost.isWallCollide(offsetX, offsetY);
-//        checkingLength = currentTileX + (delta * 2);
+        checkMove(xPos, yPos, targetX, targetY, -1);
     }
 }

@@ -37,17 +37,15 @@ public abstract class VerticalMove extends Move{
     @Override
     protected void checkMovableTiles(int delta) {
         float tempOffsetY;
-        float tempYpos = yPos + offsetY;
         int count = 0;
         for(int i = 0; i < checkingLength; i ++) {
-            if(delta > 0) tempOffsetY = (checkingLength + i) * tileWidth - yPos;
-            else tempOffsetY = (checkingLength - i) * tileWidth - yPos;
+            if(delta > 0) tempOffsetY = (checkingLength + i) * tileHeight - yPos;
+            else tempOffsetY = (checkingLength - i) * tileHeight - yPos;
             if(ghost.isWallCollide(0, tempOffsetY)) { // if wall exists
                 movableTiles = count;
                 break;
             } else {
                 count ++;
-                tempYpos = tempYpos + tempOffsetY;
             }
         }
     }

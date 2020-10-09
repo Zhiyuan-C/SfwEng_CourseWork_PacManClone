@@ -9,6 +9,6 @@ public class MoveRight extends HorizontalMove{
 
     @Override
     public void checkMovable(float xPos, float yPos, float targetX, float targetY) {
-
+        checkMove(xPos, yPos, targetX, targetY, 1);
     }
 }
