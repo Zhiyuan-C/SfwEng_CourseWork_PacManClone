@@ -132,7 +132,8 @@ public class PacMan extends Mob {
             graphics.drawImage(pacManImages.get(0), i * 32, 21 * 32, width, height, null);
         }
 
-        gameHandler.getGameFont().render(graphics, "score " + score, 0, 5, 20, 20);
+        gameHandler.getGameFont().render(graphics, "Score " + score, 0, 5, 20, 20);
+        gameHandler.getGameFont().render(graphics, "Level " + gameHandler.getLevel(), 360, 5, 20, 20);
     }
 
     private void getInput() {

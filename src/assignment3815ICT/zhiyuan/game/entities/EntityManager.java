@@ -49,7 +49,6 @@ public class EntityManager {
         for (Ghost ghost: ghosts) {
             ghost.update();
             if(!ghost.isAlive()) {
-                System.out.println("died");
                 ghost.setxPos(ghost.getDefaultXpos());
                 ghost.setyPos(ghost.getDefaultYpos());
                 pacMan.setScore(pacMan.getScore() + 1000);
@@ -69,6 +68,16 @@ public class EntityManager {
                     }
                 }
                 items.remove(item);
+            }
+        }
+        if(items.size() == 0) {
+            if(gameHandler.getLevel() == 3) {
+                gameHandler.setScore(pacMan.getScore());
+                gameHandler.setGameOverState();
+            } else {
+                gameHandler.setLevel(gameHandler.getLevel() + 1);
+                gameHandler.setPlayState();
+                pacMan.setScore(gameHandler.getScore());
             }
         }
 

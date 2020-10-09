@@ -101,46 +101,6 @@ public abstract class Mob extends Entity {
         return false;
     }
 
-//    /**
-//     *
-//     */
-//    public boolean canMoveHorizontal(float delta, int length) {
-//        collisionDetection.setStaticPoint(yPos, collisionBox.y, collisionBox.height, gameHandler.getTILE_HEIGHT());
-//        collisionDetection.setOriginalPoint(xPos);
-//        collisionDetection.setNewPoint(delta, collisionBox.x, length, gameHandler.getTILE_WIDTH());
-//        if(!collisionDetection.isCollideSG(true)) {
-//            // check if the object is moving over the screen width
-//            if(delta > 0) {
-//                if(isCrossing((int)(xPos + delta))) {
-//                    xPos = 0;
-//                }
-//            } else {
-//                if(isCrossing((int)(xPos - delta))) {
-//                    xPos = gameHandler.getGameWidth();
-//                }
-//            }
-//            return true;
-//        }
-//        else {
-//            xPos = collisionDetection.getOriginalPoint();
-////            direction = 0;
-//            return false;
-//        }
-//    }
-//
-//    public boolean canMoveVertical(float delta, int length) {
-//        collisionDetection.setStaticPoint(xPos, collisionBox.x, collisionBox.width, gameHandler.getTILE_WIDTH());
-//        collisionDetection.setOriginalPoint(yPos);
-//        collisionDetection.setNewPoint(delta, collisionBox.y, length, gameHandler.getTILE_HEIGHT());
-//        if(!collisionDetection.isCollideSG(false)) {
-//            return true;
-//        } else {
-//            yPos = collisionDetection.getOriginalPoint();
-////            direction = 0;
-//            return false;
-//        }
-//    }
-
     /**
      *
      * @param x
