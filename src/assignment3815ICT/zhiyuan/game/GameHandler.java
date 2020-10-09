@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class GameHandler {
     private Game game;
     private Map map;
+    private int mapWidth, mapHeight;
+    private int tileWidth, tileHeight;
     private GameObject gameObject;
     // initialise game objects
     private ArrayList<BufferedImage> playerObjects, mapObjects, itemObjects, fontObjects, ghostObjects;
@@ -31,6 +33,8 @@ public class GameHandler {
         this.game = game;
         // load game object
         gameObject = new GameObject();
+        tileWidth = gameObject.getTILE_SIZE();
+        tileHeight = gameObject.getTILE_SIZE();
         playerObjects = gameObject.getPlayerObjects();
         mapObjects = gameObject.getMapObjects();
         itemObjects = gameObject.getItemObjects();
@@ -89,6 +93,31 @@ public class GameHandler {
         this.map = map;
     }
 
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public void setMapWidth(int mapWidth) {
+        this.mapWidth = mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
+
+    public void setMapHeight(int mapHeight) {
+        this.mapHeight = mapHeight;
+    }
+
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+
+    public int getTileHeight() {
+        return tileHeight;
+    }
+
 
     public ArrayList<BufferedImage> getPlayerObjects() {
         return playerObjects;
@@ -110,21 +139,7 @@ public class GameHandler {
         return gameFont;
     }
 
-    public int getTILE_WIDTH() {
-        return map.getTILE_WIDTH();
-    }
 
-    public int getTILE_HEIGHT() {
-        return map.getTILE_HEIGHT();
-    }
-
-    public int getMapWidth() {
-        return map.getMapWidth();
-    }
-
-    public int getMapHeight() {
-        return map.getMapHeight();
-    }
 
     public GameObject getGameObject() {
         return gameObject;

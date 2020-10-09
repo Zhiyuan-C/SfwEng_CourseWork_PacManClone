@@ -1,5 +1,6 @@
 package assignment3815ICT.zhiyuan.game.graphics.map;
 
+import assignment3815ICT.zhiyuan.game.Game;
 import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.EntityManager;
 import assignment3815ICT.zhiyuan.game.utils.Utils;
@@ -54,6 +55,8 @@ public class Map {
         mapHeight = Utils.parseInt(chars[1]);
         spawnX = Utils.parseInt(chars[2]);
         spawnY = Utils.parseInt(chars[3]);
+        gameHandler.setMapWidth(mapWidth);
+        gameHandler.setMapHeight(mapHeight);
 
         //map data
         tiles = new int[mapWidth][mapHeight];

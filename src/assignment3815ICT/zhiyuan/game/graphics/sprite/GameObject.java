@@ -55,4 +55,8 @@ public class GameObject {
     public ArrayList<BufferedImage> getGhostObjects() {
         return ghostObjects;
     }
+
+    public int getTILE_SIZE() {
+        return TILE_SIZE;
+    }
 }
