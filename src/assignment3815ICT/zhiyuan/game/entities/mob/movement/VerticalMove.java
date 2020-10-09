@@ -53,4 +53,39 @@ public abstract class VerticalMove extends Move{
             }
         }
     }
+    @Override
+    protected void listener() {
+        // checking for up and down
+        Move up = ghost.checkUp();
+        Move down = ghost.checkDown();
+
+        if(changeMove(up)) {
+            // call ghost to move up
+//            System.out.println("go up");
+            ghost.setDirection(1);
+        }
+
+        if(changeMove(down)) {
+            // call ghost to move down
+//            System.out.println("go down");
+            ghost.setDirection(3);
+        }
+    }
+
+    @Override
+    protected boolean changeMove(Move move) {
+        // if up is movable
+        if (move.isMovable()) {
+            // if distance is less
+            if (move.distance < distance) {
+                return true;
+            } else if(move.distance == distance) {
+                // check which one have higher movable tiles
+                if(move.getMovableTiles() > movableTiles) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

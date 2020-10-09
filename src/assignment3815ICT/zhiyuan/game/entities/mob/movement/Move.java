@@ -28,6 +28,8 @@ public abstract class Move {
 
     protected abstract void checkMove(float xPos, float yPos, float targetX, float targetY, int delta);
     protected abstract void checkMovableTiles(int delta);
+    protected abstract void listener();
+    protected abstract boolean changeMove(Move move);
     public abstract void checkMovable(float xPos, float yPos, float targetX, float targetY);
 
 

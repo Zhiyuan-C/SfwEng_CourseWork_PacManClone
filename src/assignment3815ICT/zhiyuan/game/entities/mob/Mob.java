@@ -15,7 +15,7 @@ public abstract class Mob extends Entity {
     protected BufferedImage objectLastFrame;
     // moving
     protected float speed;
-    protected int direction = 0;// 1 for up, 2 for down, 3 for left, 4 for right
+    protected int direction = 0;// 1 for up, 2 for left, 3 for down, 4 for right
     protected int centerX, centerY;
     protected int destinationX, destinationY;
     protected boolean isMovable;

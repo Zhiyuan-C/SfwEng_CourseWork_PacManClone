@@ -314,4 +314,6 @@ public abstract class Ghost extends Mob {
     public void setTargetPosY(float targetPosY) {
         this.targetPosY = targetPosY;
     }
+
+
 }
