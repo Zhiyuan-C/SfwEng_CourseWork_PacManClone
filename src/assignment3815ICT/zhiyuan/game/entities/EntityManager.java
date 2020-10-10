@@ -63,8 +63,10 @@ public class EntityManager {
                 pacMan.setScore(pacMan.getScore() + item.getValue());
                 if(item.isEnergyBooster()) {
                     for (Ghost ghost: ghosts){
-                        ghost.setFrightenedMode(true);
-                        ghost.setStartTimeFrightened(System.currentTimeMillis());
+                        if(gameHandler.getLevel() != 3) {
+                            ghost.setFrightenedMode(true);
+                            ghost.setStartTimeFrightened(System.currentTimeMillis());
+                        }
                     }
                 }
                 items.remove(item);
