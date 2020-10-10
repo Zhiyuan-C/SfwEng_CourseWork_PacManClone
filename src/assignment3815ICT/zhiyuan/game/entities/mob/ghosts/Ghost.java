@@ -103,7 +103,7 @@ public abstract class Ghost extends Mob {
         objectLastFrame = objectImages.get(0);
     }
 
-    public void frightenedMode() {
+    protected void frightenedMode() {
         int timePassed = 0;
         if(frightenedMode) {
             timePassed = (int) ((System.currentTimeMillis() - startTimeFrightened) / 1000);
@@ -113,8 +113,6 @@ public abstract class Ghost extends Mob {
             frightenedMode = false;
         }
     }
-
-
 
     public Move checkUp() {
         moveUp.checkMovable(xPos, yPos, targetPosX, targetPosY);
@@ -133,7 +131,7 @@ public abstract class Ghost extends Mob {
         return moveRight;
     }
 
-    public void move() {
+    protected void move() {
         // up, left, down, right
         if(direction == 1) checkUp().move();
         if(direction == 2) checkLeft().move();
@@ -141,7 +139,7 @@ public abstract class Ghost extends Mob {
         if(direction == 4) checkRight().move();
     }
 
-    public void tempTargetPosition () {
+    protected void tempTargetPosition () {
         targetPosX = gameHandler.getEntityManager().getPacMan().getxPos() + (gameHandler.getEntityManager().getPacMan().getWidth() / 2 - (targetWidth / 2));
         targetPosY = gameHandler.getEntityManager().getPacMan().getyPos() + (gameHandler.getEntityManager().getPacMan().getHeight() / 2 - (targetHeight / 2));
     }
