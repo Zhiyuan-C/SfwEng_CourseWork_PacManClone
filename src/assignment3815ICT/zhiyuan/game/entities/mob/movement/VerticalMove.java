@@ -9,6 +9,7 @@ public abstract class VerticalMove extends Move{
 
     @Override
     protected void checkMove(float xPos, float yPos, float targetX, float targetY, int delta) {
+        // set up variables
         this.xPos = xPos;
         this.yPos = yPos;
 
@@ -21,9 +22,14 @@ public abstract class VerticalMove extends Move{
         offsetX = 0;
         offsetY = newTileY * tileHeight - yPos;
 
+        // check if current direction is movable
         movable = !ghost.isWallCollide(offsetX, offsetY);
+
+        // set up checking length to get movable tiles
         if(delta > 0) checkingLength = mapTileHeight - (currentTileY + delta);
         else checkingLength = currentTileY + delta;
+
+        // get distance and movable tiles
         if(movable) {
             // set center position for the tile above
             int targetXtile = (int) targetX / tileWidth;
