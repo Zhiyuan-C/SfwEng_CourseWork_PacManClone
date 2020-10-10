@@ -5,6 +5,7 @@ import assignment3815ICT.zhiyuan.game.GameHandler;
 import assignment3815ICT.zhiyuan.game.entities.item.FlowerLarge;
 import assignment3815ICT.zhiyuan.game.entities.item.Item;
 import assignment3815ICT.zhiyuan.game.entities.item.Wall;
+import assignment3815ICT.zhiyuan.game.entities.mob.PacMan;
 import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.Blinky;
 import assignment3815ICT.zhiyuan.game.entities.mob.ghosts.Ghost;
 import org.junit.Assert;
