@@ -141,6 +141,10 @@ public class EntityManager {
         this.items = items;
     }
 
+    public void setWalls(ArrayList<Item> walls) {
+        this.walls = walls;
+    }
+
     public void setDefaultPos(Mob mob, float xPos, float yPos){
         mob.setDefaultXpos(xPos);
         mob.setDefaultYpos(yPos);
