@@ -17,7 +17,7 @@ public abstract class HorizontalMove extends Move{
         int newTileX;
         newTileX = currentTileX + delta;
 
-        System.out.println( "xPos: " + xPos + " currentTileX: " + currentTileX + " newTileX " + newTileX);
+//        System.out.println( "xPos: " + xPos + " currentTileX: " + currentTileX + " newTileX " + newTileX);
 
         offsetX = newTileX * tileWidth - xPos;
 
@@ -67,13 +67,13 @@ public abstract class HorizontalMove extends Move{
 
         if(changeMove(up)) {
             // call ghost to move up
-            System.out.println("go up");
+//            System.out.println("go up");
             ghost.setDirection(1);
         }
 
         if(changeMove(down)) {
             // call ghost to move down
-            System.out.println("go down");
+//            System.out.println("go down");
             ghost.setDirection(3);
         }
     }

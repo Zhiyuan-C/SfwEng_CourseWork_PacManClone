@@ -64,13 +64,13 @@ public abstract class VerticalMove extends Move{
 
         if(changeMove(left)) {
             // call ghost to move up
-            System.out.println("go left");
+//            System.out.println("go left");
             ghost.setDirection(2);
         }
 
         if(changeMove(right)) {
             // call ghost to move down
-            System.out.println("go right");
+//            System.out.println("go right");
             ghost.setDirection(4);
         }
     }

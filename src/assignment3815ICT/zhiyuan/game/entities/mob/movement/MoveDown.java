@@ -14,7 +14,7 @@ public class MoveDown extends VerticalMove{
     @Override
     public void move() {
         if (movable) {
-            System.out.println("going down");
+//            System.out.println("going down");
             float ghostY = ghost.getyPos();
             ghost.setyPos(ghostY += 1);
         } else {

@@ -12,7 +12,7 @@ public class MoveUp extends VerticalMove{
     @Override
     public void move() {
         if (movable) {
-            System.out.println("going up");
+//            System.out.println("going up");
             float ghostY = ghost.getyPos();
             ghost.setyPos(ghostY -= 1);
         } else {
