@@ -40,4 +40,8 @@ public class Animation {
     public void setTimer(long timer) {
         this.timer = timer;
     }
+
+    public int getIndex() {
+        return index;
+    }
 }
