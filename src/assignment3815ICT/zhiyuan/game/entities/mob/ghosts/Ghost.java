@@ -66,11 +66,11 @@ public abstract class Ghost extends Mob {
         } else {
             graphics.drawImage(getCurrentObjectFrame(), (int) xPos, (int) yPos, width, height, null);
         }
-        graphics.setColor(Color.BLUE);
-        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
-
-        graphics.setColor(Color.RED);
-        graphics.fillOval((int)targetPosX, (int)targetPosY, targetWidth, targetHeight);
+//        graphics.setColor(Color.BLUE);
+//        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+//
+//        graphics.setColor(Color.RED);
+//        graphics.fillOval((int)targetPosX, (int)targetPosY, targetWidth, targetHeight);
     }
 
     public abstract void setTargetPosition();

@@ -125,8 +125,8 @@ public class PacMan extends Mob {
     public void render(Graphics graphics) {
         graphics.drawImage(getCurrentObjectFrame(), (int) xPos, (int) yPos, width, height, null);
 
-        graphics.setColor(Color.RED);
-        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
+//        graphics.setColor(Color.RED);
+//        graphics.drawRect((int)(xPos + collisionBox.x), (int)(yPos + collisionBox.y), collisionBox.width, collisionBox.height);
 
         for(int i = 0; i < life; i++) {
             graphics.drawImage(pacManImages.get(0), i * 32, 21 * 32, width, height, null);
