@@ -82,9 +82,6 @@ public class EntityManager {
                 pacMan.setScore(gameHandler.getScore());
             }
         }
-
-
-
     }
 
     public void render(Graphics graphics) {
@@ -135,6 +132,10 @@ public class EntityManager {
 
     public ArrayList<Ghost> getGhosts() {
         return ghosts;
+    }
+
+    public void setGhosts(ArrayList<Ghost> ghosts) {
+        this.ghosts = ghosts;
     }
 
     public void setItems(ArrayList<Item> items) {
