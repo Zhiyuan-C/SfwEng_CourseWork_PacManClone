@@ -23,10 +23,6 @@ public class StateManager {
 
     }
 
-    public void setState(State state) {
-        currentState = state;
-    }
-
     public State getCurrentState() {
         return currentState;
     }

@@ -1,9 +1,6 @@
 package assignment3815ICT.zhiyuan.game;
 
 import assignment3815ICT.zhiyuan.game.graphics.display.GameWindow;
-import assignment3815ICT.zhiyuan.game.states.PlayState;
-import assignment3815ICT.zhiyuan.game.states.State;
-import assignment3815ICT.zhiyuan.game.states.StateManager;
 import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
 
 import java.awt.*;
@@ -21,10 +18,8 @@ public class Game implements Runnable{
     private boolean isRunning = false;
 
     // initialise drawing things for render
-    private BufferStrategy bufferStrategy; // normally bs
-    private Graphics graphics; // normally g
-
-    private State playState;
+    private BufferStrategy bufferStrategy;
+    private Graphics graphics;
 
     private KeyManager keyManager;
 
@@ -46,11 +41,8 @@ public class Game implements Runnable{
         // set handler
         gameHandler = new GameHandler(this);
 
-        // set play state
-//        gameHandler.setPlayState(); // change this to setMenuState later
+        // set state
         gameHandler.setMenuState();
-//        playState = new PlayState(gameHandler);
-//        StateManager.setState(playState);
     }
 
     // update game

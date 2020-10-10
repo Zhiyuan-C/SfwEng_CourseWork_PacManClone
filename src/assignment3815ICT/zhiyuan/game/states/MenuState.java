@@ -5,12 +5,10 @@ import assignment3815ICT.zhiyuan.game.buttons.*;
 import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class MenuState extends State{
     private StartButton startButton;
-    private LevelButton levelButton1, levelButton2, levelButton3;
     private GameFont gameFont;
     private int fontWidth, fontHeight;
     private int initialPosY, boarderHeight;
@@ -22,12 +20,7 @@ public class MenuState extends State{
     private ArrayList<UIButton> buttons;
     private ArrayList<UIButton> levelButtons, lifeButtons, timeButtons;
     private boolean configuration;
-    private boolean once, twice;
-    private boolean onceX, twiceX, leftOnceX;
     private int selectOptionXa, selectOptionXb, selectOptionXc;
-    private boolean pressed;
-    private long startTime;
-    private int upNum, downNum, leftNum, rightNum;
 
     public MenuState(GameHandler gameHandler) {
         super(gameHandler);
@@ -144,11 +137,7 @@ public class MenuState extends State{
 
     private void selectOption(ArrayList<UIButton> selectButtons, int index) {
         for(int i = 0; i < 3; i ++) {
-            if(index == i) {
-                selectButtons.get(i).setActive(true);
-            } else {
-                selectButtons.get(i).setActive(false);
-            }
+            selectButtons.get(i).setActive(index == i);
         }
 
     }

@@ -5,9 +5,6 @@ import assignment3815ICT.zhiyuan.game.graphics.display.GameFont;
 import assignment3815ICT.zhiyuan.game.graphics.map.Map;
 import assignment3815ICT.zhiyuan.game.graphics.sprite.GameObject;
 import assignment3815ICT.zhiyuan.game.inputs.KeyManager;
-import assignment3815ICT.zhiyuan.game.states.GameOverState;
-import assignment3815ICT.zhiyuan.game.states.PlayState;
-import assignment3815ICT.zhiyuan.game.states.State;
 import assignment3815ICT.zhiyuan.game.states.StateManager;
 
 import java.awt.image.BufferedImage;
@@ -43,6 +40,7 @@ public class GameHandler {
         fontObjects = gameObject.getFontObjects();
         gameFont = new GameFont(fontObjects);
         stateManager = new StateManager(this);
+        // initialise
         score = 0;
         lifeNum = 3;
         boostingTime = 10;
@@ -120,7 +118,6 @@ public class GameHandler {
         return tileHeight;
     }
 
-
     public ArrayList<BufferedImage> getPlayerObjects() {
         return playerObjects;
     }
@@ -139,12 +136,6 @@ public class GameHandler {
 
     public GameFont getGameFont() {
         return gameFont;
-    }
-
-
-
-    public GameObject getGameObject() {
-        return gameObject;
     }
 
     public EntityManager getEntityManager() {
