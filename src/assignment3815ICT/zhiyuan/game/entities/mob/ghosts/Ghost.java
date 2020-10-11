@@ -108,7 +108,7 @@ public abstract class Ghost extends Mob {
         if(frightenedMode) {
             timePassed = (int) ((System.currentTimeMillis() - startTimeFrightened) / 1000);
         }
-        if (timePassed > 5) {
+        if (timePassed > gameHandler.getBoostingTime()) {
             // five sec, change later
             frightenedMode = false;
         }
