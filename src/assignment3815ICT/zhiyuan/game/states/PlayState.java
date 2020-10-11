@@ -12,7 +12,7 @@ public class PlayState extends State {
     // constructor
     public PlayState(GameHandler gameHandler) {
         super(gameHandler);
-        map = new Map(gameHandler,"res/map.txt");
+        map = new Map(gameHandler,"/map.txt");
         gameHandler.setMap(map);
     }
 
